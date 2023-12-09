@@ -32,7 +32,7 @@ public class Board {
         // Populate the board with Tile objects
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-                tiles[i][j] = new Tile();
+                tiles[i][j] = new Tile(i, j, null);
             }
         }
     }
