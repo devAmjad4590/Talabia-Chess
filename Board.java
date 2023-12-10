@@ -1,5 +1,5 @@
 /**
- * This was class was written by Maher M.N. Balchi.
+ * This was class was implemented by Maher M.N. Balchi.
  * The Board class represents the game board for a specific game.
  * It follows the Singleton pattern to ensure only one instance of the board exists.
  */
