@@ -14,8 +14,5 @@ public abstract class Piece {
     public boolean isWhite() {
         return white;
     }
-    public boolean canMove() {
-        //implementation
-        return false;
-    }
+    public abstract boolean canMove();
 }
