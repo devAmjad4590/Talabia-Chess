@@ -17,7 +17,7 @@ public class Board {
      * @param width  The width of the board.
      */
     private Board() {
-        createBoard(length, width);
+        createBoard();
     }
 
     /**
@@ -26,7 +26,7 @@ public class Board {
      * @param length The length of the board.
      * @param width  The width of the board.
      */
-    private static void createBoard(int length, int width) {
+    private static void createBoard() {
         tiles = new Tile[length][width];  // Initialize the tiles array
 
         // Populate the board with Tile objects
@@ -45,7 +45,7 @@ public class Board {
      */
     public static Board getInstance() {
         if (instance == null) {
-            instance = new Board(length, width);
+            instance = new Board();
         }
         return instance;
     }
