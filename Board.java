@@ -16,7 +16,7 @@ public class Board {
      * @param length The length of the board.
      * @param width  The width of the board.
      */
-    private Board(int length, int width) {
+    private Board() {
         createBoard(length, width);
     }
 
