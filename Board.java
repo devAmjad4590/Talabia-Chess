@@ -12,19 +12,13 @@ public class Board {
     /**
      * Private constructor to prevent external instantiation.
      * Initializes the board with the specified length and width.
-     *
-     * @param length The length of the board.
-     * @param width  The width of the board.
      */
     private Board() {
         createBoard();
     }
 
-    /**
+    /*
      * Creates the board with the specified dimensions and initializes all tiles.
-     *
-     * @param length The length of the board.
-     * @param width  The width of the board.
      */
     private static void createBoard() {
         tiles = new Tile[length][width];  // Initialize the tiles array

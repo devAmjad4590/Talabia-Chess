@@ -18,5 +18,4 @@ public abstract class Piece {
         //implementation
         return false;
     }
-    public abstract void move();
 }

@@ -24,13 +24,6 @@ public class Tile {
     }
 
     /**
-     * @return Tile instance
-     */
-    public Tile getTile(){
-        return this;
-    }
-
-    /**
      * @return coordinates of the tile
      */
     public int getX(){
