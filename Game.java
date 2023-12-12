@@ -1,11 +1,11 @@
 /**
- * The Game class represents the main game logic and state.
  * This class is implemented by Amgad Elrashid Gurashi Eltayeb
+ * The Game class represents the main game logic and state.
  */
 
 public class Game {
-    private Player black; // The black player
-    private Player white; // The white player
+    private Player yellow; // The black player
+    private Player blue; // The white player
     private int turn = 0; // The current turn number
     private Board board; // The game board
 
@@ -15,8 +15,8 @@ public class Game {
      */
     private void init(){
         board = Board.getInstance();
-        black = new Player();
-        white = new Player();
+        yellow = new Player();
+        blue = new Player();
     }
 
     /**
@@ -77,8 +77,8 @@ public class Game {
      *
      * @param player The white player to set.
      */
-    public void setWhitePlayer(Player player){
-        this.white = player;
+    public void setBluePlayer(Player player){
+        this.blue = player;
     }
 
     /**
@@ -86,8 +86,8 @@ public class Game {
      *
      * @param player The black player to set.
      */
-    public void setBlackPlayer(Player player){
-        this.black = player;
+    public void setYellowPlayer(Player player){
+        this.yellow = player;
     }
 
     /**
@@ -95,8 +95,8 @@ public class Game {
      *
      * @return The white player.
      */
-    public Player getWhitePlayer(){
-        return white;
+    public Player getBluePlayer(){
+        return blue;
     }
 
     /**
@@ -104,8 +104,8 @@ public class Game {
      *
      * @return The black player.
      */
-    public Player getBlackPlayer(){
-        return black;
+    public Player getYellowPlayer(){
+        return yellow;
     }
 
 }
