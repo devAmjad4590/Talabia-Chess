@@ -4,8 +4,8 @@
  */
 
 public class Game {
-    private Player yellow; // The black player
-    private Player blue; // The white player
+    private Player yellow; // The yellow player
+    private Player blue; // The blue player
     private int turn = 0; // The current turn number
     private Board board; // The game board
 
@@ -48,61 +48,68 @@ public class Game {
 
 
     /**
-     * Advances the game to the next turn, switching between black and white players.
+     * Advances the game to the next turn, switching between yellow and blue players.
      */
     public void nextTurn() {
-        // Switch turns between black and white players
+        // Switch turns between yellow and blue players
         if (turn % 2 == 0) {
-            System.out.println("Black player's turn");
-            // Additional logic for black player's turn
+            yellow.setTurn(true);
+            blue.setTurn(false);
+            System.out.println("yellow player's turn");
+            // Additional logic for yellow player's turn
         } else {
-            System.out.println("White player's turn");
-            // Additional logic for white player's turn
+            blue.setTurn(true);
+            yellow.setTurn(false);
+            System.out.println("blue player's turn");
+            // Additional logic for blue player's turn
         }
 
         turn++;
     }
 
     /**
-     * Gets the current turn number.
+     * Gets the current Player turn.
      *
-     * @return The current turn number.
+     * @return The current Player turn.
      */
-    public int getTurn(){
-        return turn;
+    public Player getPlayerTurn(){
+        if(yellow.getTurn()){
+            return yellow;
+        }
+        return blue;
     }
 
      /**
-     * Sets the white player for the game.
+     * Sets the blue player for the game.
      *
-     * @param player The white player to set.
+     * @param player The blue player to set.
      */
     public void setBluePlayer(Player player){
         this.blue = player;
     }
 
     /**
-     * Sets the black player for the game.
+     * Sets the yellow player for the game.
      *
-     * @param player The black player to set.
+     * @param player The yellow player to set.
      */
     public void setYellowPlayer(Player player){
         this.yellow = player;
     }
 
     /**
-     * Gets the white player of the game.
+     * Gets the blue player of the game.
      *
-     * @return The white player.
+     * @return The blue player.
      */
     public Player getBluePlayer(){
         return blue;
     }
 
     /**
-     * Gets the black player of the game.
+     * Gets the yellow player of the game.
      *
-     * @return The black player.
+     * @return The yellow player.
      */
     public Player getYellowPlayer(){
         return yellow;
