@@ -1,18 +1,23 @@
 public abstract class Piece {
     private boolean captured;
-    private boolean white;
+    private boolean yellow;
 
-    public Piece(boolean captured, boolean white) {
-        this.captured = captured;
-        this.white = white;
+    public Piece(boolean yellow) {
+        this.yellow = yellow;
     }
 
     public boolean isCaptured() {
         return captured;
     }
 
-    public boolean isWhite() {
-        return white;
+    public boolean isYellow() {
+        return yellow;
     }
-    public abstract boolean canMove();
+
+    //method added by Amgad Elrashid Gurashi Eltayeb
+    public boolean sameColor(Piece otherPiece){
+        return this.yellow == otherPiece.yellow;
+    }
+
+    public abstract boolean canMove(Tile currentTile, Tile newTile);
 }
