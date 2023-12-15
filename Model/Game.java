@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * This class is implemented by Amgad Elrashid Gurashi Eltayeb
  * The Game class represents the main game logic and state.
@@ -51,7 +53,7 @@ public class Game {
      */
     public void startGame() {
         init();
-        
+
 
         // implementation
     };
@@ -59,8 +61,9 @@ public class Game {
     /**
      * Handles the logic when the game is over.
      */
-    public void gameOver() {
+    public void gameOver(){
         // implementation
+        
     };
 
     /**

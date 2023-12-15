@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * The Time class represents a x-shaped piece.
  * It extends the Piece class and implements specific rules for movement.

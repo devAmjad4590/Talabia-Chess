@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * The Point class represents a point-shaped chess piece.
  * It extends the Piece class and implements specific rules for movement.

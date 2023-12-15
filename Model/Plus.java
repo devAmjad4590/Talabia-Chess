@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * The Plus class represents a plus-shaped piece.
  * It extends the Piece class and implements specific rules for movement.

@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * The Sun class represents a sun-shaped chess piece.
  * It extends the Piece class and implements specific rules for movement.

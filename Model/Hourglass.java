@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * The Hourglass class represents an hourglass-shaped piece.
  * It extends the Piece class and implements specific rules for movement.

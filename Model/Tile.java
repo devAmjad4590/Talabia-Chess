@@ -1,3 +1,5 @@
+package Model;
+
 /* 
  * This class was implemented by Amgad Elrashid Gurashi Eltayeb.
  * The tile class represents the Tiles that are used to make the Board. 

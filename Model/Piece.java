@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class Piece {
     private boolean captured;
     private boolean yellow;
