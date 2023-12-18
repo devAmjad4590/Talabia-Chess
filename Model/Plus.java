@@ -32,13 +32,8 @@ public class Plus extends Piece{
         int xTiles = Math.abs(currentTile.getX() - newTile.getX());
         int yTiles = Math.abs(currentTile.getY() - newTile.getY());
 
-        // Check if the destination tile has the same color piece
-        if(this.equals(newTile.getPiece())){
-            return false;
-        }
-
         // Checks if the piece is travelling through the rows or columns
-        if ((xTiles > 0 && yTiles == 0) || (yTiles > 0 && xTiles == 0)) {
+        if ((xTiles > 0 && yTiles == 0) || (yTiles > 0 && xTiles == 0) && newTile.getPiece() == null) {
             return true;
         }
 

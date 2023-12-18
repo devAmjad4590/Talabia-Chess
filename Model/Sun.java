@@ -32,11 +32,6 @@ public class Sun extends Piece{
         int xTiles = Math.abs(currentTile.getX() - newTile.getX());
         int yTiles = Math.abs(currentTile.getY() - newTile.getY());
 
-        // Check if the destination tile has the same color piece
-        if(this.sameColor(newTile.getPiece())){
-            return false;
-        }
-
         //Check if the piece is moving to the adjacent tiles or diagnocally once
         if(xTiles + yTiles == 1 || (xTiles == 1 && yTiles == 1)){
             return true;

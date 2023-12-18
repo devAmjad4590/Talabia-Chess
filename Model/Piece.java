@@ -22,4 +22,9 @@ public abstract class Piece {
     }
 
     public abstract boolean canMove(Tile currentTile, Tile newTile);
+
+    public String toString(){
+        // return the piece type
+        return this.getClass().getSimpleName();
+    }
 }

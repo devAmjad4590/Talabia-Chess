@@ -33,11 +33,6 @@ public class Point extends Piece{
         //using the absolute value of the current and destination tile.
         int yTiles = Math.abs(currentTile.getY() - newTile.getY());
 
-        // Check if the destination tile has the same color piece
-        if(this.sameColor(newTile.getPiece())){
-            return false;
-        }
-
         // Check if the Plus piece is moving one or two tiles forward
         if(yTiles == 1 || yTiles == 2){
             return true;

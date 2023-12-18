@@ -33,13 +33,8 @@ public class Time extends Piece{
         int xTiles = Math.abs(currentTile.getX() - newTile.getX());
         int yTiles = Math.abs(currentTile.getY() - newTile.getY());
 
-        // Check if the destination tile has the same color piece
-        if(this.equals(newTile.getPiece())){
-            return false;
-        }
-
         // Checks if the pieces is moving diagonally.
-        if(xTiles == yTiles){
+        if(xTiles == yTiles && newTile.getPiece() == null){
             return true;
         }
 

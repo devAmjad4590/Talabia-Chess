@@ -42,7 +42,7 @@ public class Tile {
      * @param piece Setting the piece in the tile instance
      */
     public void setPiece(Piece piece){
-        this.piece =piece;
+        this.piece = piece;
     }
 
     /**
@@ -50,6 +50,16 @@ public class Tile {
      */
     public Piece getPiece(){
         return piece;
+    }
+
+    /**
+     * @return true if the tile is empty, false otherwise
+     */
+    public boolean isEmpty(){
+        if(piece == null){
+            return true;
+        }
+        return false;
     }
 }
 
