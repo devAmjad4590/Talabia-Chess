@@ -99,8 +99,8 @@ public class Board {
         // 1 if piece exist
         // 0 if piece not exist
         // write the print method like before
-        for(int i = 0; i < 6; i++){
-            for(int j = 0; j < 7; j++){
+        for(int i = 0; i < length; i++){
+            for(int j = 0; j < width; j++){
                 if(tiles[i][j].getPiece() == null){
                     System.out.print("0 ");
                 }else if(tiles[i][j].getPiece() != null){
@@ -115,4 +115,24 @@ public class Board {
 
 
     }
+
+    // get width
+    public int getWidth() {
+        return width;
+    }
+
+    // get length
+    public int getLength() {
+        return length;
+    }
+
+    // get tiles
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    
+
+    
 }
+

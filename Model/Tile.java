@@ -52,15 +52,6 @@ public class Tile {
         return piece;
     }
 
-    /**
-     * @return true if the tile is empty, false otherwise
-     */
-    public boolean isEmpty(){
-        if(piece == null){
-            return true;
-        }
-        return false;
-    }
 }
 
 

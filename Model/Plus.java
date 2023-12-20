@@ -43,5 +43,9 @@ public class Plus extends Piece{
 
         return false;
     }
+
+    public String toString(){
+        return "Plus";
+    }
     
 }

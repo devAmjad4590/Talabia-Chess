@@ -20,7 +20,7 @@ public class Game {
 
     public Tile getTile(int x, int y) {
         return board.getTile(x, y);
-    }
+    } // only for test purposes
 
     /**
      * Moves a player's piece from the current tile to the new tile.
@@ -53,13 +53,24 @@ public class Game {
 
     }
 
+     /**
+     * Sets the player's move from the current tile to the new tile.
+     *
+     * @param player      The player making the move.
+     * @param currentTile The current tile of the player's piece.
+     * @param newTile     The new tile where the player's piece will be moved.
+     */
     public void setPlayerMove(Player player, Tile currentTile, Tile newTile) {
         Piece piece = currentTile.getPiece();
-        if (isMoveValid(player,currentTile, newTile)) {
+        // check if the move is valid
+        if (isMoveValid(player, currentTile, newTile) && !isSunExposed()) {
+            // check if the move would expose the sun
+
             // move the piece to the new tile
             newTile.setPiece(piece);
             currentTile.setPiece(null);
             nextTurn();
+
         }
     }
 
@@ -89,13 +100,9 @@ public class Game {
         if (turn % 2 == 0) {
             yellow.setTurn(true);
             blue.setTurn(false);
-            System.out.println("yellow player's turn");
-            // Additional logic for yellow player's turn
         } else {
             blue.setTurn(true);
             yellow.setTurn(false);
-            System.out.println("blue player's turn");
-            // Additional logic for blue player's turn
         }
 
         turn++;
@@ -149,8 +156,58 @@ public class Game {
         return yellow;
     }
 
+    /**
+     * Prints the current state of the game board.
+     */
     public void printBoard() {
         board.printBoard();
+    }
+
+    /**
+     * Checks whether the sun is exposed to capture.
+     *
+     * @return true if the sun is exposed, false otherwise.
+     */
+    private boolean isSunExposed() {
+        Tile sunTile = getSunTile();
+        System.out.println("Sun tile: " + sunTile.getX() + ", " + sunTile.getY());
+        for (int i = 0; i < board.getLength(); i++) {
+            for (int j = 0; j < board.getWidth(); j++) {
+                Tile currentTile = board.getTile(i, j);
+                Piece currentPiece = currentTile.getPiece();
+
+                if (currentPiece != null
+                        && currentPiece.isYellow() != getPlayerTurn().isYellow()) {
+                    if ((currentPiece.canMove(currentTile, sunTile))) {
+                        // print the tile location of the piece that can move to the sun
+                        // System.out.println("Piece that can move to sun: " + currentTile.getX() + ", "
+                        //         + currentTile.getY() + " " + currentPiece);
+                        // System.out.println("Sun is exposed");
+                        return true;
+                    }
+                }
+            }
+        }
+        System.out.println("Sun is not exposed");
+        return false;
+    }
+
+     /**
+     * Retrieves the tile containing the sun piece for the current player.
+     *
+     * @return The tile containing the sun piece.
+     */
+    private Tile getSunTile() {
+        Tile[][] tiles = board.getTiles();
+        for (int i = 0; i < board.getLength(); i++) {
+            for (int j = 0; j < board.getWidth(); j++) {
+                if (tiles[i][j].getPiece() instanceof Sun
+                        && tiles[i][j].getPiece().isYellow() == getPlayerTurn().isYellow()) {
+                    return board.getTile(i, j);
+                }
+            }
+        }
+        return null;
     }
 
 }

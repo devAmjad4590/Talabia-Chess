@@ -6,9 +6,10 @@ package Model;
  * Point pieces have a color (yellow or not yellow).
  * Class implemented by Amgad Elrashid Gurashi Eltayeb
  */
-public class Point extends Piece{
+public class Point extends Piece {
 
     private boolean isFacingUp;
+
     /**
      * Constructs a new Point piece with the specified color.
      *
@@ -29,28 +30,45 @@ public class Point extends Piece{
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-        // Calculating the number of tiles travelled by 
-        //using the absolute value of the current and destination tile.
-        int yTiles = Math.abs(currentTile.getY() - newTile.getY());
+        // Calculating the number of tiles travelled by
+        // using the absolute value of the current and destination tile.
+        int xTiles = currentTile.getX() - newTile.getX();
 
         // Check if the Plus piece is moving one or two tiles forward
-        if(yTiles == 1 || yTiles == 2){
+        if (xTiles == 1 || xTiles == 2 && isFacingUp) {
             return true;
         }
-        // need to implement a way to make sure the piece is only moving the direction its pointing.
-        
-        // need another if condition to see if the piece movement will result in an exposed check
+
+        if(xTiles == -1 || xTiles == -2 && !isFacingUp){
+            return true;
+        }
+        // need to implement a way to make sure the piece is only moving the direction
+        // its pointing.
+
+        // need another if condition to see if the piece movement will result in an
+        // exposed check
 
         return false;
     }
 
-    public void checkDirection(){
-        if(this.isYellow()){
+    private void checkDirection() {
+        if (this.isYellow()) {
             isFacingUp = true;
-        }
-        else{
+        } else {
             isFacingUp = false;
         }
     }
-    
+
+    public void changeDirection() {
+        if (isFacingUp) {
+            isFacingUp = false;
+        } else {
+            isFacingUp = true;
+        }
+    }
+
+    public String toString() {
+        return "Point";
+    }
+
 }
