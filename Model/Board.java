@@ -111,7 +111,7 @@ public class Board {
                 if(tiles[i][j].getPiece() == null){
                     System.out.print("0 ");
                 }else if(tiles[i][j].getPiece() != null){
-                    System.out.print("1 ");
+                    System.out.print(tiles[i][j].getPiece().toString().charAt(0) + " ");
                 }
             }
             System.out.println();

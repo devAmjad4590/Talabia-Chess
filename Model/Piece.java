@@ -11,6 +11,9 @@ public abstract class Piece {
     public boolean isCaptured() {
         return captured;
     }
+    public void setCaptured() {
+        this.captured = true;
+    }
 
     public boolean isYellow() {
         return yellow;

@@ -18,9 +18,25 @@ public class Game {
         board = Board.getInstance();
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
     public Tile getTile(int x, int y) {
         return board.getTile(x, y);
     } // only for test purposes
+
+    public boolean isTileValid(Tile currentTile, Tile destination){
+        Player currentPlyar = getPlayerTurn();
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 6; j++){
+                if(isMoveValid(currentPlyar, currentTile, destination)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     /**
      * Moves a player's piece from the current tile to the new tile.
@@ -44,6 +60,12 @@ public class Game {
         // check if the piece of the same color as the player is in the new tile
         if (newTile.getPiece() != null && newTile.getPiece().isYellow() == playerPiece.isYellow()) {
             return false;
+        }
+
+        // if the tile has a piece and if it does,
+        // check if the piece is an enemy piece then capture and return true
+        if(newTile.getPiece() != null && newTile.getPiece().isYellow() != currentTile.getPiece().isYellow()){
+            removeCaptured(newTile);
         }
 
 
@@ -91,16 +113,24 @@ public class Game {
      */
     public void setPlayerMove(Player player, Tile currentTile, Tile newTile) {
         Piece piece = currentTile.getPiece();
-
+        
         // check if the move is valid
         if (isMoveValid(player, currentTile, newTile)) {
+            removeCaptured(newTile);
             // move the piece to the new tile
             newTile.setPiece(piece);
             currentTile.setPiece(null);
             nextTurn();
-            isSunExposed(); // to notify the next player's turn if the sun is exposed
-
         }
+    }
+
+    private void removeCaptured(Tile tile){
+        Piece capturedPiece = tile.getPiece();
+        if (capturedPiece != null) {
+            tile.setPiece(null);
+                capturedPiece.setCaptured();
+                board.getPieceList().remove(capturedPiece); //removes the first piece in the list
+            }
     }
 
     /**
