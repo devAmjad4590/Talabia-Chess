@@ -103,6 +103,7 @@ public class Game {
             newTile.setPiece(piece);
             currentTile.setPiece(null);
             nextTurn();
+            isSunExposed(); // to notify the next player's turn if the sun is exposed
 
         }
     }
