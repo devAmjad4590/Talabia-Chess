@@ -32,10 +32,7 @@ public class Game {
     private boolean isMoveValid(Player player, Tile currentTile, Tile newTile) {
         Piece playerPiece = currentTile.getPiece(); // store the source piece in the playerPiece variable
 
-        // Check if the picked tile has a piece, if the player is the same as the player turn,
-        // if the player piece can move to the new tile, and if the player piece is the
-        // same color as the player
-        // 
+       
         if (playerPiece == null || // Check if the picked tile has a piece,
             player != getPlayerTurn() || // if the player is the same as the player turn
             !playerPiece.canMove(currentTile, newTile) ||// if the player piece can move to the new tile
