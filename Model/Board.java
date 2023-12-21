@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 /**
  * This was class was implemented by Maher M.N. Balchi.
  * The Board class represents the game board for a specific game.
@@ -10,7 +12,7 @@ public class Board {
     private static int length = 6;   // The length of the board
     private static int width = 7;    // The width of the board
     private static Tile[][] tiles;   // 2D array to store the tiles on the board
-
+    private static ArrayList<Piece> pieceList; // List of pieces on the board
     /**
      * Private constructor to prevent external instantiation.
      * Initializes the board with the specified length and width.
@@ -32,8 +34,12 @@ public class Board {
             }
         }
 
+        // Initialize the list of pieces
+        pieceList = new ArrayList<>();
+
         // Initialize the pieces on the board
         initPieces();
+
     }
 
     // method by Amgad Elrashid Gurashi Eltayeb
@@ -76,6 +82,7 @@ public class Board {
 
         // Sun pieces
         tiles[0][3].setPiece(new Sun(false));
+        createList();
     }
 
     /**
@@ -116,6 +123,16 @@ public class Board {
 
     }
 
+    private static void createList() {
+        for(int i = 0; i < length; i++){
+            for(int j = 0; j < width; j++){
+                if(tiles[i][j].getPiece() != null){
+                    pieceList.add(tiles[i][j].getPiece());
+                }
+            }
+        }
+    }
+
     // get width
     public int getWidth() {
         return width;
@@ -129,6 +146,40 @@ public class Board {
     // get tiles
     public Tile[][] getTiles() {
         return tiles;
+    }
+
+    // get piece list
+    public ArrayList<Piece> getPieceList() {
+        return pieceList;
+    }
+
+    /**
+     * Retrieves the tile containing the sun piece for the current player.
+     *
+     * @return The tile containing the sun piece.
+     */
+    public Tile getSunTile(Player currentPlayer) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (tiles[i][j].getPiece() instanceof Sun
+                        && tiles[i][j].getPiece().isYellow() == currentPlayer.isYellow()) {
+                    return tiles[i][j];
+                }
+            }
+        }
+        return null;
+    }
+
+    // find the piece's tile
+    public Tile findPieceTile(Piece piece){
+        for(int i = 0; i < length; i++){
+            for(int j = 0; j < width; j++){
+                if(tiles[i][j].getPiece() == piece){
+                    return tiles[i][j];
+                }
+            }
+        }
+        return null;
     }
 
     
