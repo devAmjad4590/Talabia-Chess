@@ -44,7 +44,4 @@ public class Time extends Piece{
 
     }
     
-    public String toString(){
-        return "Time";
-    }
 }

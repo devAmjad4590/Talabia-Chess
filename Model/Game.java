@@ -32,7 +32,6 @@ public class Game {
     private boolean isMoveValid(Player player, Tile currentTile, Tile newTile) {
         Piece playerPiece = currentTile.getPiece(); // store the source piece in the playerPiece variable
 
-       
         if (playerPiece == null || // Check if the picked tile has a piece,
             player != getPlayerTurn() || // if the player is the same as the player turn
             !playerPiece.canMove(currentTile, newTile) ||// if the player piece can move to the new tile
@@ -92,10 +91,9 @@ public class Game {
      */
     public void setPlayerMove(Player player, Tile currentTile, Tile newTile) {
         Piece piece = currentTile.getPiece();
+
         // check if the move is valid
         if (isMoveValid(player, currentTile, newTile)) {
-            // check if the move would expose the sun
-
             // move the piece to the new tile
             newTile.setPiece(piece);
             currentTile.setPiece(null);

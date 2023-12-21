@@ -67,8 +67,5 @@ public class Point extends Piece {
         }
     }
 
-    public String toString() {
-        return "Point";
-    }
 
 }

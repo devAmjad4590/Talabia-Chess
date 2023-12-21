@@ -45,8 +45,4 @@ public class Hourglass extends Piece {
 
     }
 
-    public String toString() {
-        return "Hourglass";
-    }
-
 }

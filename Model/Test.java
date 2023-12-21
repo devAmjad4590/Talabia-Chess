@@ -9,7 +9,6 @@ public class Test{
         game.setYellowPlayer(player2);
         game.startGame();
         game.printBoard();
-        System.out.println(game.getTile(3, 2).getX());
         game.setPlayerMove(player1, game.getTile(5, 1), game.getTile(3, 2));
         game.printBoard();
         game.setPlayerMove(player2, game.getTile(0, 1), game.getTile(2, 2));

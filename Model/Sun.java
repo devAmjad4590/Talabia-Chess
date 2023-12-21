@@ -44,10 +44,6 @@ public class Sun extends Piece{
         return false;
         
     }
-
-    public String toString(){
-        return "Sun";
-    }
     
     
 }

@@ -117,9 +117,6 @@ public class Board {
             System.out.println();
         }
 
-        System.out.println(getTile(3, 2).getPiece());
-        // System.out.println(getTile(3, 2).getPiece().isYellow());
-
 
     }
 
