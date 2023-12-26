@@ -28,7 +28,13 @@ public class Plus extends Piece{
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-       return getPieceMovement().canMove(currentTile, newTile); 
+        int xTiles = Math.abs(currentTile.getY() - newTile.getY());
+        int yTiles = Math.abs(currentTile.getX() - newTile.getX());
+
+        if(getPieceMovement().isValid(xTiles, yTiles)){
+            return true;
+        }
+        return false;
     }
 
       

@@ -54,6 +54,7 @@ public class Game {
                 player.isYellow() != playerPiece.isYellow()   // //if the player piece is the same color as the player
                 //isSunExposed()
                 ) { // if the sun piece is exposed
+                    System.out.println("here");
             return false;
         }
 
@@ -78,6 +79,7 @@ public class Game {
             System.out.println("It's " + getPlayerTurn() + " turn!");
             return false;
         }
+        System.out.println("trueeeeee");
         return true;
     }
 
@@ -171,8 +173,8 @@ public class Game {
             blue.setTurn(true);
             yellow.setTurn(false);
         }
-
         turn++;
+
     }
 
     /**

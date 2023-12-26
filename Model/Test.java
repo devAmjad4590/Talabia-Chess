@@ -15,8 +15,7 @@ public class Test{
          System.out.println(game.getTile(1, 0).getPiece().canPass(game.getTile(1, 0), 1));
         game.setPlayerMove(player2, game.getTile(1, 0), game.getTile(3, 0));
         game.printBoard();
-        System.out.println(game.getTile(1, 0).getPiece());
-        
+        System.out.println(game.getTile(1, 0).getPiece());     
 
 
 
