@@ -18,7 +18,7 @@ public class Game {
         board = Board.getInstance();
     }
 
-    public Board getBoard(){
+    public Board getBoard() {
         return board;
     }
 
@@ -26,11 +26,11 @@ public class Game {
         return board.getTile(x, y);
     } // only for test purposes
 
-    public boolean isTileValid(Tile currentTile, Tile destination){
-        Player currentPlyar = getPlayerTurn();
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 6; j++){
-                if(isMoveValid(currentPlyar, currentTile, destination)){
+    public boolean isTileValid(Tile currentTile, Tile destination) {
+        Player currentPlayer = getPlayerTurn();
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (isMoveValid(currentPlayer, currentTile, destination)) {
                     return true;
                 }
             }
@@ -49,10 +49,11 @@ public class Game {
         Piece playerPiece = currentTile.getPiece(); // store the source piece in the playerPiece variable
 
         if (playerPiece == null || // Check if the picked tile has a piece,
-            player != getPlayerTurn() || // if the player is the same as the player turn
-            !playerPiece.canMove(currentTile, newTile) ||// if the player piece can move to the new tile
-            player.isYellow() != playerPiece.isYellow()||  // //if the player piece is the same color as the player
-            isSunExposed()) { // if the sun piece is exposed
+                !isPlayerTurn(player) || // if the player is the same as the player turn
+                !playerPiece.canMove(currentTile, newTile) || // if the player piece can move to the new tile
+                player.isYellow() != playerPiece.isYellow()   // //if the player piece is the same color as the player
+                //isSunExposed()
+                ) { // if the sun piece is exposed
             return false;
         }
 
@@ -64,13 +65,20 @@ public class Game {
 
         // if the tile has a piece and if it does,
         // check if the piece is an enemy piece then capture and return true
-        if(newTile.getPiece() != null && newTile.getPiece().isYellow() != currentTile.getPiece().isYellow()){
-            removeCaptured(newTile);
+        if (newTile.getPiece() != null && newTile.getPiece().isYellow() != currentTile.getPiece().isYellow()) {
+            //removeCaptured(newTile);
         }
-
 
         return true;
 
+    }
+    
+    private boolean isPlayerTurn(Player player){
+        if(player != getPlayerTurn()){
+            System.out.println("It's " + getPlayerTurn() + " turn!");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -87,12 +95,13 @@ public class Game {
         System.out.println("Sun tile: " + sunTile.getY() + ", " + sunTile.getX());
 
         // iterates over all the pieces present in the board
-        for(int i = 0; i < board.getPieceList().size(); i++){
+        for (int i = 0; i < board.getPieceList().size(); i++) {
             Piece currentPiece = board.getPieceList().get(i);
             Tile currentTile = board.findPieceTile(currentPiece);
 
             // if the piece is an enemy piece and can move to the sun tile
-            if(currentPiece.isYellow() != sunTile.getPiece().isYellow() && currentPiece.canMove(currentTile, sunTile)){
+            if (currentPiece.isYellow() != sunTile.getPiece().isYellow()
+                    && currentPiece.canMove(currentTile, sunTile)) {
                 System.out.println("Piece that can move to sun: " + currentTile.getX() + ", "
                         + currentTile.getY() + " " + currentPiece);
                 System.out.println("Sun is exposed");
@@ -103,8 +112,7 @@ public class Game {
         return false;
     }
 
-
-     /**
+    /**
      * Sets the player's move from the current tile to the new tile.
      *
      * @param player      The player making the move.
@@ -113,7 +121,7 @@ public class Game {
      */
     public void setPlayerMove(Player player, Tile currentTile, Tile newTile) {
         Piece piece = currentTile.getPiece();
-        
+
         // check if the move is valid
         if (isMoveValid(player, currentTile, newTile)) {
             removeCaptured(newTile);
@@ -124,13 +132,13 @@ public class Game {
         }
     }
 
-    private void removeCaptured(Tile tile){
+    private void removeCaptured(Tile tile) {
         Piece capturedPiece = tile.getPiece();
         if (capturedPiece != null) {
             tile.setPiece(null);
-                capturedPiece.setCaptured();
-                board.getPieceList().remove(capturedPiece);
-            }
+            capturedPiece.setCaptured();
+            board.getPieceList().remove(capturedPiece); // removes the first piece in the list
+        }
     }
 
     /**
@@ -222,6 +230,6 @@ public class Game {
         board.printBoard();
     }
 
-     
+    
 
 }

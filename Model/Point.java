@@ -43,5 +43,12 @@ public class Point extends Piece {
         setPieceMovement(new BackwardMovement());
     }
 
-
+    @Override
+    public boolean canPass(Tile currentTile, int movement){ 
+        if (Board.getInstance().getTile(currentTile.getX() - movement, currentTile.getY()) == null && currentTile.getX() - movement > 0 ) {
+            return true;
+        }
+        return false;
+        
+    }
 }

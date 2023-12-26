@@ -31,5 +31,7 @@ public class Plus extends Piece{
        return getPieceMovement().canMove(currentTile, newTile); 
     }
 
-    
+      
+
 }
+

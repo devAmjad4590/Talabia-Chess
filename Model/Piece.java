@@ -40,4 +40,7 @@ public abstract class Piece {
         return this.getClass().getSimpleName();
     }
 
+    public boolean canPass(Tile tile, int kkk) {
+        return true;
+    }
 }
