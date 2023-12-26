@@ -7,9 +7,6 @@ package Model;
  * Class implemented by Amgad Elrashid Gurashi Eltayeb
  */
 public class Point extends Piece {
-
-    private boolean isFacingUp;
-
     /**
      * Constructs a new Point piece with the specified color.
      *
@@ -17,7 +14,11 @@ public class Point extends Piece {
      */
     public Point(boolean yellow) {
         super(yellow);
-        checkDirection();
+        if (yellow) {
+            setPieceMovement(new ForwardMovement());
+        } else {
+            setPieceMovement(new BackwardMovement());
+        }
     }
 
     /**
@@ -29,42 +30,17 @@ public class Point extends Piece {
      * @return true if the move is valid, false otherwise.
      */
     @Override
-    public boolean canMove(Tile currentTile, Tile newTile) {
-        // Calculating the number of tiles travelled by
-        // using the absolute value of the current and destination tile.
-        int xTiles = currentTile.getX() - newTile.getX();
-
-        // Check if the Plus piece is moving one or two tiles forward
-        if (xTiles == 1 || xTiles == 2 && isFacingUp) {
-            return true;
-        }
-
-        if(xTiles == -1 || xTiles == -2 && !isFacingUp){
-            return true;
-        }
-        // need to implement a way to make sure the piece is only moving the direction
-        // its pointing.
-
-        // need another if condition to see if the piece movement will result in an
-        // exposed check
-
-        return false;
+    public boolean canMove(Tile currentTile, Tile newTile) { 
+        return getPieceMovement().canMove(currentTile, newTile);
+        
     }
 
-    private void checkDirection() {
-        if (this.isYellow()) {
-            isFacingUp = true;
-        } else {
-            isFacingUp = false;
-        }
+    public void setMovementForward(){
+        setPieceMovement(new ForwardMovement());
     }
 
-    public void changeDirection() {
-        if (isFacingUp) {
-            isFacingUp = false;
-        } else {
-            isFacingUp = true;
-        }
+    public void setMovementBackward(){
+        setPieceMovement(new BackwardMovement());
     }
 
 

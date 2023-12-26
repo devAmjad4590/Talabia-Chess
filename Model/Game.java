@@ -129,7 +129,7 @@ public class Game {
         if (capturedPiece != null) {
             tile.setPiece(null);
                 capturedPiece.setCaptured();
-                board.getPieceList().remove(capturedPiece); //removes the first piece in the list
+                board.getPieceList().remove(capturedPiece);
             }
     }
 

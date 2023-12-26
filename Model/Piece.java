@@ -3,6 +3,7 @@ package Model;
 public abstract class Piece {
     private boolean captured;
     private boolean yellow;
+    private PieceMovement pieceMovement;
 
     public Piece(boolean yellow) {
         this.yellow = yellow;
@@ -26,8 +27,17 @@ public abstract class Piece {
 
     public abstract boolean canMove(Tile currentTile, Tile newTile);
 
+    public void setPieceMovement(PieceMovement pieceMovement) {
+        this.pieceMovement = pieceMovement;
+    }
+    
+    public PieceMovement getPieceMovement() {
+        return pieceMovement;
+    }
+
     public String toString(){
         // return the piece type
         return this.getClass().getSimpleName();
     }
+
 }

@@ -15,6 +15,7 @@ public class Sun extends Piece{
      */
     public Sun(boolean yellow) {
         super(yellow);
+        setPieceMovement(new SunMovement());
     }
 
      /**
@@ -27,22 +28,7 @@ public class Sun extends Piece{
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-        // Calculating the number of tiles travelled by 
-        //using the absolute value of the current and destination tile.
-        int xTiles = Math.abs(currentTile.getY() - newTile.getY());
-        int yTiles = Math.abs(currentTile.getX() - newTile.getX());
-
-        //Check if the piece is moving to the adjacent tiles or diagnocally once
-        if(xTiles + yTiles == 1 || (xTiles == 1 && yTiles == 1)){
-            return true;
-        }
-
-        
-
-        // need another if condition to see if the piece movement will result in an exposed check
-
-        return false;
-        
+        return getPieceMovement().canMove(currentTile, newTile); 
     }
     
     

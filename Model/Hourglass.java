@@ -16,6 +16,7 @@ public class Hourglass extends Piece {
      */
     public Hourglass(boolean yellow) {
         super(yellow);
+        setPieceMovement(new HourglassMovement());
     }
 
     /**
@@ -28,21 +29,7 @@ public class Hourglass extends Piece {
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-        // Calculating the number of tiles travelled by
-        // using the absolute value of the current and destination tile.
-        int yTiles = Math.abs(currentTile.getY() - newTile.getY());
-        int xTiles = Math.abs(currentTile.getX() - newTile.getX());
-
-        // Checks if the piece is making the correct L movement
-        if (xTiles * yTiles == 2) {
-            return true;
-        }
-
-        // need another if condition to see if the piece movement will result in an
-        // exposed check
-
-        return false;
-
+        return getPieceMovement().canMove(currentTile, newTile);
     }
 
 }
