@@ -5,14 +5,16 @@ import java.util.ArrayList;
 /**
  * This was class was implemented by Maher M.N. Balchi.
  * The Board class represents the game board for a specific game.
- * It follows the Singleton pattern to ensure only one instance of the board exists.
+ * It follows the Singleton pattern to ensure only one instance of the board
+ * exists.
  */
 public class Board {
-    private static Board instance;  // The single instance of the Board
-    private static int length = 6;   // The length of the board
-    private static int width = 7;    // The width of the board
-    private static Tile[][] tiles;   // 2D array to store the tiles on the board
+    private static Board instance; // The single instance of the Board
+    private static int length = 6; // The length of the board
+    private static int width = 7; // The width of the board
+    private static Tile[][] tiles; // 2D array to store the tiles on the board
     private static ArrayList<Piece> pieceList; // List of pieces on the board
+
     /**
      * Private constructor to prevent external instantiation.
      * Initializes the board with the specified length and width.
@@ -25,7 +27,7 @@ public class Board {
      * Creates the board with the specified dimensions and initializes all tiles.
      */
     private static void createBoard() {
-        tiles = new Tile[length][width];  // Initialize the tiles array
+        tiles = new Tile[length][width]; // Initialize the tiles array
 
         // Populate the board with Tile objects
         for (int i = 0; i < length; i++) {
@@ -45,7 +47,7 @@ public class Board {
     // method by Amgad Elrashid Gurashi Eltayeb
     private static void initPieces() {
         // Initialize the yellow pieces
-        for(int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             tiles[4][i].setPiece(new Point(true));
         }
         // Plus pieces
@@ -56,16 +58,15 @@ public class Board {
         tiles[5][1].setPiece(new Hourglass(true));
         tiles[5][5].setPiece(new Hourglass(true));
 
-        //Time pieces
+        // Time pieces
         tiles[5][2].setPiece(new Time(true));
         tiles[5][4].setPiece(new Time(true));
 
         // Sun pieces
         tiles[5][3].setPiece(new Sun(true));
 
-
         // Initialize the blue pieces
-        for(int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             tiles[1][i].setPiece(new Point(false));
         }
         // Plus pieces
@@ -76,7 +77,7 @@ public class Board {
         tiles[0][1].setPiece(new Hourglass(false));
         tiles[0][5].setPiece(new Hourglass(false));
 
-        //Time pieces
+        // Time pieces
         tiles[0][2].setPiece(new Time(false));
         tiles[0][4].setPiece(new Time(false));
 
@@ -106,24 +107,28 @@ public class Board {
         // 1 if piece exist
         // 0 if piece not exist
         // write the print method like before
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j < width; j++){
-                if(tiles[i][j].getPiece() == null){
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (tiles[i][j].getPiece() == null) {
                     System.out.print("0 ");
-                }else if(tiles[i][j].getPiece() != null){
+                } else if (tiles[i][j].getPiece() != null) {
                     System.out.print(tiles[i][j].getPiece().toString().charAt(0) + " ");
                 }
             }
             System.out.println();
         }
-
+        for (int i = 0; i <= tiles.length; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        System.out.println();
 
     }
 
     private static void createList() {
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j < width; j++){
-                if(tiles[i][j].getPiece() != null){
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (tiles[i][j].getPiece() != null) {
                     pieceList.add(tiles[i][j].getPiece());
                 }
             }
@@ -168,10 +173,10 @@ public class Board {
     }
 
     // find the piece's tile
-    public Tile findPieceTile(Piece piece){
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j < width; j++){
-                if(tiles[i][j].getPiece() == piece){
+    public Tile findPieceTile(Piece piece) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (tiles[i][j].getPiece() == piece) {
                     return tiles[i][j];
                 }
             }
@@ -179,8 +184,4 @@ public class Board {
         return null;
     }
 
-    
-
-    
 }
-

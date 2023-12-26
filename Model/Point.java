@@ -35,11 +35,11 @@ public class Point extends Piece {
         int xTiles = currentTile.getX() - newTile.getX();
 
         // Check if the Plus piece is moving one or two tiles forward
-        if (xTiles == 1 || xTiles == 2 && isFacingUp) {
+        if (xTiles == 1 || xTiles == 2 && isFacingUp && canPass(currentTile, xTiles)) {
             return true;
         }
 
-        if(xTiles == -1 || xTiles == -2 && !isFacingUp){
+        if(xTiles == -1 || xTiles == -2 && !isFacingUp && canPass(currentTile, xTiles)){
             return true;
         }
         // need to implement a way to make sure the piece is only moving the direction
@@ -67,5 +67,12 @@ public class Point extends Piece {
         }
     }
 
-
+    @Override
+    public boolean canPass(Tile currentTile, int movement){ 
+        if (Board.getInstance().getTile(currentTile.getX() - movement, currentTile.getY()) == null && currentTile.getX() - movement > 0 ) {
+            return true;
+        }
+        return false;
+        
+    }
 }
