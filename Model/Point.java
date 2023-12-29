@@ -6,9 +6,7 @@ package Model;
  * Point pieces have a color (yellow or not yellow).
  * Class implemented by Amgad Elrashid Gurashi Eltayeb
  */
-public class Point extends Piece{
-
-    private boolean isFacingUp;
+public class Point extends Piece {
     /**
      * Constructs a new Point piece with the specified color.
      *
@@ -16,7 +14,11 @@ public class Point extends Piece{
      */
     public Point(boolean yellow) {
         super(yellow);
-        checkDirection();
+        if (yellow) {
+            setPieceMovement(new ForwardMovement());
+        } else {
+            setPieceMovement(new BackwardMovement());
+        }
     }
 
     /**
@@ -28,34 +30,31 @@ public class Point extends Piece{
      * @return true if the move is valid, false otherwise.
      */
     @Override
-    public boolean canMove(Tile currentTile, Tile newTile) {
-        // Calculating the number of tiles travelled by 
-        //using the absolute value of the current and destination tile.
+    public boolean canMove(Tile currentTile, Tile newTile) { 
+        int xTiles = Math.abs(currentTile.getX() - newTile.getX());
         int yTiles = Math.abs(currentTile.getY() - newTile.getY());
 
-        // Check if the destination tile has the same color piece
-        if(this.sameColor(newTile.getPiece())){
-            return false;
-        }
-
-        // Check if the Plus piece is moving one or two tiles forward
-        if(yTiles == 1 || yTiles == 2){
+        if(getPieceMovement().isValid(xTiles, yTiles)){
             return true;
         }
-        // need to implement a way to make sure the piece is only moving the direction its pointing.
-        
-        // need another if condition to see if the piece movement will result in an exposed check
-
         return false;
+        
     }
 
-    public void checkDirection(){
-        if(this.isYellow()){
-            isFacingUp = true;
-        }
-        else{
-            isFacingUp = false;
-        }
+    public void setMovementForward(){
+        setPieceMovement(new ForwardMovement());
     }
-    
+
+    public void setMovementBackward(){
+        setPieceMovement(new BackwardMovement());
+    }
+
+    @Override
+    public boolean canPass(Tile currentTile, int movement){ 
+        if (Board.getInstance().getTile(currentTile.getX() - movement, currentTile.getY()) == null && currentTile.getX() - movement > 0 ) {
+            return true;
+        }
+        return false;
+        
+    }
 }

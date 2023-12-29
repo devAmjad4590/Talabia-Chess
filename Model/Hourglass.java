@@ -7,7 +7,7 @@ package Model;
  * Class implemented by Amgad Elrashid Gurashi Eltayeb
  */
 
-public class Hourglass extends Piece{
+public class Hourglass extends Piece {
 
     /**
      * Constructs a new Hourglass piece with the specified color.
@@ -16,9 +16,10 @@ public class Hourglass extends Piece{
      */
     public Hourglass(boolean yellow) {
         super(yellow);
+        setPieceMovement(new HourglassMovement());
     }
 
-     /**
+    /**
      * Determines if the Hourglass can move from the current tile to the new tile.
      * The Hourglass can move diagonally by two squares.
      *
@@ -28,26 +29,13 @@ public class Hourglass extends Piece{
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-        // Calculating the number of tiles travelled by 
-        //using the absolute value of the current and destination tile.
         int xTiles = Math.abs(currentTile.getX() - newTile.getX());
         int yTiles = Math.abs(currentTile.getY() - newTile.getY());
-
-        // Check if the destination tile has the same color piece
-        if(this.sameColor(newTile.getPiece())){
-            return false;
-        }
-
-        // Checks if the piece is making the correct L movement
-        if(xTiles * yTiles == 2){
+        
+        if(getPieceMovement().isValid(xTiles, yTiles)){
             return true;
         }
-
-        // need another if condition to see if the piece movement will result in an exposed check
-
-
         return false;
-
     }
-    
+
 }

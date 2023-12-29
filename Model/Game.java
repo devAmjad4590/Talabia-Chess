@@ -16,8 +16,26 @@ public class Game {
      */
     private void init() {
         board = Board.getInstance();
-        yellow = new Player(true);
-        blue = new Player(false);
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Tile getTile(int x, int y) {
+        return board.getTile(x, y);
+    } // only for test purposes
+
+    public boolean isTileValid(Tile currentTile, Tile destination) {
+        Player currentPlayer = getPlayerTurn();
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (isMoveValid(currentPlayer, currentTile, destination)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -27,26 +45,103 @@ public class Game {
      * @param currentTile The current tile of the player's piece.
      * @param newTile     The new tile where the player's piece will be moved.
      */
-    public boolean isMoveValid(Player player, Tile currentTile, Tile newTile) {
+    private boolean isMoveValid(Player player, Tile currentTile, Tile newTile) {
         Piece playerPiece = currentTile.getPiece(); // store the source piece in the playerPiece variable
-        if (player == getPlayerTurn() && playerPiece.canMove(currentTile, newTile)
-                && player.isYellow() == playerPiece.isYellow()) { // checks if it's the player's turn & legal move and if the piece belong to them
-            return true;
+
+        if (playerPiece == null || // Check if the picked tile has a piece,
+                !isPlayerTurn(player) || // if the player is the same as the player turn
+                !playerPiece.canMove(currentTile, newTile) || // if the player piece can move to the new tile
+                player.isYellow() != playerPiece.isYellow()   // //if the player piece is the same color as the player
+                //isSunExposed()
+                ) { // if the sun piece is exposed
+                    System.out.println("here");
+            return false;
         }
+
+        // Check if the new tile has a piece and if it does,
+        // check if the piece of the same color as the player is in the new tile
+        if (newTile.getPiece() != null && newTile.getPiece().isYellow() == playerPiece.isYellow()) {
+            return false;
+        }
+
+        // if the tile has a piece and if it does,
+        // check if the piece is an enemy piece then capture and return true
+        if (newTile.getPiece() != null && newTile.getPiece().isYellow() != currentTile.getPiece().isYellow()) {
+            //removeCaptured(newTile);
+        }
+
+        return true;
+
+    }
+    
+    private boolean isPlayerTurn(Player player){
+        if(player != getPlayerTurn()){
+            System.out.println("It's " + getPlayerTurn() + " turn!");
+            return false;
+        }
+        System.out.println("trueeeeee");
+        return true;
+    }
+
+    /**
+     * Checks whether the sun is exposed to capture.
+     *
+     * @return true if the sun is exposed, false otherwise.
+     */
+    private boolean isSunExposed() {
+        // gets the current player
+        Player currentPlayer = getPlayerTurn();
+
+        // finds the sun tile of the current player
+        Tile sunTile = board.getSunTile(currentPlayer);
+        System.out.println("Sun tile: " + sunTile.getY() + ", " + sunTile.getX());
+
+        // iterates over all the pieces present in the board
+        for (int i = 0; i < board.getPieceList().size(); i++) {
+            Piece currentPiece = board.getPieceList().get(i);
+            Tile currentTile = board.findPieceTile(currentPiece);
+
+            // if the piece is an enemy piece and can move to the sun tile
+            if (currentPiece.isYellow() != sunTile.getPiece().isYellow()
+                    && currentPiece.canMove(currentTile, sunTile)) {
+                System.out.println("Piece that can move to sun: " + currentTile.getX() + ", "
+                        + currentTile.getY() + " " + currentPiece);
+                System.out.println("Sun is exposed");
+                return true;
+            }
+        }
+        System.out.println("Sun is not exposed");
         return false;
     }
 
-    public void playerMove(Player player, Tile currentTile, Tile newTile) {
-        if (isMoveValid(player, currentTile, newTile)) {
-            newTile.setPiece(currentTile.getPiece());
-            currentTile.setPiece(null);
-        } else {
-            System.out.println("Invalid move");
-        }
+    /**
+     * Sets the player's move from the current tile to the new tile.
+     *
+     * @param player      The player making the move.
+     * @param currentTile The current tile of the player's piece.
+     * @param newTile     The new tile where the player's piece will be moved.
+     */
+    public void setPlayerMove(Player player, Tile currentTile, Tile newTile) {
+        Piece piece = currentTile.getPiece();
 
+        // check if the move is valid
+        if (isMoveValid(player, currentTile, newTile)) {
+            removeCaptured(newTile);
+            // move the piece to the new tile
+            newTile.setPiece(piece);
+            currentTile.setPiece(null);
+            nextTurn();
+        }
     }
 
-    
+    private void removeCaptured(Tile tile) {
+        Piece capturedPiece = tile.getPiece();
+        if (capturedPiece != null) {
+            tile.setPiece(null);
+            capturedPiece.setCaptured();
+            board.getPieceList().remove(capturedPiece); // removes the first piece in the list
+        }
+    }
 
     /**
      * Starts the game by initializing the game state and starting the first turn.
@@ -54,37 +149,32 @@ public class Game {
     public void startGame() {
         init();
 
-
         // implementation
     };
 
     /**
      * Handles the logic when the game is over.
      */
-    public void gameOver(){
+    public void gameOver() {
         // implementation
-        
+
     };
 
     /**
      * Advances the game to the next turn, switching between yellow and blue
      * players.
      */
-    public void nextTurn() {
+    private void nextTurn() {
         // Switch turns between yellow and blue players
         if (turn % 2 == 0) {
             yellow.setTurn(true);
             blue.setTurn(false);
-            System.out.println("yellow player's turn");
-            // Additional logic for yellow player's turn
         } else {
             blue.setTurn(true);
             yellow.setTurn(false);
-            System.out.println("blue player's turn");
-            // Additional logic for blue player's turn
         }
-
         turn++;
+
     }
 
     /**
@@ -134,5 +224,14 @@ public class Game {
     public Player getYellowPlayer() {
         return yellow;
     }
+
+    /**
+     * Prints the current state of the game board.
+     */
+    public void printBoard() {
+        board.printBoard();
+    }
+
+    
 
 }

@@ -9,6 +9,7 @@ package Model;
 public abstract class Piece {
     private boolean captured;
     private boolean yellow;
+    private PieceMovement pieceMovement;
 
     /**
      * Constructs a new Piece instance with the specified color.
@@ -26,6 +27,9 @@ public abstract class Piece {
      */
     public boolean isCaptured() {
         return captured;
+    }
+    public void setCaptured() {
+        this.captured = true;
     }
 
      /**
@@ -50,4 +54,21 @@ public abstract class Piece {
      * @return {@code true} if the move is valid, {@code false} otherwise.
      */
     public abstract boolean canMove(Tile currentTile, Tile newTile);
+
+    public void setPieceMovement(PieceMovement pieceMovement) {
+        this.pieceMovement = pieceMovement;
+    }
+    
+    public PieceMovement getPieceMovement() {
+        return pieceMovement;
+    }
+
+    public String toString(){
+        // return the piece type
+        return this.getClass().getSimpleName();
+    }
+
+    public boolean canPass(Tile tile, int kkk) {
+        return true;
+    }
 }
