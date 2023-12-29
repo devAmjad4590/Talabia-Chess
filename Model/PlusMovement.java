@@ -11,7 +11,6 @@ public class PlusMovement implements PieceMovement {
 
 
 
-        // need another if condition to see if the piece movement will result in an exposed check
 
         return false;
     }

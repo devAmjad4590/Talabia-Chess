@@ -16,7 +16,7 @@ public class GameBoard extends JFrame {
 
     public GameBoard() {
         frame = new JFrame("Talabia Chess Game");
-        frame.setMinimumSize(new Dimension(400, 400));
+        frame.setMinimumSize(new Dimension(700, 400));
 
         player1 = new PlayerGUI("Player 1");
         player2 = new PlayerGUI("Player 2");
@@ -31,9 +31,9 @@ public class GameBoard extends JFrame {
         frame.add(southPanel, BorderLayout.SOUTH);
     
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
         frame.pack(); 
-    
+        
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
     

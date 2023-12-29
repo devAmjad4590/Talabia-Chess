@@ -25,6 +25,8 @@ public class TileGUI extends JPanel {
         this.x = x;
         this.y = y;
         setPreferredSize(new Dimension(80, 80));
+        // set maximum size to preferred size to prevent stretching
+        setMaximumSize(new Dimension(90, 90));
     }
 
     /**

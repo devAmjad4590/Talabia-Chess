@@ -35,4 +35,15 @@ public class CenterPanel extends JPanel {
             }
         }
     }
+
+    /**
+     * Gets the TileGUI instance at the specified x and y coordinates.
+     *
+     * @param x The x-coordinate of the tile.
+     * @param y The y-coordinate of the tile.
+     * @return The TileGUI instance at the specified x and y coordinates.
+     */
+    public TileGUI getTileGUI(int x, int y){
+        return tileGUIs[x][y];
+    }
 }

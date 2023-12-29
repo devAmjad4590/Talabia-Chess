@@ -67,9 +67,9 @@ public class Game {
         // if the tile has a piece and if it does,
         // check if the piece is an enemy piece then capture and return true
         if (newTile.getPiece() != null && newTile.getPiece().isYellow() != currentTile.getPiece().isYellow()) {
-            //removeCaptured(newTile);
+            removeCaptured(newTile);
         }
-
+        
         return true;
 
     }
@@ -126,7 +126,7 @@ public class Game {
 
         // check if the move is valid
         if (isMoveValid(player, currentTile, newTile)) {
-            removeCaptured(newTile);
+            // removeCaptured(newTile);
             // move the piece to the new tile
             newTile.setPiece(piece);
             currentTile.setPiece(null);
