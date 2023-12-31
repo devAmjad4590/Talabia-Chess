@@ -1,4 +1,4 @@
-package VIEW;
+package VIEW.Components;
 
 import java.awt.Component;
 

@@ -1,6 +1,9 @@
 package VIEW;
 
 import javax.swing.*;
+
+import VIEW.Components.TileGUI;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 

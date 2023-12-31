@@ -1,6 +1,8 @@
 package VIEW;
 
 import Model.Tile;
+import VIEW.Components.PlayerGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

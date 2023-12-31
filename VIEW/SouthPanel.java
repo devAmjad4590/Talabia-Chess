@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import VIEW.Components.PlayerGUI;
+
 /**
  * The {@code SouthPanel} class represents a Swing JPanel that serves as the bottom panel
  * in a graphical user interface, typically used for displaying player 1 information and control buttons.

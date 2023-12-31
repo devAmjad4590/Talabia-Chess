@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 import Model.*;
 import VIEW.*;
+import VIEW.Components.TileGUI;
 
 public class Controller {
     private GameBoard view;

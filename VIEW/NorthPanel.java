@@ -3,6 +3,8 @@ package VIEW;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import VIEW.Components.PlayerGUI;
+
 /**
  * The {@code NorthPanel} class represents a Swing JPanel that serves as the top panel
  * in a graphical user interface, typically used for displaying player information.
