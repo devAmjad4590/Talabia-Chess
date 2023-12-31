@@ -3,15 +3,15 @@ package Controller;
 import java.awt.event.*;
 
 import Model.*;
-import VIEW.*;
-import VIEW.Components.TileGUI;
+import View.*;
+import View.Components.TileGUI;
 
 public class Controller {
-    private GameBoard view;
+    private GameView view;
     private Game model;
     private Tile selectedTile, destinationTile;
 
-    public Controller(GameBoard view, Game model) {
+    public Controller(GameView view, Game model) {
         this.view = view;
         this.model = model;
         initBoard();

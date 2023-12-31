@@ -1,9 +1,9 @@
-package VIEW;
+package View;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import VIEW.Components.PlayerGUI;
+import View.Components.PlayerGUI;
 
 /**
  * The {@code NorthPanel} class represents a Swing JPanel that serves as the top panel

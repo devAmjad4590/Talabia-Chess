@@ -1,14 +1,14 @@
-package VIEW;
+package View;
 
 import Model.Tile;
-import VIEW.Components.PlayerGUI;
+import View.Components.PlayerGUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class GameBoard extends JFrame {
+public class GameView extends JFrame {
 
     private JFrame frame;
     private CenterPanel centerPanel;
@@ -16,7 +16,7 @@ public class GameBoard extends JFrame {
     private SouthPanel southPanel;
     private PlayerGUI player1, player2;
 
-    public GameBoard() {
+    public GameView() {
         frame = new JFrame("Talabia Chess Game");
         frame.setMinimumSize(new Dimension(700, 400));
 
@@ -52,6 +52,6 @@ public class GameBoard extends JFrame {
         return southPanel;
     }
     public static void main(String[] args){
-        new GameBoard();
+        new GameView();
     }
 }
