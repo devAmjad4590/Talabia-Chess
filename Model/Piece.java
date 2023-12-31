@@ -65,7 +65,11 @@ public abstract class Piece {
 
     public String toString(){
         // return the piece type
-        return this.getClass().getSimpleName();
+        return getColor() + this.getClass().getSimpleName();
+    }
+
+    private String getColor(){
+        return yellow ? "yellow" : "blue";
     }
 
     public boolean canPass(Tile tile, int kkk) {

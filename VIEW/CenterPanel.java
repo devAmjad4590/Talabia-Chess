@@ -2,6 +2,7 @@ package VIEW;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 /**
  * The {@code CenterPanel} class represents a Swing JPanel that serves as the central component
@@ -16,7 +17,7 @@ public class CenterPanel extends JPanel {
      * A 2D array of TileGUI instances representing the visual representation of tiles on the chessboard.
      * Each element in the array corresponds to a specific position on the chessboard.
      */
-    private TileGUI[][] tileGUIs = new TileGUI[7][6];
+    private TileGUI[][] tileGUIs = new TileGUI[6][7];
 
 
      /**
@@ -25,11 +26,11 @@ public class CenterPanel extends JPanel {
      * Populates the panel with TileGUI instances, each representing a visual tile on the chessboard.
      */
     public CenterPanel() {
-        setLayout(new GridLayout(7, 6));
+        setLayout(new GridLayout(6, 7));
 
         // Populate the panel with TileGUI instances
-        for (int i =0; i < 7; i++){
-            for (int j = 0; j < 6; j++){
+        for (int i =0; i < 6; i++){
+            for (int j = 0; j < 7; j++){
                 tileGUIs[i][j] = new TileGUI(i, j);
                 add(tileGUIs[i][j]);
             }
@@ -45,5 +46,10 @@ public class CenterPanel extends JPanel {
      */
     public TileGUI getTileGUI(int x, int y){
         return tileGUIs[x][y];
+    }
+
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);        
     }
 }

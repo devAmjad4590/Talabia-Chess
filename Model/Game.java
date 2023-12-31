@@ -11,6 +11,10 @@ public class Game {
     private int turn = 0; // The current turn number
     private Board board; // The game board
 
+    public Game(){
+        init();
+    }
+
     /**
      * Initializes the game by creating player instances and game board.
      */
@@ -54,7 +58,6 @@ public class Game {
                 player.isYellow() != playerPiece.isYellow()   // //if the player piece is the same color as the player
                 //isSunExposed()
                 ) { // if the sun piece is exposed
-                    System.out.println("here");
             return false;
         }
 
@@ -79,7 +82,6 @@ public class Game {
             System.out.println("It's " + getPlayerTurn() + " turn!");
             return false;
         }
-        System.out.println("trueeeeee");
         return true;
     }
 
@@ -131,6 +133,7 @@ public class Game {
             newTile.setPiece(piece);
             currentTile.setPiece(null);
             nextTurn();
+            System.out.println("successful Move");
         }
     }
 
@@ -143,14 +146,7 @@ public class Game {
         }
     }
 
-    /**
-     * Starts the game by initializing the game state and starting the first turn.
-     */
-    public void startGame() {
-        init();
 
-        // implementation
-    };
 
     /**
      * Handles the logic when the game is over.
