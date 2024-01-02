@@ -44,9 +44,17 @@ public class Board {
 
     }
 
+    /**
+     * Flips the board by swapping the pieces between the top half and bottom half
+     * of the tiles array.
+     * This method iterates over the top half of the tiles array and exchanges the
+     * pieces with their
+     * corresponding positions in the bottom half, achieving a symmetric flip.
+     * implemented by amgad elrashid gurashi eltayeb
+     */
     public static void flipBoard() {
         for (int i = 0; i < tiles.length / 2; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
+            for (int j = 0; j < tiles[i].length; j++) { 
                 Piece temp = tiles[i][j].getPiece();
                 tiles[i][j].setPiece(tiles[tiles.length - i - 1][j].getPiece());
                 tiles[tiles.length - i - 1][j].setPiece(temp);
