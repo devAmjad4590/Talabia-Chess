@@ -51,6 +51,14 @@ public class GameView extends JFrame {
     public SouthPanel getSouthPanel() {
         return southPanel;
     }
+
+    public PlayerGUI getYellowPlayer(){
+        return player1;
+    }
+
+    public PlayerGUI getBluePlayer(){
+        return player2;
+    }
     public static void main(String[] args){
         new GameView();
     }

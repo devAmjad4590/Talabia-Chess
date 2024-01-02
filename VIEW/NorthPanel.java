@@ -1,5 +1,7 @@
 package View;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,6 +25,7 @@ public class NorthPanel extends JPanel{
      * @param player2 The PlayerGUI instance representing player 2.
      */
     public NorthPanel(PlayerGUI player2) {
+        setLayout(new BorderLayout());
         this.player2 = player2; 
         add(player2);
     }

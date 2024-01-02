@@ -2,15 +2,16 @@ package View.Components;
 
 import javax.swing.*;
 import java.awt.*;
-
-
 /**
- * The {@code TileGUI} class represents a Swing JPanel that visually represents a tile on a chessboard
- * in a graphical user interface. It includes methods to retrieve the x and y coordinates of the tile.
- * The appearance of the tile is determined by alternating black and white colors based on its coordinates.
+ * The {@code TileGUI} class represents a Swing JPanel that visually represents
+ * a tile on a chessboard
+ * in a graphical user interface. It includes methods to retrieve the x and y
+ * coordinates of the tile.
+ * The appearance of the tile is determined by alternating black and white
+ * colors based on its coordinates.
  * Class implemented by Asim Adel Ahmed Maroof
  */
-public class TileGUI extends JPanel {
+public class TileGUI extends JButton {
     private int x;
     private int y;
     private JLabel imageLabel;
@@ -19,7 +20,8 @@ public class TileGUI extends JPanel {
 
     /**
      * Constructs a new TileGUI instance.
-     * Initializes the tile with the specified x and y coordinates and sets its preferred size.
+     * Initializes the tile with the specified x and y coordinates and sets its
+     * preferred size.
      *
      * @param x The x-coordinate of the tile.
      * @param y The y-coordinate of the tile.
@@ -39,7 +41,7 @@ public class TileGUI extends JPanel {
      *
      * @return The x-coordinate of the tile.
      */
-    public int getTileGUIX(){
+    public int getTileX() {
         return x;
     }
 
@@ -48,43 +50,47 @@ public class TileGUI extends JPanel {
      *
      * @return The y-coordinate of the tile.
      */
-    public int getTileGUIY(){
+    public int getTileY() {
         return y;
     }
 
-    public void setImage(String imagePiece){
-        ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece);
-        Image image = imageIcon.getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+    public void setImage(String imagePiece) {
+        ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
+        Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         imageIcon = new ImageIcon(image);
         imageLabel.setIcon(imageIcon);
+
+        // centering the image
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        imageLabel.setVerticalAlignment(JLabel.CENTER);
     }
 
-    public JLabel getImageLabel(){
+    public JLabel getImageLabel() {
         return imageLabel;
     }
 
-    public void setClicked(boolean isClicked){
+    public void setClicked(boolean isClicked) {
         this.isClicked = isClicked;
         repaint();
     }
 
-
     /**
      * Overrides the paintComponent method to customize the appearance of the tile.
-     * Alternates the background color of the tile between black and white based on its coordinates.
+     * Alternates the background color of the tile between black and white based on
+     * its coordinates.
      *
      * @param g The Graphics context used for painting.
      */
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        setBackground((x + y) % 2 == 0 ? Color.BLACK : Color.WHITE);
+    public void paintComponent(Graphics g) {
 
-        if(isClicked){
+        if (isClicked) {
             setBackground(Color.GREEN);
-        }
-        else{
+        } else {
             setBackground((x + y) % 2 == 0 ? Color.BLACK : Color.WHITE);
         }
+        
+
+        super.paintComponent(g);
     }
 }

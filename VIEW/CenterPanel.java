@@ -5,7 +5,6 @@ import javax.swing.*;
 import View.Components.TileGUI;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 /**
  * The {@code CenterPanel} class represents a Swing JPanel that serves as the central component
@@ -50,9 +49,6 @@ public class CenterPanel extends JPanel {
     public TileGUI getTileGUI(int x, int y){
         return tileGUIs[x][y];
     }
+    
 
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);        
-    }
 }

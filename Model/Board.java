@@ -44,6 +44,16 @@ public class Board {
 
     }
 
+    public static void flipBoard() {
+        for (int i = 0; i < tiles.length / 2; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                Piece temp = tiles[i][j].getPiece();
+                tiles[i][j].setPiece(tiles[tiles.length - i - 1][j].getPiece());
+                tiles[tiles.length - i - 1][j].setPiece(temp);
+            }
+        }
+    }
+
     // method by Amgad Elrashid Gurashi Eltayeb
     private static void initPieces() {
         // Initialize the yellow pieces

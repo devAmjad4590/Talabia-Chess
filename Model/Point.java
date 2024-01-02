@@ -14,11 +14,7 @@ public class Point extends Piece {
      */
     public Point(boolean yellow) {
         super(yellow);
-        if (yellow) {
-            setPieceMovement(new ForwardMovement());
-        } else {
-            setPieceMovement(new BackwardMovement());
-        }
+        setPieceMovement(new ForwardMovement());
     }
 
     /**

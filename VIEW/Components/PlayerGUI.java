@@ -26,6 +26,10 @@ public class PlayerGUI extends JPanel {
 
     }
 
+    public JLabel getLabel(){
+        return player;
+    }
+
     /**
      * Gets the number of wins for the player.
      *
