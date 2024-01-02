@@ -49,7 +49,7 @@ public class Game {
      * @param newTile     The new tile where the player's piece will be moved.
      * @return True if the move is valid, false otherwise.
      */
-    private boolean isMoveValid(Tile currentTile, Tile newTile) {
+    public boolean isMoveValid(Tile currentTile, Tile newTile) {
         Piece playerPiece = currentTile.getPiece();
 
         if (playerPiece == null || !playerPiece.canMove(currentTile, newTile)
@@ -59,10 +59,6 @@ public class Game {
 
         if (newTile.getPiece() != null && newTile.getPiece().isYellow() == playerPiece.isYellow()) {
             return false;
-        }
-
-        if (newTile.getPiece() != null && newTile.getPiece().isYellow() != playerPiece.isYellow()) {
-            removeCaptured(newTile);
         }
 
         return true;
@@ -79,6 +75,7 @@ public class Game {
         Piece piece = currentTile.getPiece();
 
         if (isMoveValid(currentTile, newTile)) {
+            removeCaptured(newTile); // changes this function name maybe
             newTile.setPiece(piece);
             currentTile.setPiece(null);
             currentPlayer = playerManager.getNextPlayer();

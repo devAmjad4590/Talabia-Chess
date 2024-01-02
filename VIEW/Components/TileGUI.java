@@ -16,8 +16,7 @@ public class TileGUI extends JButton {
     private int y;
     private JLabel imageLabel;
     private String imagePath = "./VIEW/images/";
-    private boolean isClicked = false;
-
+    private boolean isAvailable = false;
     /**
      * Constructs a new TileGUI instance.
      * Initializes the tile with the specified x and y coordinates and sets its
@@ -55,22 +54,24 @@ public class TileGUI extends JButton {
     }
 
     public void setImage(String imagePiece) {
-        ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
-        Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
-        imageIcon = new ImageIcon(image);
-        imageLabel.setIcon(imageIcon);
-
-        // centering the image
-        imageLabel.setHorizontalAlignment(JLabel.CENTER);
-        imageLabel.setVerticalAlignment(JLabel.CENTER);
+        if(imagePiece != null){
+            ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
+            Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+            imageIcon = new ImageIcon(image);
+            imageLabel.setIcon(imageIcon);
+    
+            // centering the image
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            imageLabel.setVerticalAlignment(JLabel.CENTER);
+        }
     }
 
     public JLabel getImageLabel() {
         return imageLabel;
     }
 
-    public void setClicked(boolean isClicked) {
-        this.isClicked = isClicked;
+    public void setAvailable(boolean isClicked) {
+        this.isAvailable = isClicked;
         repaint();
     }
 
@@ -83,10 +84,10 @@ public class TileGUI extends JButton {
      */
     @Override
     public void paintComponent(Graphics g) {
-
-        if (isClicked) {
+        if (isAvailable) {
             setBackground(Color.GREEN);
-        } else {
+        } 
+        else {
             setBackground((x + y) % 2 == 0 ? Color.BLACK : Color.WHITE);
         }
         

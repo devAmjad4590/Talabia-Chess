@@ -6,6 +6,7 @@
 
 package Controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.*;
@@ -53,15 +54,33 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 TileGUI tileGUI = (TileGUI) e.getSource();
                 if (selectedTile == null) {
-                    tileGUI.setClicked(true);
-                    selectedTile = model.getBoard().getTile(tileGUI.getTileX(), tileGUI.getTileY());
+                    selectedTile = model.getTile(tileGUI.getTileX(), tileGUI.getTileY());
+                    showMoves();
                 } else {
-                    view.getCenterPanel().getTileGUI(selectedTile.getX(), selectedTile.getY()).setClicked(false);
-                    destinationTile = model.getBoard().getTile(tileGUI.getTileX(), tileGUI.getTileY());
+                    destinationTile = model.getTile(tileGUI.getTileX(), tileGUI.getTileY());
                     handleMove();
                 }
             }
         };
+    }
+
+    
+    private void showMoves(){
+        for(int i = 0; i < model.getBoard().getLength(); i++){
+            for(int j = 0; j < model.getBoard().getWidth(); j++){
+                if(model.isMoveValid(selectedTile, model.getTile(i, j))){
+                    view.getCenterPanel().getTileGUI(i, j).setAvailable(true);
+                }
+            }
+        }
+    }
+
+    private void removeMoves(){
+        for(int i = 0; i < model.getBoard().getLength(); i++){
+            for(int j = 0; j < model.getBoard().getWidth(); j++){
+                view.getCenterPanel().getTileGUI(i, j).setAvailable(false);
+            }
+        }
     }
 
     /**
@@ -71,7 +90,9 @@ public class Controller {
         model.setPlayerMove(selectedTile, destinationTile);
         selectedTile = null;
         destinationTile = null;
+        removeMoves();
         showBoard();
+        
     }
 
     /**
@@ -83,7 +104,7 @@ public class Controller {
                 if (model.getTile(i, j).getPiece() != null) {
                     view.getCenterPanel().getTileGUI(i, j).setImage(model.getTile(i, j).getPiece().toString());
                 } else {
-                    view.getCenterPanel().getTileGUI(i, j).setImage(null);
+                    view.getCenterPanel().getTileGUI(i, j).setImage("");
                 }
             }
         }

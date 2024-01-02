@@ -48,6 +48,11 @@ public class Board {
      * implemented by amgad elrashid gurashi eltayeb
      */
     public static void flipBoard() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for (int i = 0; i < tiles.length / 2; i++) {
             for (int j = 0; j < tiles[i].length; j++) { 
                 Piece temp = tiles[i][j].getPiece();
