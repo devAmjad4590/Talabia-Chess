@@ -2,7 +2,6 @@ package View;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import View.Components.PlayerGUI;
@@ -15,8 +14,7 @@ import View.Components.PlayerGUI;
  */
 
 public class NorthPanel extends JPanel{
-    private PlayerGUI player2; // The PlayerGUI instance representing player 2.
-    private int wins, loses;
+   private int wins, loses;
 
     /**
      * Constructs a new NorthPanel instance.
@@ -26,7 +24,6 @@ public class NorthPanel extends JPanel{
      */
     public NorthPanel(PlayerGUI player2) {
         setLayout(new BorderLayout());
-        this.player2 = player2; 
         add(player2);
     }
 

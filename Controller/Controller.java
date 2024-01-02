@@ -8,8 +8,7 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Model.Game;
-import Model.Tile;
+import Model.*;
 import View.GameView;
 import View.Components.TileGUI;
 
@@ -69,7 +68,7 @@ public class Controller {
      * Handles the player's move by updating the game model and refreshing the game view.
      */
     private void handleMove() {
-        model.setPlayerMove(model.getCurrentPlayer(), selectedTile, destinationTile);
+        model.setPlayerMove(selectedTile, destinationTile);
         selectedTile = null;
         destinationTile = null;
         showBoard();

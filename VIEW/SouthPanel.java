@@ -15,7 +15,6 @@ import View.Components.PlayerGUI;
  * Class implemented by Asim Adel Ahmed Maroof
  */
 public class SouthPanel extends JPanel {
-    private PlayerGUI player1;
     private JButton newButton, saveButton, quitButton, resignButton;
     private int wins, loses;
 
@@ -30,7 +29,6 @@ public class SouthPanel extends JPanel {
     public SouthPanel(PlayerGUI player1) {
         setLayout(new BorderLayout());
 
-        this.player1 = player1;
         add(player1, BorderLayout.NORTH);
 
         // Create a subpanel with FlowLayout for the buttons

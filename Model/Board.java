@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
 
 /**
  * This was class was implemented by Maher M.N. Balchi.
@@ -13,7 +12,6 @@ public class Board {
     private static int length = 6; // The length of the board
     private static int width = 7; // The width of the board
     private static Tile[][] tiles; // 2D array to store the tiles on the board
-    private static ArrayList<Piece> pieceList; // List of pieces on the board
 
     /**
      * Private constructor to prevent external instantiation.
@@ -35,9 +33,6 @@ public class Board {
                 tiles[i][j] = new Tile(i, j, null);
             }
         }
-
-        // Initialize the list of pieces
-        pieceList = new ArrayList<>();
 
         // Initialize the pieces on the board
         initPieces();
@@ -101,7 +96,6 @@ public class Board {
 
         // Sun pieces
         tiles[0][3].setPiece(new Sun(false));
-        createList();
     }
 
     /**
@@ -117,89 +111,34 @@ public class Board {
         return instance;
     }
 
+    /**
+     * Gets the tile at the specified coordinates on the board.
+     *
+     * @param i The row index of the tile.
+     * @param j The column index of the tile.
+     * @return The Tile at the specified coordinates.
+     */
     public Tile getTile(int i, int j) {
         return tiles[i][j];
     }
 
-    public void printBoard() {
-        // 1 if piece exist
-        // 0 if piece not exist
-        // write the print method like before
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                if (tiles[i][j].getPiece() == null) {
-                    System.out.print("0 ");
-                } else if (tiles[i][j].getPiece() != null) {
-                    System.out.print(tiles[i][j].getPiece().toString().charAt(0) + " ");
-                }
-            }
-            System.out.println();
-        }
-        for (int i = 0; i <= tiles.length; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        System.out.println();
-
-    }
-
-    private static void createList() {
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                if (tiles[i][j].getPiece() != null) {
-                    pieceList.add(tiles[i][j].getPiece());
-                }
-            }
-        }
-    }
-
-    // get width
+    /**
+     * Gets the width of the board.
+     *
+     * @return The width of the board.
+     */
     public int getWidth() {
         return width;
     }
 
-    // get length
+    /**
+     * Gets the length of the board.
+     *
+     * @return The length of the board.
+     */
     public int getLength() {
         return length;
     }
 
-    // get tiles
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
-    // get piece list
-    public ArrayList<Piece> getPieceList() {
-        return pieceList;
-    }
-
-    /**
-     * Retrieves the tile containing the sun piece for the current player.
-     *
-     * @return The tile containing the sun piece.
-     */
-    public Tile getSunTile(Player currentPlayer) {
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                if (tiles[i][j].getPiece() instanceof Sun
-                        && tiles[i][j].getPiece().isYellow() == currentPlayer.isYellow()) {
-                    return tiles[i][j];
-                }
-            }
-        }
-        return null;
-    }
-
-    // find the piece's tile
-    public Tile findPieceTile(Piece piece) {
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                if (tiles[i][j].getPiece() == piece) {
-                    return tiles[i][j];
-                }
-            }
-        }
-        return null;
-    }
 
 }
