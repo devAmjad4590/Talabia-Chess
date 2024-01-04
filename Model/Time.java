@@ -7,7 +7,7 @@ package Model;
  * Class implemented by Amgad ELrashid Gurashi Eltayeb
  */
 
-public class Time extends Piece{
+public class Time extends Piece {
 
     /**
      * Constructs a new Time piece with the specified color.
@@ -29,13 +29,39 @@ public class Time extends Piece{
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-        int xTiles = Math.abs(currentTile.getY() - newTile.getY());
-        int yTiles = Math.abs(currentTile.getX() - newTile.getX());
+        int yTiles = currentTile.getY() - newTile.getY();
+        int xTiles = currentTile.getX() - newTile.getX();
 
-        if(getPieceMovement().isValid(xTiles, yTiles)){
+        if (!getPieceMovement().isValid(xTiles, yTiles)) {
+            return false;
+        }
+        if (canPass(currentTile, newTile, xTiles, yTiles)) {
             return true;
         }
         return false;
     }
-    
+
+    @Override
+    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
+        Board board = Board.getInstance();
+
+        for (int i = 1; i < Math.abs(xTiles); i++) {
+            if (xTiles * yTiles > 0) {
+                if (!(board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() - i))
+                        .getPiece() == null)) {
+                    return false;
+                }
+            } else if (xTiles * yTiles < 0) {
+                if (!(board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() + i))
+                        .getPiece() == null)) {
+                    return false;
+                }
+
+            }
+
+        }
+
+        return true;
+    }
+
 }

@@ -17,7 +17,7 @@ public class TimeMovement implements PieceMovement {
     @Override
     public boolean isValid(int xTiles, int yTiles) {
         // Checks if the piece is moving diagonally
-        if (xTiles == yTiles) {
+        if (Math.abs(xTiles) == Math.abs(yTiles)) {
             return true;
         }
 

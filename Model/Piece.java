@@ -72,7 +72,7 @@ public abstract class Piece {
         return yellow ? "yellow" : "blue";
     }
 
-    public boolean canPass(Tile tile, int kkk) {
+    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
         return true;
     }
 }
