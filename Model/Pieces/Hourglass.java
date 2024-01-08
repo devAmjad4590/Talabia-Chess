@@ -1,4 +1,7 @@
-package Model;
+package Model.Pieces;
+
+import Model.Tile;
+import Model.Movements.HourglassMovement;
 
 /**
  * The Hourglass class represents an hourglass-shaped piece.

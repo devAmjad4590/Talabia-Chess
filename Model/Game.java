@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Pieces.Piece;
+import Model.Pieces.Sun;
+
 /**
  * The `Game` class represents the main logic and state of a game.
  * It is implemented by Amgad Elrashid Gurashi Eltayeb.
@@ -8,6 +11,7 @@ public class Game  {
     private Board board; // The game board
     private PlayerManager playerManager; // The player manager
     private Player currentPlayer; // The current player
+    private boolean gameOver = false; // True if the game is over, false otherwise
 
     /**
      * Initializes the game by creating a player manager instance and a game board.
@@ -17,11 +21,20 @@ public class Game  {
     }
 
     private void init() {
-        board = Board.getInstance();
-        playerManager = new PlayerManager();
-        currentPlayer = playerManager.getCurrentPlayer();
+        board = Board.getInstance(); // object board created
+        playerManager = new PlayerManager(); // playerManager created
+        currentPlayer = playerManager.getCurrentPlayer(); // 
     }
 
+    /**
+     * Gets the player manager.
+     *
+     * @return The player manager.
+     */
+    public PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+    
     /**
      * Gets the game board.
      *
@@ -83,19 +96,61 @@ public class Game  {
         }
     }
 
+    /**
+     * Removes the captured piece from the board.
+     *
+     * @param tile The tile where the captured piece is located.
+     */
     private void removeCaptured(Tile tile) {
         Piece capturedPiece = tile.getPiece();
         if (capturedPiece != null) {
             tile.setPiece(null);
-            capturedPiece.setCaptured();
-
             if (capturedPiece instanceof Sun) {
-                playerManager.gameOver(capturedPiece.isYellow());
-                // System.out.println("success");
+                playerManager.setLoser(capturedPiece.isYellow());
+                gameOver = true;
             }
             ;
 
         }
     }
+
+    // resigns the current player 
+    public void resign(){
+        playerManager.setLoser(currentPlayer.isYellow());
+        gameOver = true;
+        nextGame();
+    }
+
+    /**
+     * Checks if the game is over.
+     *
+     * @return True if the game is over, false otherwise.
+     */
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    /**
+     * Resets the game and the scores completely.
+     */
+    public void resetAll() {
+        Board.resetBoard();
+        playerManager.reset();
+        gameOver = false;
+        init();
+    }
+
+    /**
+     * Resets the game state for next Round
+     */
+    public void nextGame() {
+        gameOver = false;
+        Board.resetBoard();
+        playerManager.resetTurn();
+        currentPlayer = playerManager.getCurrentPlayer();
+
+    }
+
+
 
 }

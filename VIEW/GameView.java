@@ -15,6 +15,7 @@ public class GameView extends JFrame {
     private NorthPanel northPanel;
     private SouthPanel southPanel;
     private PlayerGUI player1, player2;
+    private int response;
 
     public GameView() {
         frame = new JFrame("Talabia Chess Game");
@@ -38,6 +39,18 @@ public class GameView extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+
+    public void showGameOver(String winner){
+    JOptionPane.showMessageDialog(frame, winner, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+    response = JOptionPane.showConfirmDialog(frame, "Do you want to play again?", "Play Again", JOptionPane.YES_NO_OPTION);
+    }
+
+    public int getResponse(){
+        return response;
+    }
+
+
+
     
     
     public CenterPanel getCenterPanel() {
@@ -58,8 +71,5 @@ public class GameView extends JFrame {
 
     public PlayerGUI getBluePlayer(){
         return player2;
-    }
-    public static void main(String[] args){
-        new GameView();
     }
 }

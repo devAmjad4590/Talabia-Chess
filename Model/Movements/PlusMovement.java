@@ -1,4 +1,4 @@
-package Model;
+package Model.Movements;
 
 /**
  * The `PlusMovement` class represents a concrete implementation of the `PieceMovement` interface.

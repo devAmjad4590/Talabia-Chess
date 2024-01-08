@@ -1,4 +1,4 @@
-package Model;
+package Model.Movements;
 
 /**
  * The `BackwardMovement` class represents a concrete implementation of the `PieceMovement` interface.

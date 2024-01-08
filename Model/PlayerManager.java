@@ -11,6 +11,8 @@ public class PlayerManager {
     private Player yellow; // The yellow player
     private Player blue; // The blue player
     private int turn = 0; // The current turn number
+    private Player winner;
+    private Player loser;
 
     /**
      * Initializes the `PlayerManager` by creating instances of the yellow and blue
@@ -66,22 +68,37 @@ public class PlayerManager {
         return getCurrentPlayer();
     }
 
+    public void reset() {
+        turn = 0;
+        blue.resetScore();
+        yellow.resetScore();
+    }
 
-    public boolean gameOver(boolean yellow) {
+
+    public void resetTurn(){
+        turn = 0;
+    }
+
+
+
+    public void setLoser(boolean yellow) {
         // Get winner using PlayerManager
-        Player winner = getPlayer(!yellow);
-        Player looser = getPlayer(yellow);
+        winner = getPlayer(!yellow);
+        loser = getPlayer(yellow);
 
         // Increment wins and losses
         winner.incrementWin();
-        looser.incrementLose();
-
-        return true;
-
-        // Reset game
-
-        // View update needs to be handled externally
-        // as Game has no access to view
+        loser.incrementLose();
     }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+
+
+    
+
+
           
 }

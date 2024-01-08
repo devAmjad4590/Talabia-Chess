@@ -1,4 +1,4 @@
-package Model;
+package Model.Movements;
 
 /**
  * The `ForwardMovement` class represents a concrete implementation of the `PieceMovement` interface.
@@ -20,7 +20,6 @@ public class ForwardMovement implements PieceMovement {
         if ((xTiles == 1 || xTiles == 2) && yTiles == 0) {
             return true;
         }
-
         return false;
     }
 }

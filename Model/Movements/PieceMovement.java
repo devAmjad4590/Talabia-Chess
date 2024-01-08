@@ -1,4 +1,4 @@
-package Model;
+package Model.Movements;
 
 /**
  * The `PieceMovement` interface defines the contract for movement behaviors of game pieces.

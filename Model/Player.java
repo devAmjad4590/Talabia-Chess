@@ -27,6 +27,11 @@ public class Player {
         this.noOfLosses++;
     }
 
+    public void resetScore(){
+        this.noOfWins = 0;
+        this.noOfLosses = 0;
+    }
+
     /**
      * Gets the color of the player's pieces.
      *
@@ -42,7 +47,7 @@ public class Player {
      * @return the player's score in the format "Score: wins-draws-losses".
      */
     public String getScore() {
-        return "Score: " + noOfWins + "- "  + "- " + noOfLosses;
+        return "(" + noOfWins + " - " + noOfLosses + ")";
     }
 
     // get Player's number of wins
@@ -53,6 +58,15 @@ public class Player {
     // get Player's number of losses
     public int getNoOfLosses() {
         return noOfLosses;
+    }
+
+    // get player number, 1 is yellow, 2 is blue
+    public String toString(){
+        if(yellow){
+            return "Player 1";
+        }else{
+            return "Player 2";
+        }
     }
 
    

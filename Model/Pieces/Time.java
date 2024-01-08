@@ -1,4 +1,8 @@
-package Model;
+package Model.Pieces;
+
+import Model.Board;
+import Model.Tile;
+import Model.Movements.TimeMovement;
 
 /**
  * The Time class represents a x-shaped piece.

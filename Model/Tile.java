@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Pieces.Piece;
+
 /* 
  * This class was implemented by Amgad Elrashid Gurashi Eltayeb.
  * The tile class represents the Tiles that are used to make the Board. 
@@ -22,7 +24,7 @@ public class Tile {
     public Tile(int x, int y, Piece piece){
         this.x =  x;
         this.y = y;
-        setPiece(piece);
+        this.piece = piece;
     }
 
     /**

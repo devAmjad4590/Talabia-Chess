@@ -1,4 +1,7 @@
-package Model;
+package Model.Pieces;
+
+import Model.Tile;
+import Model.Movements.PieceMovement;
 
 /**
  * The {@code Piece} class is an abstract base class representing a chess piece in a chess game.
@@ -7,7 +10,6 @@ package Model;
  * Class implemented by Asim Adel Ahmed Maroof
  */
 public abstract class Piece {
-    private boolean captured;
     private boolean yellow;
     private PieceMovement pieceMovement;
 
@@ -18,18 +20,6 @@ public abstract class Piece {
      */
     public Piece(boolean yellow) {
         this.yellow = yellow;
-    }
-
-    /**
-     * Checks whether the piece has been captured.
-     *
-     * @return {@code true} if the piece has been captured, {@code false} otherwise.
-     */
-    public boolean isCaptured() {
-        return captured;
-    }
-    public void setCaptured() {
-        this.captured = true;
     }
 
      /**

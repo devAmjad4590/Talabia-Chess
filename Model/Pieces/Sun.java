@@ -1,4 +1,7 @@
-package Model;
+package Model.Pieces;
+
+import Model.Tile;
+import Model.Movements.SunMovement;
 
 /**
  * The Sun class represents a sun-shaped chess piece.

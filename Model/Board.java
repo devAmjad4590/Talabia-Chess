@@ -1,5 +1,11 @@
 package Model;
 
+import Model.Pieces.Hourglass;
+import Model.Pieces.Piece;
+import Model.Pieces.Plus;
+import Model.Pieces.Point;
+import Model.Pieces.Sun;
+import Model.Pieces.Time;
 
 /**
  * This was class was implemented by Maher M.N. Balchi.
@@ -18,18 +24,19 @@ public class Board {
      * Initializes the board with the specified length and width.
      */
     private Board() {
-        createBoard();
+        initBoard();
     }
 
     /*
      * Creates the board with the specified dimensions and initializes all tiles.
      */
-    private static void createBoard() {
+    private static void initBoard() {
         tiles = new Tile[length][width]; // Initialize the tiles array
 
         // Populate the board with Tile objects
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
+                // i =0, j = 2
                 tiles[i][j] = new Tile(i, j, null);
             }
         }
@@ -37,6 +44,11 @@ public class Board {
         // Initialize the pieces on the board
         initPieces();
 
+    }
+
+    // reset the board to its initial state
+    public static void resetBoard() {
+        initBoard();
     }
 
     /**

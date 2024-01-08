@@ -14,7 +14,7 @@ import View.Components.PlayerGUI;
  */
 
 public class NorthPanel extends JPanel{
-   private int wins, loses;
+   private PlayerGUI player;
 
     /**
      * Constructs a new NorthPanel instance.
@@ -22,27 +22,18 @@ public class NorthPanel extends JPanel{
      *
      * @param player2 The PlayerGUI instance representing player 2.
      */
-    public NorthPanel(PlayerGUI player2) {
+    public NorthPanel(PlayerGUI player) {
         setLayout(new BorderLayout());
-        add(player2);
+        this.player = player;
+        add(this.player);
     }
 
-    /**
-     * Gets the number of wins for player 2.
-     *
-     * @return The number of wins for player 2.
-     */
-    public int getWins() {
-        return wins;
-    }
-
-    /**
-     * Gets the number of losses for player 2.
-     *
-     * @return The number of losses for player 2.
-     */
-    public int getLoses() {
-        return loses;
+    
+    public void setPlayerGUI(PlayerGUI player){
+        remove(this.player);
+        this.player = player;
+        add(this.player);
+        repaint();
     }
 
 }

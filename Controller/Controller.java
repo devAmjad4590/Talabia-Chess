@@ -6,7 +6,6 @@
 
 package Controller;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.*;
@@ -30,6 +29,7 @@ public class Controller {
         this.model = model;
         showBoard();
         initTileListeners();
+        initButtonsListeners();
     }
 
     /**
@@ -64,35 +64,50 @@ public class Controller {
         };
     }
 
-    
-    private void showMoves(){
-        for(int i = 0; i < model.getBoard().getLength(); i++){
-            for(int j = 0; j < model.getBoard().getWidth(); j++){
-                if(model.isMoveValid(selectedTile, model.getTile(i, j))){
+    private void showMoves() {
+        for (int i = 0; i < model.getBoard().getLength(); i++) {
+            for (int j = 0; j < model.getBoard().getWidth(); j++) {
+                if (model.isMoveValid(selectedTile, model.getTile(i, j))) {
                     view.getCenterPanel().getTileGUI(i, j).setAvailable(true);
                 }
             }
         }
     }
 
-    private void removeMoves(){
-        for(int i = 0; i < model.getBoard().getLength(); i++){
-            for(int j = 0; j < model.getBoard().getWidth(); j++){
+    private void removeMoves() {
+        for (int i = 0; i < model.getBoard().getLength(); i++) {
+            for (int j = 0; j < model.getBoard().getWidth(); j++) {
                 view.getCenterPanel().getTileGUI(i, j).setAvailable(false);
             }
         }
     }
 
     /**
-     * Handles the player's move by updating the game model and refreshing the game view.
+     * Handles the player's move by updating the game model and refreshing the game
+     * view.
      */
     private void handleMove() {
         model.setPlayerMove(selectedTile, destinationTile);
         selectedTile = null;
         destinationTile = null;
         removeMoves();
+        flipPlayerGUI();
         showBoard();
-        
+        if (model.isGameOver()) {
+            handleGameOver();
+        }
+    }
+
+    private void handleGameOver() {
+        view.showGameOver(model.getPlayerManager().getWinner().toString() + " wins!");
+        int response = view.getResponse();
+        if (response == 0) {
+            model.nextGame();
+            flipPlayerGUI(); // flip back to original position
+            showBoard();
+        } else {
+            quit();
+        }
     }
 
     /**
@@ -108,5 +123,63 @@ public class Controller {
                 }
             }
         }
+        // setting the player's score
+        showPlayerScore();
     }
+
+    private void showPlayerScore(){
+        view.getYellowPlayer().setText(model.getPlayerManager().getYellowPlayer().getScore());
+        view.getBluePlayer().setText(model.getPlayerManager().getBluePlayer().getScore());
+    }
+
+    private void flipPlayerGUI() {
+        if (model.getPlayerManager().getCurrentPlayer().isYellow()) {
+            view.getSouthPanel().setPlayerGUI(view.getYellowPlayer());
+            view.getNorthPanel().setPlayerGUI(view.getBluePlayer());
+        } else {
+            view.getSouthPanel().setPlayerGUI(view.getBluePlayer());
+            view.getNorthPanel().setPlayerGUI(view.getYellowPlayer());
+        }
+
+    }
+
+    private ActionListener newGameListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.resetAll();
+                showBoard();
+            }
+        };
+    }
+
+    private ActionListener resignActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.resign();
+                handleGameOver();
+            }
+        };
+    }
+
+    private ActionListener quitActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quit();
+            }
+        };
+    }
+
+    private void quit() {
+        System.exit(0);
+    }
+
+    private void initButtonsListeners() {
+        view.getSouthPanel().getNewButton().addActionListener(newGameListener());
+        view.getSouthPanel().getQuitButton().addActionListener(quitActionListener());
+        view.getSouthPanel().getResignButton().addActionListener(resignActionListener());
+    }
+
 }

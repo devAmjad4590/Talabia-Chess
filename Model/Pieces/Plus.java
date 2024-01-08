@@ -1,4 +1,8 @@
-package Model;
+package Model.Pieces;
+
+import Model.Board;
+import Model.Tile;
+import Model.Movements.PlusMovement;
 
 /**
  * The Plus class represents a plus-shaped piece.

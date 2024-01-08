@@ -3,7 +3,6 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import View.Components.PlayerGUI;
@@ -16,7 +15,7 @@ import View.Components.PlayerGUI;
  */
 public class SouthPanel extends JPanel {
     private JButton newButton, saveButton, quitButton, resignButton;
-    private int wins, loses;
+    private PlayerGUI player;
 
      /**
      * Constructs a new SouthPanel instance.
@@ -26,10 +25,10 @@ public class SouthPanel extends JPanel {
      * @param player1 The PlayerGUI instance representing player 1.
      */
 
-    public SouthPanel(PlayerGUI player1) {
+    public SouthPanel(PlayerGUI player) {
         setLayout(new BorderLayout());
-
-        add(player1, BorderLayout.NORTH);
+        this.player = player;
+        add(this.player, BorderLayout.NORTH);
 
         // Create a subpanel with FlowLayout for the buttons
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -47,24 +46,6 @@ public class SouthPanel extends JPanel {
 
         // Add the subpanel to the SOUTH region
         add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    /**
-     * Gets the number of wins for player 1.
-     *
-     * @return The number of wins for player 1.
-     */
-    public int getWins() {
-        return wins;
-    }
-
-    /**
-     * Gets the number of losses for player 1.
-     *
-     * @return The number of losses for player 1.
-     */
-    public int getLoses() {
-        return loses;
     }
 
     /**
@@ -101,5 +82,12 @@ public class SouthPanel extends JPanel {
      */
     public JButton getResignButton() {
         return resignButton;
+    }
+
+    public void setPlayerGUI(PlayerGUI player){
+        remove(this.player);
+        this.player = player;
+        add(player);
+        repaint();
     }
 }

@@ -1,7 +1,5 @@
 package View.Components;
 
-import java.awt.Component;
-
 import javax.swing.*;
 
 /**
@@ -11,7 +9,8 @@ import javax.swing.*;
  */
 public class PlayerGUI extends JPanel {
     private JLabel player; // The JLabel displaying the player's name and win/lose statistics.
-    private int wins =0, loses = 0; // The number of wins/loses for the player
+    private String playerName;
+    private int wins = 0, loses = 0; // The number of wins/loses for the player
 
 
     /**
@@ -21,53 +20,17 @@ public class PlayerGUI extends JPanel {
      * @param playerName The name of the player.
      */
     public PlayerGUI(String player){
+        this.playerName = player;
         this.player = new JLabel(player + " (" + wins + " - " + loses + ")");
-        add(this.player);
-
+        add(this.player);        
     }
 
     public JLabel getLabel(){
         return player;
     }
 
-    /**
-     * Gets the number of wins for the player.
-     *
-     * @return The number of wins for the player.
-     */
-    public int getWins() {
-        return wins;
-    }
-
-    /**
-     * Gets the number of losses for the player.
-     *
-     * @return The number of losses for the player.
-     */
-    public int getLoses() {
-        return loses;
-    }
-
-    /**
-     * Increments the number of wins for the player.
-     */
-    public void setWin(){
-        wins++;
-    }
-
-    /**
-     * Increments the number of losses for the player.
-     */
-    public void setLose(){
-        loses++;
-    }
-
-    /**
-     * Resets the win and lose statistics for the player.
-     */
-    public void reset(){
-        wins = 0;
-        loses = 0;
+    public void setText(String text){
+        player.setText(playerName + " " + text);
     }
 
     

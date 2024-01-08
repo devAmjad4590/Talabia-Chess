@@ -1,4 +1,8 @@
-package Model;
+package Model.Pieces;
+
+import Model.Tile;
+import Model.Movements.BackwardMovement;
+import Model.Movements.ForwardMovement;
 
 /**
  * The Point class represents a point-shaped chess piece.
@@ -27,8 +31,8 @@ public class Point extends Piece {
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) { 
-        int xTiles = currentTile.getX() - newTile.getX();
-        int yTiles = currentTile.getY() - newTile.getY();
+        int xTiles = currentTile.getX() - newTile.getX(); // 2
+        int yTiles = currentTile.getY() - newTile.getY(); // 
 
         if(getPieceMovement().isValid(xTiles, yTiles)){
             return true;
