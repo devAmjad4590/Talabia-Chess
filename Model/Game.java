@@ -4,10 +4,10 @@ package Model;
  * The `Game` class represents the main logic and state of a game.
  * It is implemented by Amgad Elrashid Gurashi Eltayeb.
  */
-public class Game {
-    private Board board;            // The game board
+public class Game  {
+    private Board board; // The game board
     private PlayerManager playerManager; // The player manager
-    private Player currentPlayer;   // The current player
+    private Player currentPlayer; // The current player
 
     /**
      * Initializes the game by creating a player manager instance and a game board.
@@ -88,13 +88,14 @@ public class Game {
         if (capturedPiece != null) {
             tile.setPiece(null);
             capturedPiece.setCaptured();
+
+            if (capturedPiece instanceof Sun) {
+                playerManager.gameOver(capturedPiece.isYellow());
+                // System.out.println("success");
+            }
+            ;
+
         }
     }
 
-    /**
-     * Handles the logic when the game is over.
-     */
-    public void gameOver() {
-        // Implementation
-    }
 }

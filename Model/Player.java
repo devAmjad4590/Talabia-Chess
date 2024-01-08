@@ -8,7 +8,7 @@ public class Player {
     private boolean yellow;
     private int noOfWins = 0;
     private int noOfLosses = 0;
-    private int noOfDraws = 0;
+  
 
     /**
      * Initializes a new player with the specified color.
@@ -17,6 +17,14 @@ public class Player {
      */
     public Player(boolean yellow){
         this.yellow = yellow;
+    }
+
+    public void incrementWin() {
+        this.noOfWins++;
+    }
+
+    public void incrementLose() {
+        this.noOfLosses++;
     }
 
     /**
@@ -34,7 +42,7 @@ public class Player {
      * @return the player's score in the format "Score: wins-draws-losses".
      */
     public String getScore() {
-        return "Score: " + noOfWins + "- " + noOfDraws + "- " + noOfLosses;
+        return "Score: " + noOfWins + "- "  + "- " + noOfLosses;
     }
 
     // get Player's number of wins
@@ -47,8 +55,5 @@ public class Player {
         return noOfLosses;
     }
 
-    // get Player's number of draws
-    public int getNoOfDraws() {
-        return noOfDraws;
-    }
+   
 }
