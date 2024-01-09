@@ -1,0 +1,28 @@
+"filename", "language", "Java", "comment", "blank", "total"
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Controller\Controller.java", "Java", 137, 27, 22, 186
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Board.java", "Java", 79, 59, 24, 162
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Game.java", "Java", 78, 55, 20, 153
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\BackwardMovement.java", "Java", 10, 13, 4, 27
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\ForwardMovement.java", "Java", 10, 13, 3, 26
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\HourglassMovement.java", "Java", 10, 14, 3, 27
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\PieceMovement.java", "Java", 4, 12, 3, 19
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\PlusMovement.java", "Java", 10, 13, 4, 27
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\SunMovement.java", "Java", 10, 13, 4, 27
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\TimeMovement.java", "Java", 10, 13, 4, 27
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Hourglass.java", "Java", 18, 19, 8, 45
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Piece.java", "Java", 32, 25, 12, 69
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Plus.java", "Java", 43, 19, 10, 72
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Point.java", "Java", 25, 19, 10, 54
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Sun.java", "Java", 18, 19, 8, 45
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Time.java", "Java", 40, 19, 13, 72
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Player.java", "Java", 38, 22, 14, 74
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\PlayerManager.java", "Java", 52, 28, 25, 105
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Tile.java", "Java", 24, 23, 13, 60
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\TilapiaGame.java", "Java", 10, 0, 3, 13
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\CenterPanel.java", "Java", 19, 24, 12, 55
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\Components\PlayerGUI.java", "Java", 18, 11, 9, 38
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\Components\TileGUI.java", "Java", 51, 36, 11, 98
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\GameView.java", "Java", 53, 0, 22, 75
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\NorthPanel.java", "Java", 18, 12, 10, 40
+"c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\SouthPanel.java", "Java", 43, 36, 15, 94
+"Total", "-", 860, 544, 286, 1690

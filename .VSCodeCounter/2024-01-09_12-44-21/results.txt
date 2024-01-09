@@ -1,0 +1,59 @@
+Date : 2024-01-09 12:44:21
+Directory : c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia
+Total : 26 files,  860 codes, 544 comments, 286 blanks, all 1690 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |         26 |        860 |        544 |        286 |      1,690 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                    |         26 |        860 |        544 |        286 |      1,690 |
+| . (Files)                                                                                                            |          1 |         10 |          0 |          3 |         13 |
+| Controller                                                                                                           |          1 |        137 |         27 |         22 |        186 |
+| Model                                                                                                                |         18 |        511 |        398 |        182 |      1,091 |
+| Model (Files)                                                                                                        |          5 |        271 |        187 |         96 |        554 |
+| Model\Movements                                                                                                      |          7 |         64 |         91 |         25 |        180 |
+| Model\Pieces                                                                                                         |          6 |        176 |        120 |         61 |        357 |
+| View                                                                                                                 |          6 |        202 |        119 |         79 |        400 |
+| View (Files)                                                                                                         |          4 |        133 |         72 |         59 |        264 |
+| View\Components                                                                                                      |          2 |         69 |         47 |         20 |        136 |
++----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                             | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Controller\Controller.java             | Java     |        137 |         27 |         22 |        186 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Board.java                       | Java     |         79 |         59 |         24 |        162 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Game.java                        | Java     |         78 |         55 |         20 |        153 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\BackwardMovement.java  | Java     |         10 |         13 |          4 |         27 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\ForwardMovement.java   | Java     |         10 |         13 |          3 |         26 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\HourglassMovement.java | Java     |         10 |         14 |          3 |         27 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\PieceMovement.java     | Java     |          4 |         12 |          3 |         19 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\PlusMovement.java      | Java     |         10 |         13 |          4 |         27 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\SunMovement.java       | Java     |         10 |         13 |          4 |         27 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Movements\TimeMovement.java      | Java     |         10 |         13 |          4 |         27 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Hourglass.java            | Java     |         18 |         19 |          8 |         45 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Piece.java                | Java     |         32 |         25 |         12 |         69 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Plus.java                 | Java     |         43 |         19 |         10 |         72 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Point.java                | Java     |         25 |         19 |         10 |         54 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Sun.java                  | Java     |         18 |         19 |          8 |         45 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Pieces\Time.java                 | Java     |         40 |         19 |         13 |         72 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Player.java                      | Java     |         38 |         22 |         14 |         74 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\PlayerManager.java               | Java     |         52 |         28 |         25 |        105 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\Model\Tile.java                        | Java     |         24 |         23 |         13 |         60 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\TilapiaGame.java                       | Java     |         10 |          0 |          3 |         13 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\CenterPanel.java                  | Java     |         19 |         24 |         12 |         55 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\Components\PlayerGUI.java         | Java     |         18 |         11 |          9 |         38 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\Components\TileGUI.java           | Java     |         51 |         36 |         11 |         98 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\GameView.java                     | Java     |         53 |          0 |         22 |         75 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\NorthPanel.java                   | Java     |         18 |         12 |         10 |         40 |
+| c:\Users\amjad\PF for uni\Second-year-uni\Trimester 1\OOAD\Assignment\Talabia\View\SouthPanel.java                   | Java     |         43 |         36 |         15 |         94 |
+| Total                                                                                                                |          |        860 |        544 |        286 |      1,690 |
++----------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

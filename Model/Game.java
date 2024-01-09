@@ -150,7 +150,4 @@ public class Game  {
         currentPlayer = playerManager.getCurrentPlayer();
 
     }
-
-
-
 }
