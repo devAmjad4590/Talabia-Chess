@@ -1,7 +1,7 @@
-package View;
+package VIEW;
 
 import Model.Tile;
-import View.Components.PlayerGUI;
+import VIEW.Components.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +15,9 @@ public class GameView extends JFrame {
     private NorthPanel northPanel;
     private SouthPanel southPanel;
     private PlayerGUI player1, player2;
+    private JButton newGameButton;
+    private JButton saveButton;
+    private JButton quitButton;
     private int response;
 
     public GameView() {
@@ -32,6 +35,20 @@ public class GameView extends JFrame {
         frame.add(centerPanel, BorderLayout.CENTER);
         frame.add(northPanel, BorderLayout.NORTH);
         frame.add(southPanel, BorderLayout.SOUTH);
+
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+
+        newGameButton = new JButton("New");
+        saveButton = new JButton("Save");
+        quitButton = new JButton("Quit");
+        
+        toolBar.add(newGameButton);
+        toolBar.add(saveButton);
+        toolBar.add(quitButton);
+
+        toolBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+        frame.add(toolBar, BorderLayout.PAGE_START);
     
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack(); 

@@ -1,6 +1,6 @@
 import Controller.Controller;
 import Model.*;
-import View.GameView;
+import VIEW.GameView;
 
 public class TilapiaGame {
     public static void main(String[] args) {

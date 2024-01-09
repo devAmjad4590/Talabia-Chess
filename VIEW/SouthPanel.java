@@ -1,11 +1,11 @@
-package View;
+package VIEW;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import View.Components.PlayerGUI;
+import VIEW.Components.*;
 
 /**
  * The {@code SouthPanel} class represents a Swing JPanel that serves as the bottom panel

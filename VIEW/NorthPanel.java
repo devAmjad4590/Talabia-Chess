@@ -1,10 +1,10 @@
-package View;
+package VIEW;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import View.Components.PlayerGUI;
+import VIEW.Components.*;
 
 /**
  * The {@code NorthPanel} class represents a Swing JPanel that serves as the top panel

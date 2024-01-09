@@ -9,8 +9,8 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.*;
-import View.GameView;
-import View.Components.TileGUI;
+import VIEW.GameView;
+import VIEW.Components.*;
 
 public class Controller {
 

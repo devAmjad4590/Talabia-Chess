@@ -1,7 +1,11 @@
-package View.Components;
+package VIEW.Components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+
 /**
  * The {@code TileGUI} class represents a Swing JPanel that visually represents
  * a tile on a chessboard
@@ -17,6 +21,7 @@ public class TileGUI extends JButton {
     private JLabel imageLabel;
     private String imagePath = "./VIEW/images/";
     private boolean isAvailable = false;
+    private boolean isFlipped = false;
     /**
      * Constructs a new TileGUI instance.
      * Initializes the tile with the specified x and y coordinates and sets its
@@ -57,6 +62,15 @@ public class TileGUI extends JButton {
         if(imagePiece != null){
             ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
             Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+           
+            if (isFlipped) {
+                AffineTransform transform = new AffineTransform();
+                transform.rotate(Math.PI, image.getWidth(null) / 2.0, image.getHeight(null) / 2.0);
+                AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+                image = op.filter((BufferedImage) image, null);
+            }
+
+            
             imageIcon = new ImageIcon(image);
             imageLabel.setIcon(imageIcon);
     
