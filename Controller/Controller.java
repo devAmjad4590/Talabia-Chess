@@ -87,14 +87,31 @@ public class Controller {
      * view.
      */
     private void handleMove() {
-        model.setPlayerMove(selectedTile, destinationTile);
-        selectedTile = null;
-        destinationTile = null;
-        removeMoves();
-        flipPlayerGUI();
-        showBoard();
-        if (model.isGameOver()) {
-            handleGameOver();
+        if (model.isMoveValid(selectedTile, destinationTile)) {
+            model.setPlayerMove(selectedTile, destinationTile);
+            selectedTile = null;
+            destinationTile = null;
+            removeMoves();
+            showBoard();
+            flipPlayers();
+            if (model.isGameOver()) {
+                handleGameOver();
+            }
+
+        } else {
+            selectedTile = null;
+            destinationTile = null;
+            removeMoves();
+        }
+    }
+
+    private void flipPieces() {
+        for (int i = 0; i < model.getBoard().getLength(); i++) {
+            for (int j = 0; j < model.getBoard().getWidth(); j++) {
+                if (model.getTile(i, j).getPiece() != null) {
+                    view.getCenterPanel().getTileGUI(i, j).flipImage(model.getTile(i, j).getPiece().toString());
+                }
+            }
         }
     }
 
@@ -103,8 +120,8 @@ public class Controller {
         int response = view.getResponse();
         if (response == 0) {
             model.nextGame();
-            flipPlayerGUI(); // flip back to original position
             showBoard();
+            flipPlayers(); // flip back to original position
         } else {
             quit();
         }
@@ -127,16 +144,17 @@ public class Controller {
         showPlayerScore();
     }
 
-    private void showPlayerScore(){
+    private void showPlayerScore() {
         view.getYellowPlayer().setText(model.getPlayerManager().getYellowPlayer().getScore());
         view.getBluePlayer().setText(model.getPlayerManager().getBluePlayer().getScore());
     }
 
-    private void flipPlayerGUI() {
+    private void flipPlayers() {
         if (model.getPlayerManager().getCurrentPlayer().isYellow()) {
             view.getSouthPanel().setPlayerGUI(view.getYellowPlayer());
             view.getNorthPanel().setPlayerGUI(view.getBluePlayer());
         } else {
+            flipPieces();
             view.getSouthPanel().setPlayerGUI(view.getBluePlayer());
             view.getNorthPanel().setPlayerGUI(view.getYellowPlayer());
         }

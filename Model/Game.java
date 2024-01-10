@@ -66,7 +66,8 @@ public class Game  {
         Piece playerPiece = currentTile.getPiece();
 
         if (playerPiece == null || !playerPiece.canMove(currentTile, newTile)
-                || currentPlayer.isYellow() != playerPiece.isYellow()) {
+                || currentPlayer.isYellow() != playerPiece.isYellow()
+                || currentTile == newTile) {
             return false;
         }
 

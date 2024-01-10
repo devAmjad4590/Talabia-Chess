@@ -21,7 +21,7 @@ public class TileGUI extends JButton {
     private JLabel imageLabel;
     private String imagePath = "./VIEW/images/";
     private boolean isAvailable = false;
-    private boolean isFlipped = false;
+
     /**
      * Constructs a new TileGUI instance.
      * Initializes the tile with the specified x and y coordinates and sets its
@@ -60,29 +60,47 @@ public class TileGUI extends JButton {
 
     // does not work
     public void setImage(String imagePiece) {
-        if(imagePiece != null){
+        if (imagePiece != null) {
             ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
             Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
-           
-            if (isFlipped) {
-                AffineTransform transform = new AffineTransform();
-                transform.rotate(Math.PI, image.getWidth(null) / 2.0, image.getHeight(null) / 2.0);
-                AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
-                image = op.filter((BufferedImage) image, null);
-            }
 
-            
             imageIcon = new ImageIcon(image);
             imageLabel.setIcon(imageIcon);
-    
+
             // centering the image
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
             imageLabel.setVerticalAlignment(JLabel.CENTER);
         }
     }
 
-    public void setFlipped(boolean isFlipped) {
-        this.isFlipped = isFlipped;
+    public void flipImage(String imagePiece) {
+        if (imagePiece != null) {
+            ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
+            Image originalImage = imageIcon.getImage();
+
+            if (originalImage.getWidth(null) > 0 && originalImage.getHeight(null) > 0) {
+                // Create a BufferedImage with the same dimensions as the original image
+                BufferedImage bufferedImage = new BufferedImage(originalImage.getWidth(null),
+                originalImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = bufferedImage.createGraphics();
+
+                // Rotate the image by 180 degrees
+                g2d.rotate(Math.PI, originalImage.getWidth(null) / 2, originalImage.getHeight(null) / 2);
+                g2d.drawImage(originalImage, 0, 0, null);
+                g2d.dispose();
+
+                // Update the imageIcon with the rotated image
+                ImageIcon rotatedImageIcon = new ImageIcon(bufferedImage);
+                imageLabel.setIcon(rotatedImageIcon);
+
+                // Centering the image
+                imageLabel.setHorizontalAlignment(JLabel.CENTER);
+                imageLabel.setVerticalAlignment(JLabel.CENTER);
+
+            } else {
+                System.out.println("Image not found");
+            }
+        }
     }
 
     public JLabel getImageLabel() {
@@ -105,12 +123,11 @@ public class TileGUI extends JButton {
     public void paintComponent(Graphics g) {
         if (isAvailable) {
             setBackground(Color.GREEN);
-        } 
-        else {
+        } else {
             setBackground((x + y) % 2 == 0 ? Color.BLACK : Color.WHITE);
         }
-        
 
         super.paintComponent(g);
+
     }
 }
