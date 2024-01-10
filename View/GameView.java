@@ -66,6 +66,18 @@ public class GameView extends JFrame {
         return response;
     }
 
+    // getters
+    public JButton getNewGameButton(){
+        return newGameButton;
+    }
+
+    public JButton getSaveButton(){
+        return saveButton;
+    }
+
+    public JButton getQuitButton(){
+        return quitButton;
+    }
 
 
     

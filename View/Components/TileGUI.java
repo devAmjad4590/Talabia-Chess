@@ -21,6 +21,7 @@ public class TileGUI extends JButton {
     private JLabel imageLabel;
     private String imagePath = "./VIEW/images/";
     private boolean isAvailable = false;
+    private boolean isEnemy = false;
 
     /**
      * Constructs a new TileGUI instance.
@@ -107,6 +108,11 @@ public class TileGUI extends JButton {
         return imageLabel;
     }
 
+    public void setEnemy(boolean isEnemy) {
+        this.isEnemy = isEnemy;
+        repaint();
+    }
+
     public void setAvailable(boolean isClicked) {
         this.isAvailable = isClicked;
         repaint();
@@ -123,6 +129,9 @@ public class TileGUI extends JButton {
     public void paintComponent(Graphics g) {
         if (isAvailable) {
             setBackground(Color.GREEN);
+            if(isEnemy) {
+                setBackground(Color.RED);
+            }
         } else {
             setBackground((x + y) % 2 == 0 ? Color.BLACK : Color.WHITE);
         }

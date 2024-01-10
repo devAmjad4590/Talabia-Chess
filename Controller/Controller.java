@@ -69,6 +69,10 @@ public class Controller {
             for (int j = 0; j < model.getBoard().getWidth(); j++) {
                 if (model.isMoveValid(selectedTile, model.getTile(i, j))) {
                     view.getCenterPanel().getTileGUI(i, j).setAvailable(true);
+                    // if the tile has an enemy piece
+                    if(model.getTile(i, j).getPiece() != null && model.getTile(i, j).getPiece().isYellow() != selectedTile.getPiece().isYellow()){
+                        view.getCenterPanel().getTileGUI(i, j).setEnemy(true);
+                    }
                 }
             }
         }
@@ -78,6 +82,7 @@ public class Controller {
         for (int i = 0; i < model.getBoard().getLength(); i++) {
             for (int j = 0; j < model.getBoard().getWidth(); j++) {
                 view.getCenterPanel().getTileGUI(i, j).setAvailable(false);
+                view.getCenterPanel().getTileGUI(i, j).setEnemy(false);
             }
         }
     }
@@ -166,6 +171,7 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.resetAll();
+                flipPlayers();
                 showBoard();
             }
         };
@@ -195,8 +201,8 @@ public class Controller {
     }
 
     private void initButtonsListeners() {
-        view.getSouthPanel().getNewButton().addActionListener(newGameListener());
-        view.getSouthPanel().getQuitButton().addActionListener(quitActionListener());
+        view.getNewGameButton().addActionListener(newGameListener());
+        view.getQuitButton().addActionListener(quitActionListener());
         view.getSouthPanel().getResignButton().addActionListener(resignActionListener());
     }
 
