@@ -58,6 +58,7 @@ public class TileGUI extends JButton {
         return y;
     }
 
+    // does not work
     public void setImage(String imagePiece) {
         if(imagePiece != null){
             ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
@@ -78,6 +79,10 @@ public class TileGUI extends JButton {
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
             imageLabel.setVerticalAlignment(JLabel.CENTER);
         }
+    }
+
+    public void setFlipped(boolean isFlipped) {
+        this.isFlipped = isFlipped;
     }
 
     public JLabel getImageLabel() {
