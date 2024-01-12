@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Pieces.Piece;
+import Model.Pieces.Point;
 import Model.Pieces.Sun;
 
 /**
@@ -91,10 +92,21 @@ public class Game {
         removeCaptured(newTile); // changes this function name maybe
         newTile.setPiece(piece);
         currentTile.setPiece(null);
+        switchPoint(newTile);
         currentPlayer = playerManager.getNextPlayer();
         Board.flipBoard();
 
     }
+
+    public void switchPoint(Tile current) {
+        Piece piece = current.getPiece();
+        if (current.getX() == 5 || current.getX() == 0 && piece instanceof Point) {
+            Point point = (Point) piece;
+            point.switchMovement();
+        }
+    }
+    
+    
 
     /**
      * Removes the captured piece from the board.

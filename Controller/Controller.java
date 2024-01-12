@@ -78,6 +78,8 @@ public class Controller {
         }
     }
 
+
+
     private void removeMoves() {
         for (int i = 0; i < model.getBoard().getLength(); i++) {
             for (int j = 0; j < model.getBoard().getWidth(); j++) {

@@ -35,7 +35,7 @@ public class Point extends Piece {
         int yTiles = currentTile.getY() - newTile.getY(); // 
 
         if(getPieceMovement().isValid(xTiles, yTiles)){
-            return true;
+            return true; 
         }
         return false;
         
@@ -47,6 +47,13 @@ public class Point extends Piece {
 
     public void setMovementBackward(){
         setPieceMovement(new BackwardMovement());
+    }
+    
+    public void switchMovement(){
+        if (getPieceMovement() instanceof ForwardMovement) {
+            setMovementBackward();
+        } else setMovementForward();
+    
     }
 
    

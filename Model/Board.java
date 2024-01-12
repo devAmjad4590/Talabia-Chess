@@ -6,6 +6,7 @@ import Model.Pieces.Plus;
 import Model.Pieces.Point;
 import Model.Pieces.Sun;
 import Model.Pieces.Time;
+import java.util.HashMap;
 
 /**
  * This was class was implemented by Maher M.N. Balchi.
@@ -66,7 +67,7 @@ public class Board {
             e.printStackTrace();
         }
         for (int i = 0; i < tiles.length / 2; i++) {
-            for (int j = 0; j < tiles[i].length; j++) { 
+            for (int j = 0; j < tiles[i].length; j++) {
                 Piece temp = tiles[i][j].getPiece();
                 tiles[i][j].setPiece(tiles[tiles.length - i - 1][j].getPiece());
                 tiles[tiles.length - i - 1][j].setPiece(temp);
@@ -156,6 +157,5 @@ public class Board {
     public int getLength() {
         return length;
     }
-
 
 }
