@@ -7,7 +7,7 @@ import Model.Pieces.Sun;
  * The `Game` class represents the main logic and state of a game.
  * It is implemented by Amgad Elrashid Gurashi Eltayeb.
  */
-public class Game  {
+public class Game {
     private Board board; // The game board
     private PlayerManager playerManager; // The player manager
     private Player currentPlayer; // The current player
@@ -23,7 +23,7 @@ public class Game  {
     private void init() {
         board = Board.getInstance(); // object board created
         playerManager = new PlayerManager(); // playerManager created
-        currentPlayer = playerManager.getCurrentPlayer(); // 
+        currentPlayer = playerManager.getCurrentPlayer(); //
     }
 
     /**
@@ -34,7 +34,7 @@ public class Game  {
     public PlayerManager getPlayerManager() {
         return playerManager;
     }
-    
+
     /**
      * Gets the game board.
      *
@@ -88,13 +88,12 @@ public class Game  {
     public void setPlayerMove(Tile currentTile, Tile newTile) {
         Piece piece = currentTile.getPiece();
 
-        if (isMoveValid(currentTile, newTile)) {
-            removeCaptured(newTile); // changes this function name maybe
-            newTile.setPiece(piece);
-            currentTile.setPiece(null);
-            currentPlayer = playerManager.getNextPlayer();
-            Board.flipBoard();
-        }
+        removeCaptured(newTile); // changes this function name maybe
+        newTile.setPiece(piece);
+        currentTile.setPiece(null);
+        currentPlayer = playerManager.getNextPlayer();
+        Board.flipBoard();
+
     }
 
     /**
@@ -115,8 +114,8 @@ public class Game  {
         }
     }
 
-    // resigns the current player 
-    public void resign(){
+    // resigns the current player
+    public void resign() {
         playerManager.setLoser(currentPlayer.isYellow());
         gameOver = true;
         nextGame();
