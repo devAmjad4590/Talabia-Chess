@@ -64,7 +64,6 @@ public class Time extends Piece {
             }
 
         }
-
         return true;
     }
 

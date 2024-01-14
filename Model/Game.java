@@ -101,6 +101,11 @@ public class Game {
             Point point = (Point) piece;
             point.switchMovement();
         }
+    } 
+
+    public void swapPieces(Piece piece1, Piece piece2){
+     
+
     }
     
     
@@ -115,16 +120,20 @@ public class Game {
         Piece capturedPiece = newTile.getPiece();
         newTile.setPiece(piece);
         currentTile.setPiece(null);
+        Board.getMap().put(piece, newTile);
         if (capturedPiece != null) {
-            if (capturedPiece instanceof Sun) {
-                playerManager.setLoser(capturedPiece.isYellow());
-                gameOver = true;
-            }
-            ;
-
+            Board.getMap().remove(capturedPiece); // needs testing
+            isSunCaptured(capturedPiece);
         }
     }
-
+    public boolean isSunCaptured(Piece piece) {
+        if (piece instanceof Sun) {
+            playerManager.setLoser(piece.isYellow());
+            gameOver = true;
+            return true;
+        }
+        return false;
+    }
     // resigns the current player
     public void resign() {
         playerManager.setLoser(currentPlayer.isYellow());
