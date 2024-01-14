@@ -13,6 +13,7 @@ public class Game {
     private PlayerManager playerManager; // The player manager
     private Player currentPlayer; // The current player
     private boolean gameOver = false; // True if the game is over, false otherwise
+    private SaveManager saveManager;
 
     /**
      * Initializes the game by creating a player manager instance and a game board.
@@ -25,6 +26,7 @@ public class Game {
         board = Board.getInstance(); // object board created
         playerManager = new PlayerManager(); // playerManager created
         currentPlayer = playerManager.getCurrentPlayer(); //
+        saveManager = new SaveManager();
     }
 
     /**
@@ -161,5 +163,9 @@ public class Game {
         playerManager.resetTurn();
         currentPlayer = playerManager.getCurrentPlayer();
 
+    }
+
+    public void save(){
+        saveManager.saveGame();
     }
 }

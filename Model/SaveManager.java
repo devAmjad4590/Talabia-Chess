@@ -13,7 +13,7 @@ public class SaveManager {
     Board board = Board.getInstance();
 
     // save & load game function
-    public void SaveGame() {
+    public void saveGame() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
             for (int i = 0; i < board.getLength(); i++) {

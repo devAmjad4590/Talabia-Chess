@@ -19,7 +19,7 @@ public class TileGUI extends JButton {
     private int x;
     private int y;
     private JLabel imageLabel;
-    private String imagePath = "./VIEW/images/";
+    private String imagePath = "./View/images/";
     private boolean isAvailable = false;
     private boolean isEnemy = false;
 
