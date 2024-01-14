@@ -42,56 +42,51 @@ public class CenterPanel extends JPanel {
         // Add the gridPanel to the CENTER position
         add(gridPanel, BorderLayout.CENTER);
         showLabels();
-
     }
 
     public void showLabels(){
         // Add row labels (numbers) to the WEST position
-        JPanel rowLabelPanel = new JPanel(new GridLayout(6, 1));
-        rowLabelPanel.setPreferredSize(new Dimension(30, 50));
-        rowLabelPanel.setBackground(Color.LIGHT_GRAY);
-        for (int i = 0; i < 6; i++) {
-            JLabel rowLabel = new JLabel(String.valueOf(i + 1), JLabel.CENTER);
-            // rowLabel.setFont(rowLabel.getFont().deriveFont(Font.BOLD, 30));
-            rowLabelPanel.add(rowLabel);
+        JPanel rowLabelNumbers = new JPanel(new GridLayout(6, 1));
+        rowLabelNumbers.setPreferredSize(new Dimension(30, 50));
+        rowLabelNumbers.setBackground(Color.LIGHT_GRAY);
+        for(int i = 0; i < 6; i++){
+            JLabel rowLabels = new JLabel(String.valueOf(i + 1), JLabel.CENTER);
+            rowLabelNumbers.add(rowLabels);
         }
-        add(rowLabelPanel, BorderLayout.WEST);
+        add(rowLabelNumbers, BorderLayout.WEST);
 
         // Add column labels (letters) to the NORTH position
-        JPanel colLabelPanel = new JPanel(new GridLayout(1, 7));
-        colLabelPanel.setPreferredSize(new Dimension(10, 30));
-        colLabelPanel.setBackground(Color.LIGHT_GRAY);
-        for (char c = 'A'; c <= 'G'; c++) {
-            JLabel colLabel = new JLabel(String.valueOf(c), JLabel.CENTER);
-            colLabelPanel.add(colLabel);
-            // colLabel.setFont(colLabel.getFont().deriveFont(Font.BOLD, 30));
+        JPanel colLabelLetters = new JPanel(new GridLayout(1, 7));
+        colLabelLetters.setPreferredSize(new Dimension(10, 30));
+        colLabelLetters.setBackground(Color.LIGHT_GRAY);
+        for(char c = 'A'; c <= 'G'; c++) {
+            JLabel colLabels = new JLabel(String.valueOf(c), JLabel.CENTER);
+            colLabelLetters.add(colLabels);
         }
-        add(colLabelPanel, BorderLayout.NORTH);
+        add(colLabelLetters, BorderLayout.NORTH);
     }
 
-    public void reverseLabels(){
+    public void reverseShowLabels(){
+
         // Add row labels (numbers) to the WEST position
-        JPanel rowLabelPanel = new JPanel(new GridLayout(6, 1));
-        rowLabelPanel.setPreferredSize(new Dimension(30, 50));
-        rowLabelPanel.setBackground(Color.LIGHT_GRAY);
-        for (int i = 6; i >= 1; i--) {
-            JLabel rowLabel = new JLabel(String.valueOf(i), JLabel.CENTER);
-            // rowLabel.setFont(rowLabel.getFont().deriveFont(Font.BOLD, 30));
-            rowLabelPanel.add(rowLabel);
+        JPanel rowLabelNumbers = new JPanel(new GridLayout(6, 1));
+        rowLabelNumbers.setPreferredSize(new Dimension(30, 50));
+        rowLabelNumbers.setBackground(Color.LIGHT_GRAY);
+        for(int i = 6; i >= 1; i--){
+            JLabel rowLabels = new JLabel(String.valueOf(i), JLabel.CENTER);
+            rowLabelNumbers.add(rowLabels);
         }
-        add(rowLabelPanel, BorderLayout.WEST);
+        add(rowLabelNumbers, BorderLayout.WEST);
 
         // Add column labels (letters) to the NORTH position
-        JPanel colLabelPanel = new JPanel(new GridLayout(1, 7));
-        colLabelPanel.setPreferredSize(new Dimension(10, 30));
-        colLabelPanel.setBackground(Color.LIGHT_GRAY);
-        for (char c = 'G'; c >= 'A'; c--) {
-            JLabel colLabel = new JLabel(String.valueOf(c), JLabel.CENTER);
-            colLabelPanel.add(colLabel);
-            // colLabel.setFont(colLabel.getFont().deriveFont(Font.BOLD, 30));
+        JPanel colLabelLetters = new JPanel(new GridLayout(1, 7));
+        colLabelLetters.setPreferredSize(new Dimension(10, 30));
+        colLabelLetters.setBackground(Color.LIGHT_GRAY);
+        for(char c = 'G'; c >= 'A'; c--) {
+            JLabel colLabels = new JLabel(String.valueOf(c), JLabel.CENTER);
+            colLabelLetters.add(colLabels);
         }
-        add(colLabelPanel, BorderLayout.NORTH);
-
+        add(colLabelLetters, BorderLayout.NORTH);
     }
 
     /**
