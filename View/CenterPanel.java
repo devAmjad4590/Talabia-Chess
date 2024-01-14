@@ -1,9 +1,8 @@
 package View;
 
-import javax.swing.*;
-
 import View.Components.*;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -45,7 +44,7 @@ public class CenterPanel extends JPanel {
 
         // Add row labels (numbers) to the WEST position
         JPanel rowLabelPanel = new JPanel(new GridLayout(6, 1));
-        rowLabelPanel.setPreferredSize(new Dimension(50, 90));
+        rowLabelPanel.setPreferredSize(new Dimension(30, 50));
         rowLabelPanel.setBackground(Color.LIGHT_GRAY);
         for (int i = 0; i < 6; i++) {
             JLabel rowLabel = new JLabel(String.valueOf(i + 1), JLabel.CENTER);
@@ -56,7 +55,7 @@ public class CenterPanel extends JPanel {
 
         // Add column labels (letters) to the NORTH position
         JPanel colLabelPanel = new JPanel(new GridLayout(1, 7));
-        colLabelPanel.setPreferredSize(new Dimension(50, 90));
+        colLabelPanel.setPreferredSize(new Dimension(10, 30));
         colLabelPanel.setBackground(Color.LIGHT_GRAY);
         for (char c = 'A'; c <= 'G'; c++) {
             JLabel colLabel = new JLabel(String.valueOf(c), JLabel.CENTER);

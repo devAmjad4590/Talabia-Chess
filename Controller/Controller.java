@@ -203,9 +203,9 @@ public class Controller {
     }
 
     private void initButtonsListeners() {
-        view.getNewGameButton().addActionListener(newGameListener());
-        view.getQuitButton().addActionListener(quitActionListener());
-        view.getSouthPanel().getResignButton().addActionListener(resignActionListener());
+        view.getNorthPanel().getNewGameButton().addActionListener(newGameListener());
+        view.getNorthPanel().getQuitButton().addActionListener(quitActionListener());
+        view.getEastPanel().getResignButton().addActionListener(resignActionListener());
     }
 
 }

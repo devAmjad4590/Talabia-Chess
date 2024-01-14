@@ -1,6 +1,5 @@
 package View;
 
-import Model.Tile;
 import View.Components.*;
 
 import javax.swing.*;
@@ -14,10 +13,9 @@ public class GameView extends JFrame {
     private CenterPanel centerPanel;
     private NorthPanel northPanel;
     private SouthPanel southPanel;
+    private EastPanel eastPanel;
     private PlayerGUI player1, player2;
-    private JButton newGameButton;
-    private JButton saveButton;
-    private JButton quitButton;
+    
     private int response;
 
     public GameView() {
@@ -29,26 +27,14 @@ public class GameView extends JFrame {
         centerPanel = new CenterPanel();
         northPanel = new NorthPanel(player2);
         southPanel = new SouthPanel(player1);
-        
+        eastPanel = new EastPanel();
         
         frame.setLayout(new BorderLayout());
         frame.add(centerPanel, BorderLayout.CENTER);
         frame.add(northPanel, BorderLayout.NORTH);
         frame.add(southPanel, BorderLayout.SOUTH);
-
-        JToolBar toolBar = new JToolBar();
-        toolBar.setFloatable(false);
-
-        newGameButton = new JButton("New");
-        saveButton = new JButton("Save");
-        quitButton = new JButton("Quit");
+        frame.add(eastPanel, BorderLayout.EAST);
         
-        toolBar.add(newGameButton);
-        toolBar.add(saveButton);
-        toolBar.add(quitButton);
-
-        toolBar.setLayout(new FlowLayout(FlowLayout.LEFT));
-        frame.add(toolBar, BorderLayout.PAGE_START);
     
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack(); 
@@ -65,22 +51,6 @@ public class GameView extends JFrame {
     public int getResponse(){
         return response;
     }
-
-    // getters
-    public JButton getNewGameButton(){
-        return newGameButton;
-    }
-
-    public JButton getSaveButton(){
-        return saveButton;
-    }
-
-    public JButton getQuitButton(){
-        return quitButton;
-    }
-
-
-    
     
     public CenterPanel getCenterPanel() {
         return centerPanel;
@@ -92,6 +62,10 @@ public class GameView extends JFrame {
 
     public SouthPanel getSouthPanel() {
         return southPanel;
+    }
+
+    public EastPanel getEastPanel() {
+        return eastPanel;
     }
 
     public PlayerGUI getYellowPlayer(){

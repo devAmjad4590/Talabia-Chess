@@ -14,7 +14,6 @@ import View.Components.*;
  * Class implemented by Asim Adel Ahmed Maroof
  */
 public class SouthPanel extends JPanel {
-    private JButton newButton, saveButton, quitButton, resignButton;
     private PlayerGUI player;
 
      /**
@@ -29,59 +28,6 @@ public class SouthPanel extends JPanel {
         setLayout(new BorderLayout());
         this.player = player;
         add(this.player, BorderLayout.NORTH);
-
-        // Create a subpanel with FlowLayout for the buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout());
-
-        // Create buttons and add them to the subpanel
-        newButton = new JButton("New");
-        saveButton = new JButton("Save");
-        quitButton = new JButton("Quit");
-        resignButton = new JButton("Resign");
-
-        buttonPanel.add(newButton);
-        buttonPanel.add(saveButton);
-        buttonPanel.add(quitButton);
-        buttonPanel.add(resignButton);
-
-        // Add the subpanel to the SOUTH region
-        add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    /**
-     * Gets the button for initiating a new game.
-     *
-     * @return The button for initiating a new game.
-     */
-    public JButton getNewButton() {
-        return newButton;
-    }
-
-    /**
-     * Gets the button for saving the game.
-     *
-     * @return The button for saving the game.
-     */
-    public JButton getSaveButton() {
-        return saveButton;
-    }
-
-    /**
-     * Gets the button for quitting the game.
-     *
-     * @return The button for quitting the game.
-     */
-    public JButton getQuitButton() {
-        return quitButton;
-    }
-
-    /**
-     * Gets the button for resigning from the game.
-     *
-     * @return The button for resigning from the game.
-     */
-    public JButton getResignButton() {
-        return resignButton;
     }
 
     public void setPlayerGUI(PlayerGUI player){

@@ -1,8 +1,8 @@
 package View;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 import View.Components.*;
 
@@ -15,6 +15,7 @@ import View.Components.*;
 
 public class NorthPanel extends JPanel{
    private PlayerGUI player;
+   private JButton newGameButton, saveButton, quitButton;
 
     /**
      * Constructs a new NorthPanel instance.
@@ -26,7 +27,54 @@ public class NorthPanel extends JPanel{
         setLayout(new BorderLayout());
         this.player = player;
         add(this.player);
+
+        // Create a panel for the toolBar
+        JPanel toolBarPanel = new JPanel(new BorderLayout());
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+
+        newGameButton = new JButton("New");
+        saveButton = new JButton("Save");
+        quitButton = new JButton("Quit");
+
+        toolBar.add(newGameButton);
+        toolBar.add(saveButton);
+        toolBar.add(quitButton);
+
+        toolBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+        toolBarPanel.add(toolBar, BorderLayout.PAGE_START);
+
+        // Add the toolBarPanel to the frame
+        add(toolBarPanel, BorderLayout.PAGE_START);
     }
+
+    /**
+     * Gets the button for initiating a new game.
+     *
+     * @return The button for initiating a new game.
+     */
+    public JButton getNewGameButton(){
+        return newGameButton;
+    }
+
+    /**
+     * Gets the button for saving the game.
+     *
+     * @return The button for saving the game.
+     */
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    /**
+     * Gets the button for quitting the game.
+     *
+     * @return The button for quitting the game.
+     */
+    public JButton getQuitButton() {
+        return quitButton;
+    }
+
 
     
     public void setPlayerGUI(PlayerGUI player){

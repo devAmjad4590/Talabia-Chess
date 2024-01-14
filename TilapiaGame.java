@@ -7,6 +7,5 @@ public class TilapiaGame {
         Game model = new Game(); // model
         GameView view = new GameView(); // view
         Controller controller = new Controller(view, model); // controller
-
     }
 }
