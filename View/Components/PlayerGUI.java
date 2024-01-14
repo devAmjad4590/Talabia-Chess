@@ -35,7 +35,11 @@ public class PlayerGUI extends JPanel {
     public void setImage() {
             try {
                 ImageIcon imageIcon = new ImageIcon(imagePath);
+<<<<<<< Updated upstream
                 Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+=======
+                Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+>>>>>>> Stashed changes
                 
                 imageIcon = new ImageIcon(image);
                 imageLabel.setIcon(imageIcon);

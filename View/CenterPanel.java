@@ -41,7 +41,11 @@ public class CenterPanel extends JPanel {
 
         // Add the gridPanel to the CENTER position
         add(gridPanel, BorderLayout.CENTER);
+        showLabels();
 
+    }
+
+    public void showLabels(){
         // Add row labels (numbers) to the WEST position
         JPanel rowLabelPanel = new JPanel(new GridLayout(6, 1));
         rowLabelPanel.setPreferredSize(new Dimension(30, 50));
@@ -58,6 +62,30 @@ public class CenterPanel extends JPanel {
         colLabelPanel.setPreferredSize(new Dimension(10, 30));
         colLabelPanel.setBackground(Color.LIGHT_GRAY);
         for (char c = 'A'; c <= 'G'; c++) {
+            JLabel colLabel = new JLabel(String.valueOf(c), JLabel.CENTER);
+            colLabelPanel.add(colLabel);
+            // colLabel.setFont(colLabel.getFont().deriveFont(Font.BOLD, 30));
+        }
+        add(colLabelPanel, BorderLayout.NORTH);
+    }
+
+    public void reverseLabels(){
+        // Add row labels (numbers) to the WEST position
+        JPanel rowLabelPanel = new JPanel(new GridLayout(6, 1));
+        rowLabelPanel.setPreferredSize(new Dimension(30, 50));
+        rowLabelPanel.setBackground(Color.LIGHT_GRAY);
+        for (int i = 6; i >= 1; i--) {
+            JLabel rowLabel = new JLabel(String.valueOf(i), JLabel.CENTER);
+            // rowLabel.setFont(rowLabel.getFont().deriveFont(Font.BOLD, 30));
+            rowLabelPanel.add(rowLabel);
+        }
+        add(rowLabelPanel, BorderLayout.WEST);
+
+        // Add column labels (letters) to the NORTH position
+        JPanel colLabelPanel = new JPanel(new GridLayout(1, 7));
+        colLabelPanel.setPreferredSize(new Dimension(10, 30));
+        colLabelPanel.setBackground(Color.LIGHT_GRAY);
+        for (char c = 'G'; c >= 'A'; c--) {
             JLabel colLabel = new JLabel(String.valueOf(c), JLabel.CENTER);
             colLabelPanel.add(colLabel);
             // colLabel.setFont(colLabel.getFont().deriveFont(Font.BOLD, 30));
