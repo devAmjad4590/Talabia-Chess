@@ -66,7 +66,7 @@ public class CenterPanel extends JPanel {
         add(colLabelLetters, BorderLayout.NORTH);
     }
 
-    public void reverseShowLabels(){
+    public void reverseLabels(){
 
         // Add row labels (numbers) to the WEST position
         JPanel rowLabelNumbers = new JPanel(new GridLayout(6, 1));

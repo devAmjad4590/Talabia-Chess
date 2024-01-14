@@ -66,11 +66,22 @@ public class Board {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < tiles.length / 2; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
+
+        // swapping the pieces vertically
+        for (int i = 0; i < length / 2; i++) {
+            for (int j = 0; j < width; j++) {
                 Piece temp = tiles[i][j].getPiece();
-                tiles[i][j].setPiece(tiles[tiles.length - i - 1][j].getPiece());
-                tiles[tiles.length - i - 1][j].setPiece(temp);
+                tiles[i][j].setPiece(tiles[length - 1 - i][j].getPiece());
+                tiles[length - 1 - i][j].setPiece(temp);
+            }
+        }
+
+        // swapping the pieces horizontally
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width / 2; j++) {
+                Piece temp = tiles[i][j].getPiece();
+                tiles[i][j].setPiece(tiles[i][width - 1 - j].getPiece());
+                tiles[i][width - 1 - j].setPiece(temp);
             }
         }
     }
