@@ -48,6 +48,10 @@ public class GameView extends JFrame {
     response = JOptionPane.showConfirmDialog(frame, "Do you want to play again?", "Play Again", JOptionPane.YES_NO_OPTION);
     }
 
+    public void showSave(){
+        JOptionPane.showMessageDialog(frame, "Game Saved!", "Save", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public int getResponse(){
         return response;
     }

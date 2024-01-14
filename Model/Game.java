@@ -89,15 +89,10 @@ public class Game {
      * @param newTile     The new tile where the player's piece will be moved.
      */
     public void setPlayerMove(Tile currentTile, Tile newTile) {
-        Piece piece = currentTile.getPiece();
-
-        removeCaptured(newTile); // changes this function name maybe
-        newTile.setPiece(piece);
-        currentTile.setPiece(null);
-        switchPoint(newTile);
+        occupyTile(currentTile, newTile); // changes this function name maybe
+        switchPoint(newTile); // checks if the point piece made it to the first or last row
         currentPlayer = playerManager.getNextPlayer();
         Board.flipBoard();
-
     }
 
     public void switchPoint(Tile current) {
@@ -113,12 +108,14 @@ public class Game {
     /**
      * Removes the captured piece from the board.
      *
-     * @param tile The tile where the captured piece is located.
+     * @param newTile The tile where the captured piece is located.
      */
-    private void removeCaptured(Tile tile) {
-        Piece capturedPiece = tile.getPiece();
+    private void occupyTile(Tile currentTile, Tile newTile) {
+        Piece piece = currentTile.getPiece();
+        Piece capturedPiece = newTile.getPiece();
+        newTile.setPiece(piece);
+        currentTile.setPiece(null);
         if (capturedPiece != null) {
-            tile.setPiece(null);
             if (capturedPiece instanceof Sun) {
                 playerManager.setLoser(capturedPiece.isYellow());
                 gameOver = true;

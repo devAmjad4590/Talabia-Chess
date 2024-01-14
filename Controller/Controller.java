@@ -198,6 +198,16 @@ public class Controller {
         };
     }
 
+    private ActionListener saveActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.showSave();
+                model.save();
+            }
+        };
+    }
+
     private void quit() {
         System.exit(0);
     }
@@ -206,6 +216,7 @@ public class Controller {
         view.getNorthPanel().getNewGameButton().addActionListener(newGameListener());
         view.getNorthPanel().getQuitButton().addActionListener(quitActionListener());
         view.getEastPanel().getResignButton().addActionListener(resignActionListener());
+        view.getNorthPanel().getSaveButton().addActionListener(saveActionListener());
     }
 
 }
