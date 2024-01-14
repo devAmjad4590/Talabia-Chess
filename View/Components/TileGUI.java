@@ -2,8 +2,6 @@ package View.Components;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 /**
@@ -60,9 +58,9 @@ public class TileGUI extends JButton {
     }
 
     // does not work
-    public void setImage(String imagePiece) {
-        if (imagePiece != null) {
-            ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
+    public void setImage(String piece) {
+        if (piece != null) {
+            ImageIcon imageIcon = new ImageIcon(imagePath + piece + ".png");
             Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
 
             imageIcon = new ImageIcon(image);
@@ -117,6 +115,7 @@ public class TileGUI extends JButton {
         this.isAvailable = isClicked;
         repaint();
     }
+
 
     /**
      * Overrides the paintComponent method to customize the appearance of the tile.

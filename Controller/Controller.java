@@ -9,6 +9,7 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.*;
+import Model.Movements.BackwardMovement;
 import View.GameView;
 import View.Components.*;
 
@@ -117,9 +118,16 @@ public class Controller {
             for (int j = 0; j < model.getBoard().getWidth(); j++) {
                 if (model.getTile(i, j).getPiece() != null) {
                     view.getCenterPanel().getTileGUI(i, j).flipImage(model.getTile(i, j).getPiece().toString());
+                    if(isBackward(i, j)){
+                        view.getCenterPanel().getTileGUI(i, j).setImage(model.getTile(i, j).getPiece().toString());
+                    }
                 }
             }
         }
+    }
+
+    private boolean isBackward(int i, int j){
+        return model.getTile(i, j).getPiece().getPieceMovement() instanceof BackwardMovement;
     }
 
     private void handleGameOver() {
@@ -142,6 +150,9 @@ public class Controller {
             for (int j = 0; j < model.getBoard().getWidth(); j++) {
                 if (model.getTile(i, j).getPiece() != null) {
                     view.getCenterPanel().getTileGUI(i, j).setImage(model.getTile(i, j).getPiece().toString());
+                    if(isBackward(i, j)){
+                        view.getCenterPanel().getTileGUI(i, j).flipImage(model.getTile(i, j).getPiece().toString());
+                    }
                 } else {
                     view.getCenterPanel().getTileGUI(i, j).setImage("");
                 }
@@ -151,6 +162,8 @@ public class Controller {
         showPlayerScore();
     }
 
+
+
     private void showPlayerScore() {
         view.getYellowPlayer().setText(model.getPlayerManager().getYellowPlayer().getScore());
         view.getBluePlayer().setText(model.getPlayerManager().getBluePlayer().getScore());
@@ -158,10 +171,12 @@ public class Controller {
 
     private void flipPlayers() {
         if (model.getPlayerManager().getCurrentPlayer().isYellow()) {
+            view.getCenterPanel().showLabels();
             view.getSouthPanel().setPlayerGUI(view.getYellowPlayer());
             view.getNorthPanel().setPlayerGUI(view.getBluePlayer());
         } else {
             flipPieces();
+            view.getCenterPanel().reverseLabels();
             view.getSouthPanel().setPlayerGUI(view.getBluePlayer());
             view.getNorthPanel().setPlayerGUI(view.getYellowPlayer());
         }

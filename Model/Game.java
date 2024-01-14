@@ -89,18 +89,20 @@ public class Game {
      * @param newTile     The new tile where the player's piece will be moved.
      */
     public void setPlayerMove(Tile currentTile, Tile newTile) {
-        occupyTile(currentTile, newTile); // changes this function name maybe
+        occupyTile(currentTile, newTile); // moves the piece to the new tile
         switchPoint(newTile); // checks if the point piece made it to the first or last row
         currentPlayer = playerManager.getNextPlayer();
         Board.flipBoard();
     }
 
-    public void switchPoint(Tile current) {
+    public boolean switchPoint(Tile current) {
         Piece piece = current.getPiece();
         if (current.getX() == 5 || current.getX() == 0 && piece instanceof Point) {
             Point point = (Point) piece;
             point.switchMovement();
+            return true;
         }
+        return false;
     }
     
     
