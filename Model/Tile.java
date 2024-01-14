@@ -50,8 +50,12 @@ public class Tile {
     /**
      * @return The piece in the tile
      */
-    public Piece getPiece(){
+    public Piece getPiece() {
         return piece;
+    }
+    
+    public String toString(){
+        return Integer.toString(x) + "," + Integer.toString(y);
     }
 
 }
