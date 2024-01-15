@@ -2,9 +2,11 @@ package Model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * SaveManager
@@ -40,15 +42,31 @@ public class SaveManager {
 
     public void loadGame() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-                System.out.println("test");
-
+            File myObj = new File("output.txt");
+            Scanner myReader = new Scanner(myObj);
+    
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+    
+                // Split the line into "piece" and "position" parts
+                String[] parts = data.split(";");
+                for (String part : parts) {
+                    // Split each part into attribute and value
+                    String[] attributeValue = part.trim().split("=");
+                    String attribute = attributeValue[0].trim();
+                    String value = attributeValue[1].trim();
+    
+                    // Process the attribute and value as needed
+                    if (attribute.equals("piece")) {
+                        //TODO handlePieceInformation(value);
+                    } else if (attribute.equals("position")) {
+                        //TODO Handle position information
+                        System.out.println("Position: " + value);
+                    }
+                }
             }
 
-            reader.close();
+            myReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
