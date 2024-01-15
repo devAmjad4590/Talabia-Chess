@@ -19,6 +19,7 @@ public class Board {
     private static int length = 6; // The length of the board
     private static int width = 7; // The width of the board
     private static Tile[][] tiles; // 2D array to store the tiles on the board
+    private static HashMap<Piece, Tile> pieceMap = new HashMap<Piece, Tile>();
 
     /**
      * Private constructor to prevent external instantiation.
@@ -39,11 +40,14 @@ public class Board {
             for (int j = 0; j < width; j++) {
                 // i =0, j = 2
                 tiles[i][j] = new Tile(i, j, null);
+
             }
         }
 
         // Initialize the pieces on the board
         initPieces();
+        initMap();
+        
 
     }
 
@@ -84,6 +88,28 @@ public class Board {
                 tiles[i][width - 1 - j].setPiece(temp);
             }
         }
+        initMap();
+    }
+
+    private static void initMap() {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (tiles[i][j].getPiece() != null) {
+                  pieceMap.put(tiles[i][j].getPiece(), tiles[i][j]);
+                  tiles[i][j].getPiece();
+                } 
+
+         
+            }
+        }
+    }
+
+    public static HashMap<Piece, Tile> getMap() {
+        return pieceMap;
+    }
+
+    public static void removePiece(Piece piece) {
+        pieceMap.remove(piece);
     }
 
     // method by Amgad Elrashid Gurashi Eltayeb

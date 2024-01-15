@@ -8,8 +8,11 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
+
 import Model.*;
 import Model.Movements.BackwardMovement;
+import Model.Pieces.Piece;
 import View.GameView;
 import View.Components.*;
 
@@ -114,15 +117,14 @@ public class Controller {
     }
 
     private void flipPieces() {
-        for (int i = 0; i < model.getBoard().getLength(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
-                if (model.getTile(i, j).getPiece() != null) {
-                    view.getCenterPanel().getTileGUI(i, j).flipImage(model.getTile(i, j).getPiece().toString());
-                    if(isBackward(i, j)){
-                        view.getCenterPanel().getTileGUI(i, j).setImage(model.getTile(i, j).getPiece().toString());
-                    }
+        for(Map.Entry<Piece, Tile> entry: Board.getMap().entrySet()){    
+            Piece piece = entry.getKey();
+            Tile tile = entry.getValue();
+                view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).flipImage(piece.toString());
+                if(isBackward(tile.getX(), tile.getY())){
+                    view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).setImage(piece.toString());
                 }
-            }
+            
         }
     }
 
@@ -146,22 +148,27 @@ public class Controller {
      * Updates the game view to reflect the current state of the game board.
      */
     private void showBoard() {
-        for (int i = 0; i < model.getBoard().getLength(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
-                if (model.getTile(i, j).getPiece() != null) {
-                    view.getCenterPanel().getTileGUI(i, j).setImage(model.getTile(i, j).getPiece().toString());
-                    if(isBackward(i, j)){
-                        view.getCenterPanel().getTileGUI(i, j).flipImage(model.getTile(i, j).getPiece().toString());
-                    }
-                } else {
-                    view.getCenterPanel().getTileGUI(i, j).setImage("");
-                }
+        clearImages();
+        model.getBoard();
+        for(Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()){
+            Piece piece = entry.getKey();
+            Tile tile = entry.getValue();
+            view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).setImage(piece.toString());
+            if(isBackward(tile.getX(), tile.getY())){
+                view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).flipImage(piece.toString());
             }
         }
-        // setting the player's score
+
         showPlayerScore();
     }
 
+    private void clearImages(){
+        for(int i = 0; i < model.getBoard().getLength(); i++){
+            for(int j = 0; j < model.getBoard().getWidth(); j++){
+                view.getCenterPanel().getTileGUI(i, j).setImage("");
+            }
+        }
+    }
 
 
     private void showPlayerScore() {
