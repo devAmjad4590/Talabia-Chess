@@ -50,6 +50,11 @@ public class Player {
         return "(" + noOfWins + " - " + noOfLosses + ")";
     }
 
+    public void setScore(int wins, int lose){
+        this.noOfWins = wins;
+        this.noOfLosses = lose;
+    }
+
     // get Player's number of wins
     public int getNoOfWins() {
         return noOfWins;

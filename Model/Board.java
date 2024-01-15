@@ -54,6 +54,7 @@ public class Board {
     // reset the board to its initial state
     public static void resetBoard() {
         initBoard();
+        initMap();
     }
 
     /**
@@ -92,6 +93,7 @@ public class Board {
     }
 
     private static void initMap() {
+        pieceMap.clear();
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 if (tiles[i][j].getPiece() != null) {
@@ -102,6 +104,21 @@ public class Board {
          
             }
         }
+    }
+
+    // add a piece to the board
+    public static void addPiece(Piece piece, int x, int y) {
+        tiles[x][y].setPiece(piece);
+        initMap();
+    }
+
+    public static void clearBoard(){
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+               tiles[i][j].setPiece(null);
+            }
+        }
+        pieceMap.clear();
     }
 
     public static HashMap<Piece, Tile> getMap() {

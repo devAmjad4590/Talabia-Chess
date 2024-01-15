@@ -41,6 +41,20 @@ public class PlayerManager {
         }
     }
 
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    /**
+     * Gets the current turn number.
+     *
+     * @return The current turn number.
+     */
+    public int getTurn() {
+        return turn;
+    }
+
     /**
      * Advances the game to the next turn.
      */

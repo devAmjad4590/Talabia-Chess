@@ -26,7 +26,6 @@ public class Game {
         board = Board.getInstance(); // object board created
         playerManager = new PlayerManager(); // playerManager created
         currentPlayer = playerManager.getCurrentPlayer(); //
-        saveManager = new SaveManager();
     }
 
     /**
@@ -37,6 +36,11 @@ public class Game {
     public PlayerManager getPlayerManager() {
         return playerManager;
     }
+
+    public void setCurrentPlayer(){
+        currentPlayer = playerManager.getCurrentPlayer();
+    }
+
 
     /**
      * Gets the game board.
@@ -171,7 +175,4 @@ public class Game {
 
     }
 
-    public void save(){
-        saveManager.saveGame();
-    }
 }

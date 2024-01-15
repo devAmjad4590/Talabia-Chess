@@ -21,6 +21,7 @@ public class Controller {
     private GameView view;
     private Game model;
     private Tile selectedTile, destinationTile;
+    private SaveManager saveManager;
 
     /**
      * Constructs a new Controller instance.
@@ -31,6 +32,7 @@ public class Controller {
     public Controller(GameView view, Game model) {
         this.view = view;
         this.model = model;
+        this.saveManager = new SaveManager(model);
         showBoard();
         initTileListeners();
         initButtonsListeners();
@@ -129,6 +131,7 @@ public class Controller {
     }
 
     private boolean isBackward(int i, int j){
+        if(model.getTile(i, j).getPiece() == null) return false;
         return model.getTile(i, j).getPiece().getPieceMovement() instanceof BackwardMovement;
     }
 
@@ -136,9 +139,9 @@ public class Controller {
         view.showGameOver(model.getPlayerManager().getWinner().toString() + " wins!");
         int response = view.getResponse();
         if (response == 0) {
+            clearImages();
             model.nextGame();
             showBoard();
-            flipPlayers(); // flip back to original position
         } else {
             quit();
         }
@@ -149,7 +152,6 @@ public class Controller {
      */
     private void showBoard() {
         clearImages();
-        model.getBoard();
         for(Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()){
             Piece piece = entry.getKey();
             Tile tile = entry.getValue();
@@ -160,6 +162,7 @@ public class Controller {
         }
 
         showPlayerScore();
+        flipPlayers(); // checks the current player and then flips to that current player's pov
     }
 
     private void clearImages(){
@@ -195,7 +198,6 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.resetAll();
-                flipPlayers();
                 showBoard();
             }
         };
@@ -225,9 +227,15 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 view.showSave();
-                model.save();
+                saveManager.saveGame();
             }
         };
+    }
+
+    private void loadGame(){
+        saveManager.loadGame();
+        model.setCurrentPlayer();
+        showBoard();
     }
 
     private void quit() {
