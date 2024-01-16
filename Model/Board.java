@@ -7,6 +7,7 @@ import Model.Pieces.Point;
 import Model.Pieces.Sun;
 import Model.Pieces.Time;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This was class was implemented by Maher M.N. Balchi.
@@ -47,7 +48,6 @@ public class Board {
         // Initialize the pieces on the board
         initPieces();
         initMap();
-        
 
     }
 
@@ -97,11 +97,10 @@ public class Board {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 if (tiles[i][j].getPiece() != null) {
-                  pieceMap.put(tiles[i][j].getPiece(), tiles[i][j]);
-                  tiles[i][j].getPiece();
-                } 
+                    pieceMap.put(tiles[i][j].getPiece(), tiles[i][j]);
+                    tiles[i][j].getPiece();
+                }
 
-         
             }
         }
     }
@@ -112,10 +111,10 @@ public class Board {
         initMap();
     }
 
-    public static void clearBoard(){
+    public static void clearBoard() {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
-               tiles[i][j].setPiece(null);
+                tiles[i][j].setPiece(null);
             }
         }
         pieceMap.clear();
@@ -127,6 +126,29 @@ public class Board {
 
     public static void removePiece(Piece piece) {
         pieceMap.remove(piece);
+    }
+
+    public void switchPoint(Tile current) {
+        Piece piece = current.getPiece();
+        if (current.getX() == 5 || current.getX() == 0 && piece instanceof Point) {
+            Point point = (Point) piece;
+            point.switchMovement();
+        }
+    }
+
+    public void swapPieces() {
+        for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
+            Tile tile = entry.getValue();
+            Piece piece = tile.getPiece();
+            if (piece instanceof Time) {
+                tile.setPiece(new Plus(piece.isYellow()));
+            }
+
+            if (piece instanceof Plus) {
+                tile.setPiece(new Time(piece.isYellow()));
+            }
+        }
+
     }
 
     // method by Amgad Elrashid Gurashi Eltayeb

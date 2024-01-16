@@ -19,6 +19,9 @@ public class EastPanel extends JPanel{
         gbc.gridy = 0;
         gbc.weighty = 1.0; // Allows vertical centering
 
+        // add margin to the button
+        gbc.insets = new Insets(0, 50, 0, 0);
+
         // Add the button to the EAST position
         add(resignButton, gbc);
     }
