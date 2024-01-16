@@ -93,7 +93,9 @@ public class PlayerManager {
         turn = 0;
     }
 
-
+    public boolean isSwapTurn(){
+        return turn % 4 == 0;
+    }
 
     public void setLoser(boolean yellow) {
         // Get winner using PlayerManager

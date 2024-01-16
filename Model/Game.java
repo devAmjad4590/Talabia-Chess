@@ -1,8 +1,12 @@
 package Model;
 
+import java.util.Map;
+
 import Model.Pieces.Piece;
+import Model.Pieces.Plus;
 import Model.Pieces.Point;
 import Model.Pieces.Sun;
+import Model.Pieces.Time;
 
 /**
  * The `Game` class represents the main logic and state of a game.
@@ -37,10 +41,9 @@ public class Game {
         return playerManager;
     }
 
-    public void setCurrentPlayer(){
+    public void setCurrentPlayer() {
         currentPlayer = playerManager.getCurrentPlayer();
     }
-
 
     /**
      * Gets the game board.
@@ -93,9 +96,13 @@ public class Game {
      * @param newTile     The new tile where the player's piece will be moved.
      */
     public void setPlayerMove(Tile currentTile, Tile newTile) {
+
         occupyTile(currentTile, newTile); // moves the piece to the new tile
         switchPoint(newTile); // checks if the point piece made it to the first or last row
         currentPlayer = playerManager.getNextPlayer();
+        if (playerManager.isSwapTurn())
+            swapPieces();
+
         Board.flipBoard();
     }
 
@@ -105,14 +112,23 @@ public class Game {
             Point point = (Point) piece;
             point.switchMovement();
         }
-    } 
-
-    public void swapPieces(Piece piece1, Piece piece2){
-     
-
     }
-    
-    
+
+    public void swapPieces() {
+        for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
+            Piece piece = entry.getKey();
+            Tile tile = entry.getValue();
+            if (piece instanceof Time) {
+                tile.setPiece(new Plus(piece.isYellow()));
+            }
+
+            if (piece instanceof Plus) {
+                tile.setPiece(new Time(piece.isYellow()));
+            }
+
+        }
+        
+    }
 
     /**
      * Removes the captured piece from the board.
@@ -130,6 +146,7 @@ public class Game {
             isSunCaptured(capturedPiece);
         }
     }
+
     public boolean isSunCaptured(Piece piece) {
         if (piece instanceof Sun) {
             playerManager.setLoser(piece.isYellow());
@@ -138,6 +155,7 @@ public class Game {
         }
         return false;
     }
+
     // resigns the current player
     public void resign() {
         playerManager.setLoser(currentPlayer.isYellow());
