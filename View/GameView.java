@@ -2,9 +2,10 @@ package View;
 
 import View.Components.*;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.io.File;
 
 
 public class GameView extends JFrame {
@@ -19,6 +20,7 @@ public class GameView extends JFrame {
     private int response;
 
     public GameView() {
+        playBackgroundMusic();
         frame = new JFrame("Talabia Chess Game");
         frame.setMinimumSize(new Dimension(700, 400));
 
@@ -78,5 +80,23 @@ public class GameView extends JFrame {
 
     public PlayerGUI getBluePlayer(){
         return player2;
+    }
+
+    private static void playBackgroundMusic(){
+        try{
+            File file = new File("./View/sounds/BackgroundMusic.wav");
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+
+            clip.open(audioInputStream);
+
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-10.0f);
+
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
