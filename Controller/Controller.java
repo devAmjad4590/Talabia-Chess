@@ -144,7 +144,7 @@ public class Controller {
             model.nextGame();
             showBoard();
         } else {
-            quit();
+            System.exit(0);
         }
     }
 
@@ -218,7 +218,7 @@ public class Controller {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                quit();
+                System.exit(0);
             }
         };
     }
@@ -239,11 +239,6 @@ public class Controller {
         showBoard();
     }
 
-    private void quit() {
-        System.exit(0);
-    }
-
-    
     private void initButtonsListeners() {
         view.getNorthPanel().getNewGameButton().addActionListener(newGameListener());
         view.getNorthPanel().getQuitButton().addActionListener(quitActionListener());

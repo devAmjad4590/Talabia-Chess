@@ -17,7 +17,6 @@ public class Game {
     private PlayerManager playerManager; // The player manager
     private Player currentPlayer; // The current player
     private boolean gameOver = false; // True if the game is over, false otherwise
-    private SaveManager saveManager;
 
     /**
      * Initializes the game by creating a player manager instance and a game board.
@@ -98,15 +97,13 @@ public class Game {
     public void setPlayerMove(Tile currentTile, Tile newTile) {
 
         occupyTile(currentTile, newTile); // moves the piece to the new tile
-        switchPoint(newTile); // checks if the point piece made it to the first or last row
         currentPlayer = playerManager.getNextPlayer();
-        if (playerManager.isSwapTurn())
+        switchPoint(newTile); // checks if the point piece made it to the first or last row
+        if (playerManager.isSwapTurn()) // checks if it is a swap piece round
             swapPieces();
 
         Board.flipBoard();
     }
-
-
 
     public void switchPoint(Tile current) {
         Piece piece = current.getPiece();
@@ -151,7 +148,7 @@ public class Game {
         }
     }
 
-    public boolean isSunCaptured(Piece piece) {
+    private boolean isSunCaptured(Piece piece) {
         if (piece instanceof Sun) {
             playerManager.setLoser(piece.isYellow());
             gameOver = true;

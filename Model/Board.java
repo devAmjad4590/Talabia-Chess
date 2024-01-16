@@ -7,7 +7,6 @@ import Model.Pieces.Point;
 import Model.Pieces.Sun;
 import Model.Pieces.Time;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This was class was implemented by Maher M.N. Balchi.
@@ -54,7 +53,6 @@ public class Board {
     // reset the board to its initial state
     public static void resetBoard() {
         initBoard();
-        initMap();
     }
 
     /**
@@ -122,33 +120,6 @@ public class Board {
 
     public static HashMap<Piece, Tile> getMap() {
         return pieceMap;
-    }
-
-    public static void removePiece(Piece piece) {
-        pieceMap.remove(piece);
-    }
-
-    public void switchPoint(Tile current) {
-        Piece piece = current.getPiece();
-        if (current.getX() == 5 || current.getX() == 0 && piece instanceof Point) {
-            Point point = (Point) piece;
-            point.switchMovement();
-        }
-    }
-
-    public void swapPieces() {
-        for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
-            Tile tile = entry.getValue();
-            Piece piece = tile.getPiece();
-            if (piece instanceof Time) {
-                tile.setPiece(new Plus(piece.isYellow()));
-            }
-
-            if (piece instanceof Plus) {
-                tile.setPiece(new Time(piece.isYellow()));
-            }
-        }
-
     }
 
     // method by Amgad Elrashid Gurashi Eltayeb
