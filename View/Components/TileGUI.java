@@ -57,7 +57,6 @@ public class TileGUI extends JButton {
         return y;
     }
 
-    // does not work
     public void setImage(String piece) {
         if (piece != null) {
             ImageIcon imageIcon = new ImageIcon(imagePath + piece + ".png");

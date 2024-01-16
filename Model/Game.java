@@ -99,6 +99,8 @@ public class Game {
         Board.flipBoard();
     }
 
+
+
     public void switchPoint(Tile current) {
         Piece piece = current.getPiece();
         if (current.getX() == 5 || current.getX() == 0 && piece instanceof Point) {
@@ -115,9 +117,11 @@ public class Game {
     
 
     /**
-     * Removes the captured piece from the board.
+     * Moves a piece from the current tile to the new tile.
+     * If the new tile is occupied by an opponent's piece, the opponent's piece is captured.
      *
-     * @param newTile The tile where the captured piece is located.
+     * @param currentTile The current tile of the piece.
+     * @param newTile     The new tile where the piece will be moved.
      */
     private void occupyTile(Tile currentTile, Tile newTile) {
         Piece piece = currentTile.getPiece();
@@ -130,6 +134,14 @@ public class Game {
             isSunCaptured(capturedPiece);
         }
     }
+
+    /**
+     * Checks if the sun piece is captured.
+     * If the sun piece is captured, sets the player's sun piece as the loser and ends the round.
+     *
+     * @param piece The piece to be checked.
+     * @return True if the piece is the sun piece, false otherwise.
+     */
     public boolean isSunCaptured(Piece piece) {
         if (piece instanceof Sun) {
             playerManager.setLoser(piece.isYellow());
@@ -138,7 +150,11 @@ public class Game {
         }
         return false;
     }
-    // resigns the current player
+    
+    /**
+     * Resigns the current player.
+     * Sets the current player as the loser and ends the game.
+     */
     public void resign() {
         playerManager.setLoser(currentPlayer.isYellow());
         gameOver = true;
@@ -171,7 +187,7 @@ public class Game {
         gameOver = false;
         Board.resetBoard();
         playerManager.resetTurn();
-        currentPlayer = playerManager.getCurrentPlayer();
+        setCurrentPlayer();
 
     }
 

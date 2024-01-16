@@ -7,6 +7,7 @@ import Model.Movements.HourglassMovement;
  * The Hourglass class represents an hourglass-shaped piece.
  * It extends the Piece class and implements specific rules for movement.
  * Hourglass pieces have a color (yellow or not yellow).
+ * This class is part of the template method design pattern.
  * Class implemented by Amgad Elrashid Gurashi Eltayeb
  */
 

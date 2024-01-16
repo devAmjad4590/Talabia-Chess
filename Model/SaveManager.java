@@ -25,7 +25,7 @@ public class SaveManager {
     // save & load game function
     public void saveGame() {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./Model/game.txt"));
             for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
                 Piece piece = entry.getKey();
                 Tile tile = entry.getValue();
@@ -57,7 +57,7 @@ public class SaveManager {
     public void loadGame() {
         Board.clearBoard();
         try {
-            File file = new File("output.txt");
+            File file = new File("./Model/game.txt");
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {

@@ -7,6 +7,7 @@ import Model.Movements.PieceMovement;
  * The {@code Piece} class is an abstract base class representing a chess piece in a chess game.
  * It includes information about whether the piece has been captured and its color.
  * Subclasses must implement the {@code canMove} method to determine the piece's valid moves.
+ * This class is part of the template method design pattern.
  * Class implemented by Asim Adel Ahmed Maroof
  */
 public abstract class Piece {

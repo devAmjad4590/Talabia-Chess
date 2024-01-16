@@ -11,8 +11,8 @@ public class PlayerManager {
     private Player yellow; // The yellow player
     private Player blue; // The blue player
     private int turn = 0; // The current turn number
-    private Player winner;
-    private Player loser;
+    private Player winner; // The winner
+    private Player loser; // The loser
 
     /**
      * Initializes the `PlayerManager` by creating instances of the yellow and blue
@@ -105,14 +105,8 @@ public class PlayerManager {
         loser.incrementLose();
     }
 
+
     public Player getWinner() {
         return winner;
-    }
-
-
-
-    
-
-
-          
+    }          
 }

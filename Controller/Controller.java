@@ -118,6 +118,7 @@ public class Controller {
         }
     }
 
+    
     private void flipPieces() {
         for(Map.Entry<Piece, Tile> entry: Board.getMap().entrySet()){    
             Piece piece = entry.getKey();
@@ -242,6 +243,7 @@ public class Controller {
         System.exit(0);
     }
 
+    
     private void initButtonsListeners() {
         view.getNorthPanel().getNewGameButton().addActionListener(newGameListener());
         view.getNorthPanel().getQuitButton().addActionListener(quitActionListener());

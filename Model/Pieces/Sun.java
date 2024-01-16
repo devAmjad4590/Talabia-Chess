@@ -7,6 +7,7 @@ import Model.Movements.SunMovement;
  * The Sun class represents a sun-shaped chess piece.
  * It extends the Piece class and implements specific rules for movement.
  * Sun pieces have a color (yellow or not yellow).
+ * This class is part of the template method design pattern.
  * Class implemented by Amgad ELrashid Gurashi Eltayeb
  */
 public class Sun extends Piece{
