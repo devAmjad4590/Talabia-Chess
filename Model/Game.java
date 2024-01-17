@@ -107,7 +107,7 @@ public class Game {
 
     public void switchPoint(Tile current) {
         Piece piece = current.getPiece();
-        if (current.getX() == 5 || current.getX() == 0 && piece instanceof Point) {
+        if ((current.getX() == 5 || current.getX() == 0) && piece instanceof Point) {
             Point point = (Point) piece;
             point.switchMovement();
         }
