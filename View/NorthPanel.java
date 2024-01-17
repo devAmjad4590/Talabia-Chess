@@ -7,15 +7,19 @@ import java.awt.event.*;
 import View.Components.*;
 
 /**
- * The {@code NorthPanel} class represents a Swing JPanel that serves as the top panel
- * in a graphical user interface, typically used for displaying player information.
+ * The {@code NorthPanel} class represents a Swing JPanel that serves as the top
+ * panel
+ * in a graphical user interface, typically used for displaying player
+ * information.
  * It contains a PlayerGUI instance representing player 2.
  * Class implemented by Asim Adel Ahmed Maroof
  */
 
-public class NorthPanel extends JPanel{
-   private PlayerGUI player;
-   private JButton newGameButton, saveButton, quitButton;
+public class NorthPanel extends JPanel {
+    private PlayerGUI player;
+    private JButton newGameButton, saveButton, quitButton;
+    private int response;
+    private JFrame frame;
 
     /**
      * Constructs a new NorthPanel instance.
@@ -24,6 +28,7 @@ public class NorthPanel extends JPanel{
      * @param player2 The PlayerGUI instance representing player 2.
      */
     public NorthPanel(PlayerGUI player) {
+        frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         setLayout(new BorderLayout());
         this.player = player;
         add(this.player);
@@ -48,12 +53,41 @@ public class NorthPanel extends JPanel{
         add(toolBarPanel, BorderLayout.PAGE_START);
     }
 
+    public void showGameOver(String winner) {
+        JOptionPane.showMessageDialog(frame, winner, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+        response = JOptionPane.showConfirmDialog(frame, "Do you want to play again?", "Play Again",
+                JOptionPane.YES_NO_OPTION);
+    }
+
+    public void showSave() {
+        response = JOptionPane.showConfirmDialog(frame, "Do you want to save this game?", "Save",
+                JOptionPane.YES_NO_OPTION);
+    }
+
+    public void showSuccessSave() {
+        JOptionPane.showMessageDialog(frame, "Game saved successfully!", "Save", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public int getResponse() {
+        return response;
+    }
+
+    public void showNewGame() {
+        response = JOptionPane.showConfirmDialog(frame, "Do you want to start a new game?", "New Game",
+                JOptionPane.YES_NO_OPTION);
+    }
+
+    public void showQuit() {
+        response = JOptionPane.showConfirmDialog(frame, "Do you want to quit the game?", "Quit",
+                JOptionPane.YES_NO_OPTION);
+    }
+
     /**
      * Gets the button for initiating a new game.
      *
      * @return The button for initiating a new game.
      */
-    public JButton getNewGameButton(){
+    public JButton getNewGameButton() {
         return newGameButton;
     }
 
@@ -75,9 +109,34 @@ public class NorthPanel extends JPanel{
         return quitButton;
     }
 
+    /**
+     * Sets the action listener for the new game button.
+     *
+     * @param listener The action listener for the new game button.
+     */
+    public void setNewGameActionListener(ActionListener listener) {
+        newGameButton.addActionListener(listener);
+    }
 
-    
-    public void setPlayerGUI(PlayerGUI player){
+    /**
+     * Sets the action listener for the save button.
+     *
+     * @param listener The action listener for the save button.
+     */
+    public void setSaveActionListener(ActionListener listener) {
+        saveButton.addActionListener(listener);
+    }
+
+    /**
+     * Sets the action listener for the quit button.
+     *
+     * @param listener The action listener for the quit button.
+     */
+    public void setQuitActionListener(ActionListener listener) {
+        quitButton.addActionListener(listener);
+    }
+
+    public void setPlayerGUI(PlayerGUI player) {
         remove(this.player);
         this.player = player;
         add(this.player);

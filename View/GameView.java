@@ -46,18 +46,6 @@ public class GameView extends JFrame {
         frame.setVisible(true);
     }
 
-    public void showGameOver(String winner){
-    JOptionPane.showMessageDialog(frame, winner, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
-    response = JOptionPane.showConfirmDialog(frame, "Do you want to play again?", "Play Again", JOptionPane.YES_NO_OPTION);
-    }
-
-    public void showSave(){
-        JOptionPane.showMessageDialog(frame, "Game Saved!", "Save", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public int getResponse(){
-        return response;
-    }
     
     public CenterPanel getCenterPanel() {
         return centerPanel;
@@ -92,7 +80,7 @@ public class GameView extends JFrame {
             clip.open(audioInputStream);
 
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-10.0f);
+            gainControl.setValue(-20.0f);
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
@@ -124,4 +112,21 @@ public class GameView extends JFrame {
             clip.close();
         }
     }
-    }
+
+    public void playMoveSound(){
+        try{
+            File file = new File("./View/sounds/Move.wav");
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+            clip = AudioSystem.getClip();
+
+            clip.open(audioInputStream);
+
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-0.0f);
+
+            clip.start();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    
+    }}

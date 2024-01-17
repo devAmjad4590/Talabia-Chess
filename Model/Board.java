@@ -64,8 +64,9 @@ public class Board {
      * implemented by amgad elrashid gurashi eltayeb
      */
     public static void flipBoard() {
+
         try {
-            Thread.sleep(500);
+            Thread.sleep(450);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -4,10 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class EastPanel extends JPanel{
+public class EastPanel extends JPanel {
     private JButton resignButton;
+    private JFrame frame;
+    private int response;
 
     public EastPanel() {
+        frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         setLayout(new GridBagLayout());
 
         resignButton = new JButton("Resign");
@@ -20,7 +23,7 @@ public class EastPanel extends JPanel{
         gbc.weighty = 1.0; // Allows vertical centering
 
         // add margin to the button
-        gbc.insets = new Insets(0, 50, 0, 0);
+        gbc.insets = new Insets(0, 50, 0, 10);
 
         // Add the button to the EAST position
         add(resignButton, gbc);
@@ -33,6 +36,19 @@ public class EastPanel extends JPanel{
      */
     public JButton getResignButton() {
         return resignButton;
-    } 
+    }
+
+    public void setResignActionListener(ActionListener listener) {
+        resignButton.addActionListener(listener);
+    }
+
+    public void showResign() {
+        response = JOptionPane.showConfirmDialog(frame, "Are you sure you want to resign?", "Resign",
+                JOptionPane.YES_NO_OPTION);
+    }
+
+    public int getResponse() {
+        return response;
+    }
 
 }

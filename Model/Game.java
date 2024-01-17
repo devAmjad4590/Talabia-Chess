@@ -101,7 +101,6 @@ public class Game {
         switchPoint(newTile); // checks if the point piece made it to the first or last row
         if (playerManager.isSwapTurn()) // checks if it is a swap piece round
             swapPieces();
-
         Board.flipBoard();
     }
 

@@ -4,6 +4,7 @@ import View.Components.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * The {@code CenterPanel} class represents a Swing JPanel that serves as the central component
@@ -98,6 +99,22 @@ public class CenterPanel extends JPanel {
      */
     public TileGUI getTileGUI(int x, int y){
         return tileGUIs[x][y];
+    }
+
+    public void setTilesActionListener(ActionListener actionListener){
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                tileGUIs[i][j].addActionListener(actionListener);
+            }
+        }
+    }
+
+    public void clearImages(){
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                tileGUIs[i][j].setImage("");
+            }
+        }
     }
     
 

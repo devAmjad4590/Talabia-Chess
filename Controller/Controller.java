@@ -42,11 +42,7 @@ public class Controller {
      * Initializes action listeners for all tiles on the game board.
      */
     private void initTileListeners() {
-        for (int i = 0; i < model.getBoard().getLength(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
-                view.getCenterPanel().getTileGUI(i, j).addActionListener(tileListener());
-            }
-        }
+        view.getCenterPanel().setTilesActionListener(tileListener());
     }
 
     /**
@@ -102,6 +98,7 @@ public class Controller {
     private void handleMove() {
         if (model.isMoveValid(selectedTile, destinationTile)) {
             model.setPlayerMove(selectedTile, destinationTile);
+            view.playMoveSound();
             selectedTile = null;
             destinationTile = null;
             removeMoves();
@@ -138,8 +135,8 @@ public class Controller {
 
     private void handleGameOver() {
         view.playWinMusic();
-        view.showGameOver(model.getPlayerManager().getWinner().toString() + " wins!");
-        int response = view.getResponse();
+        view.getNorthPanel().showGameOver(model.getPlayerManager().getWinner().toString() + " wins!");
+        int response =  view.getNorthPanel().getResponse();
         if (response == 0) {
             view.closeWinMusic();
             clearImages();
@@ -169,11 +166,7 @@ public class Controller {
     }
 
     private void clearImages(){
-        for(int i = 0; i < model.getBoard().getLength(); i++){
-            for(int j = 0; j < model.getBoard().getWidth(); j++){
-                view.getCenterPanel().getTileGUI(i, j).setImage("");
-            }
-        }
+        view.getCenterPanel().clearImages();
     }
 
 
@@ -200,8 +193,12 @@ public class Controller {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.resetAll();
-                showBoard();
+                view.getNorthPanel().showNewGame();
+                int response =  view.getNorthPanel().getResponse();
+                if(response == 0){
+                    model.resetAll();
+                    showBoard();
+                }
             }
         };
     }
@@ -210,8 +207,12 @@ public class Controller {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.resign();
-                handleGameOver();
+                view.getEastPanel().showResign();
+                int response =  view.getEastPanel().getResponse();
+                if(response == 0){
+                    model.resign();
+                    handleGameOver();
+                }
             }
         };
     }
@@ -220,7 +221,11 @@ public class Controller {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                view.getNorthPanel().showQuit();
+                int response =  view.getNorthPanel().getResponse();
+                if(response == 0){
+                    System.exit(0);
+                }
             }
         };
     }
@@ -229,8 +234,12 @@ public class Controller {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.showSave();
-                saveManager.saveGame();
+                view.getNorthPanel().showSave();
+                int response =  view.getNorthPanel().getResponse();
+                if(response == 0){
+                    saveManager.saveGame();
+                    view.getNorthPanel().showSuccessSave();
+                }               
             }
         };
     }
@@ -242,10 +251,10 @@ public class Controller {
     }
 
     private void initButtonsListeners() {
-        view.getNorthPanel().getNewGameButton().addActionListener(newGameListener());
-        view.getNorthPanel().getQuitButton().addActionListener(quitActionListener());
-        view.getEastPanel().getResignButton().addActionListener(resignActionListener());
-        view.getNorthPanel().getSaveButton().addActionListener(saveActionListener());
+        view.getNorthPanel().setNewGameActionListener(newGameListener());
+        view.getNorthPanel().setQuitActionListener(quitActionListener());
+        view.getEastPanel().setResignActionListener(resignActionListener());
+        view.getNorthPanel().setSaveActionListener(saveActionListener());
     }
 
 }
