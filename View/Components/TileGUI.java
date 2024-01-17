@@ -60,7 +60,7 @@ public class TileGUI extends JButton {
     public void setImage(String piece) {
         if (piece != null) {
             ImageIcon imageIcon = new ImageIcon(imagePath + piece + ".png");
-            Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+            Image image = imageIcon.getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT);
 
             imageIcon = new ImageIcon(image);
             imageLabel.setIcon(imageIcon);
@@ -76,28 +76,22 @@ public class TileGUI extends JButton {
             ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
             Image originalImage = imageIcon.getImage();
 
-            if (originalImage.getWidth(null) > 0 && originalImage.getHeight(null) > 0) {
-                // Create a BufferedImage with the same dimensions as the original image
-                BufferedImage bufferedImage = new BufferedImage(originalImage.getWidth(null),
-                originalImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-                Graphics2D g2d = bufferedImage.createGraphics();
+            BufferedImage bufferedImage = new BufferedImage(originalImage.getWidth(null),
+            originalImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = bufferedImage.createGraphics();
 
-                // Rotate the image by 180 degrees
-                g2d.rotate(Math.PI, originalImage.getWidth(null) / 2, originalImage.getHeight(null) / 2);
-                g2d.drawImage(originalImage, 0, 0, null);
-                g2d.dispose();
+            g2d.rotate(Math.PI, originalImage.getWidth(null) / 2, originalImage.getHeight(null) / 2);
+            g2d.drawImage(originalImage, 0, 0, null);
+            g2d.dispose();
 
-                // Update the imageIcon with the rotated image
-                ImageIcon rotatedImageIcon = new ImageIcon(bufferedImage);
-                imageLabel.setIcon(rotatedImageIcon);
+            // Update the imageIcon with the rotated image
+            ImageIcon rotatedImageIcon = new ImageIcon(bufferedImage);
+            imageLabel.setIcon(rotatedImageIcon);
 
-                // Centering the image
-                imageLabel.setHorizontalAlignment(JLabel.CENTER);
-                imageLabel.setVerticalAlignment(JLabel.CENTER);
+            // Centering the image
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            imageLabel.setVerticalAlignment(JLabel.CENTER);
 
-            } else {
-                System.out.println("Image not found");
-            }
         }
     }
 
@@ -115,7 +109,6 @@ public class TileGUI extends JButton {
         repaint();
     }
 
-
     /**
      * Overrides the paintComponent method to customize the appearance of the tile.
      * Alternates the background color of the tile between black and white based on
@@ -127,7 +120,7 @@ public class TileGUI extends JButton {
     public void paintComponent(Graphics g) {
         if (isAvailable) {
             setBackground(Color.GREEN);
-            if(isEnemy) {
+            if (isEnemy) {
                 setBackground(Color.RED);
             }
         } else {

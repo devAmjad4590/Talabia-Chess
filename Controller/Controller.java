@@ -137,9 +137,11 @@ public class Controller {
     }
 
     private void handleGameOver() {
+        view.playWinMusic();
         view.showGameOver(model.getPlayerManager().getWinner().toString() + " wins!");
         int response = view.getResponse();
         if (response == 0) {
+            view.closeWinMusic();
             clearImages();
             model.nextGame();
             showBoard();

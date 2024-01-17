@@ -16,6 +16,7 @@ public class GameView extends JFrame {
     private SouthPanel southPanel;
     private EastPanel eastPanel;
     private PlayerGUI player1, player2;
+    private static Clip clip;
     
     private int response;
 
@@ -86,7 +87,7 @@ public class GameView extends JFrame {
         try{
             File file = new File("./View/sounds/BackgroundMusic.wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
 
             clip.open(audioInputStream);
 
@@ -99,4 +100,28 @@ public class GameView extends JFrame {
             e.printStackTrace();
         }
     }
-}
+
+    public void playWinMusic(){
+        try{
+            File file = new File("./View/sounds/WinMusic.wav"); // ill change it later
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+            clip = AudioSystem.getClip();
+
+            clip.open(audioInputStream);
+
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-10.0f);
+
+            clip.start();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void closeWinMusic(){
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
+        }
+    }
+    }
