@@ -117,6 +117,7 @@ public class Controller {
 
     
     private void flipPieces() {
+        clearImages();
         for(Map.Entry<Piece, Tile> entry: Board.getMap().entrySet()){    
             Piece piece = entry.getKey();
             Tile tile = entry.getValue();

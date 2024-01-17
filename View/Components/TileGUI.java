@@ -60,7 +60,7 @@ public class TileGUI extends JButton {
     public void setImage(String piece) {
         if (piece != null) {
             ImageIcon imageIcon = new ImageIcon(imagePath + piece + ".png");
-            Image image = imageIcon.getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT);
+            Image image = imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
 
             imageIcon = new ImageIcon(image);
             imageLabel.setIcon(imageIcon);
