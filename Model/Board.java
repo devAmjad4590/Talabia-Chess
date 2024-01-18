@@ -184,7 +184,7 @@ public class Board {
      * @param j The column index of the tile.
      * @return The Tile at the specified coordinates.
      */
-    public Tile getTile(int i, int j) {
+    public static Tile getTile(int i, int j) {
         return tiles[i][j];
     }
 

@@ -1,5 +1,4 @@
 package Model.Pieces;
-
 import Model.Board;
 import Model.Tile;
 import Model.Movements.PlusMovement;
@@ -40,7 +39,7 @@ public class Plus extends Piece {
             return false;
         }
 
-        if(canPass(currentTile, newTile, xTiles, yTiles))
+        if(canPass(currentTile, xTiles, yTiles))
         {
             return true;
         }
@@ -51,18 +50,17 @@ public class Plus extends Piece {
     }
 
     @Override
-    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
-        Board board = Board.getInstance();
-        if (xTiles > 0 && yTiles == 0) {
-            for (int i = 1; i < Math.abs(xTiles); i++) {
-                if (!(board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY()).getPiece() == null)) {
+    public boolean canPass(Tile currentTile, int xTiles, int yTiles) { //Last right and down tile wont work
+        if (isMoveHorizontal(xTiles, yTiles)) {
+            for (int i = 1; i < Math.abs(yTiles); i++) {
+                if (checkHorizontalPath(currentTile, i)) {
                     return false;
                 }
             }
             return true;
-        } else if (xTiles == 0 && yTiles > 0) {
-            for (int i = 1; i < Math.abs(yTiles); i++) {
-                if (!(board.getTile(currentTile.getX(), Math.abs(currentTile.getY() - i)).getPiece() == null)) {
+        } else if (isMoveVertical(xTiles, yTiles)) {
+            for (int i = 1; i < Math.abs(xTiles); i++) {
+                if (checkVerticalPath(currentTile, i)) {
                     return false;
                 }
             }
@@ -70,4 +68,22 @@ public class Plus extends Piece {
         }
         return false;
     }
+
+    public boolean isMoveHorizontal(int xTiles, int yTiles) {
+        return xTiles == 0 && yTiles != 0;
+    }
+
+    public boolean isMoveVertical(int xTiles, int yTiles){
+        return xTiles != 0 && yTiles == 0;
+    }
+
+    public boolean checkHorizontalPath(Tile currentTile, int i){
+        return (Board.getTile(currentTile.getX(), Math.abs(currentTile.getY() - i)).getPiece() != null);
+    }
+
+    public boolean checkVerticalPath(Tile currentTile, int i){
+        return (Board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY()).getPiece() != null);
+    }
+
+
 }

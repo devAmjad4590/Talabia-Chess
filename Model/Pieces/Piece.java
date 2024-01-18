@@ -1,5 +1,9 @@
 package Model.Pieces;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import Model.Board;
 import Model.Tile;
 import Model.Movements.PieceMovement;
 
@@ -63,7 +67,21 @@ public abstract class Piece {
         return yellow ? "yellow" : "blue";
     }
 
-    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
-        return true;
+    public boolean canPass(Tile currentTile, int xTiles, int yTiles) {
+    
+            return true;
+        
+        
+    }
+
+    public ArrayList<Tile> getAvailableMoves(int xTiles, int yTiles) {
+        ArrayList<Tile> availableMoves = new ArrayList<Tile>();
+        for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
+            Tile tile = entry.getValue();
+            if (this.getPieceMovement().isValid(xTiles, yTiles)) {
+                availableMoves.add(tile);
+            }
+        }
+        return availableMoves;
     }
 }

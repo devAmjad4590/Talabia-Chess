@@ -61,7 +61,7 @@ public class Game {
      * @return The tile at the specified coordinates.
      */
     public Tile getTile(int x, int y) {
-        return board.getTile(x, y);
+        return Board.getTile(x, y);
     }
 
     /**
@@ -99,8 +99,8 @@ public class Game {
         occupyTile(currentTile, newTile); // moves the piece to the new tile
         currentPlayer = playerManager.getNextPlayer();
         switchPoint(newTile); // checks if the point piece made it to the first or last row
-        if (playerManager.isSwapTurn()) // checks if it is a swap piece round
-            swapPieces();
+        if (playerManager.isSwapTurn()) swapPieces();// checks if it is a swap piece round
+             
         Board.flipBoard();
     }
 

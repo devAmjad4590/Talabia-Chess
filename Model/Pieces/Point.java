@@ -1,5 +1,5 @@
 package Model.Pieces;
-
+import Model.Board;
 import Model.Tile;
 import Model.Movements.BackwardMovement;
 import Model.Movements.ForwardMovement;
@@ -31,31 +31,46 @@ public class Point extends Piece {
      * @return true if the move is valid, false otherwise.
      */
     @Override
-    public boolean canMove(Tile currentTile, Tile newTile) { 
+    public boolean canMove(Tile currentTile, Tile newTile) {
         int xTiles = currentTile.getX() - newTile.getX(); // 2
-        int yTiles = currentTile.getY() - newTile.getY(); // 
+        int yTiles = currentTile.getY() - newTile.getY(); //
+        if (!getPieceMovement().isValid(xTiles, yTiles)) {
+            return false;
+        }
 
-        if(getPieceMovement().isValid(xTiles, yTiles)){
-            return true; 
+        if (canPass(currentTile, xTiles, yTiles)) {
+            return true;
         }
         return false;
-        
+
     }
 
-    public void setMovementForward(){
+    public void setMovementForward() {
         setPieceMovement(new ForwardMovement());
     }
 
-    public void setMovementBackward(){
+    public void setMovementBackward() {
         setPieceMovement(new BackwardMovement());
     }
-    
-    public void switchMovement(){
+
+    public void switchMovement() {
         if (getPieceMovement() instanceof ForwardMovement) {
             setMovementBackward();
-        } else setMovementForward();
-    
+        } else
+            setMovementForward();
+
     }
 
-   
-}
+    @Override
+    public boolean canPass(Tile currentTile, int xTiles, int yTiles) {
+            for (int i = 1; i < Math.abs(xTiles); i++) {
+                if (Board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY()).getPiece() != null) {
+                    return false;
+                }
+            }
+            return true;
+} 
+    
+    
+        // other methods
+    }
