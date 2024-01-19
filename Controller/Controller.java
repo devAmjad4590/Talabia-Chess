@@ -103,7 +103,6 @@ public class Controller {
             destinationTile = null;
             removeMoves();
             showBoard();
-            flipPlayers();
             if (model.isGameOver()) {
                 handleGameOver();
             }
