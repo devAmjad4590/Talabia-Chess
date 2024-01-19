@@ -83,6 +83,7 @@ public class SaveManager {
                 } else if (line.startsWith("Number of turns taken")) {
                     int turn = Integer.parseInt(parts[0].split(" =")[1]);
                     game.getPlayerManager().setTurn(turn);
+                    game.setCurrentPlayer();
                 }
 
                 else if (line.startsWith("Player 1 Score")) {

@@ -100,7 +100,6 @@ public class Game {
         currentPlayer = playerManager.getNextPlayer();
         switchPoint(newTile); // checks if the point piece made it to the first or last row
         if (playerManager.isSwapTurn()) swapPieces();// checks if it is a swap piece round
-             
         Board.flipBoard();
     }
 
@@ -160,7 +159,6 @@ public class Game {
     public void resign() {
         playerManager.setLoser(currentPlayer.isYellow());
         gameOver = true;
-        nextGame();
     }
 
     /**
@@ -176,10 +174,10 @@ public class Game {
      * Resets the game and the scores completely.
      */
     public void resetAll() {
+        gameOver = false;
         Board.resetBoard();
         playerManager.reset();
-        gameOver = false;
-        init();
+        setCurrentPlayer();
     }
 
     /**

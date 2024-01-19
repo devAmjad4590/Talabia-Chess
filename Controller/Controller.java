@@ -253,7 +253,6 @@ public class Controller {
 
     private void loadGame(){
         saveManager.loadGame();
-        model.setCurrentPlayer();
         showBoard();
     }
 

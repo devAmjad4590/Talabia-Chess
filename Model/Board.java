@@ -1,11 +1,6 @@
 package Model;
 
-import Model.Pieces.Hourglass;
-import Model.Pieces.Piece;
-import Model.Pieces.Plus;
-import Model.Pieces.Point;
-import Model.Pieces.Sun;
-import Model.Pieces.Time;
+import Model.Pieces.*;
 import java.util.HashMap;
 
 /**

@@ -32,7 +32,7 @@ public class PlayerManager {
         return blue;
     }
 
-    public Player getPlayer(boolean isYellow) {
+    private Player getPlayer(boolean isYellow) {
         if (isYellow) {
             return yellow;
 
