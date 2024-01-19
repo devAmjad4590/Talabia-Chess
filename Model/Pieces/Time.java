@@ -1,4 +1,5 @@
 package Model.Pieces;
+
 import Model.Board;
 import Model.Tile;
 import Model.Movements.TimeMovement;
@@ -46,7 +47,9 @@ public class Time extends Piece {
     }
 
     @Override
-    public boolean canPass(Tile currentTile, int xTiles,  int yTiles) { // needs testing specifically rightDown and UpLeft movements
+    public boolean canPass(Tile currentTile, int xTiles, int yTiles) { // needs testing specifically
+                                                                                     // rightDown and
+        // UpLeft movements
 
         for (int i = 1; i < Math.abs(xTiles); i++) {
             if (isMoveUpRight(xTiles, yTiles)) {
@@ -57,11 +60,14 @@ public class Time extends Piece {
                 if (checkDownLeftPath(currentTile, i)) {
                     return false;
                 }
-            } else if (isMoveNegative(xTiles, yTiles)){
-                if (checkNegativePath(currentTile, i)) {
+            } else if (isMoveUpLeft(xTiles, yTiles)) {
+                if (checkUpLeftPath(currentTile, i)) {
                     return false;
                 }
-                    
+            } else if (isMoveDownRight(xTiles, yTiles)) {
+                if (checkDownRightPath(currentTile, i)) {
+                    return false;
+                }
             }
 
         }
@@ -72,26 +78,34 @@ public class Time extends Piece {
         return xTiles - yTiles > 0;
     }
 
-    private boolean isMoveDownLeft(int xTiles, int yTiles){
-        return xTiles - yTiles < 0; 
+    private boolean isMoveDownLeft(int xTiles, int yTiles) {
+        return xTiles - yTiles < 0;
     }
 
-    private boolean isMoveNegative(int xTiles, int yTiles){
-        return xTiles * yTiles > 0;
+    private boolean isMoveDownRight(int xTiles, int yTiles) {
+        return xTiles - yTiles == 0 && yTiles < 0;
     }
 
-    private boolean checkUpRightPath(Tile currentTile, int i){
+    private boolean isMoveUpLeft(int xTiles, int yTiles) {
+        return xTiles - yTiles == 0 && yTiles > 0;
+    }
+
+    private boolean checkUpRightPath(Tile currentTile, int i) {
         return (Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() + i)).getPiece() != null);
     }
 
-    private boolean checkDownLeftPath(Tile currentTile, int i){
+    private boolean checkDownLeftPath(Tile currentTile, int i) {
         return (Board.getTile(Math.abs(currentTile.getX() + i), currentTile.getY() + 1).getPiece() != null);
     }
 
-    private boolean checkNegativePath(Tile currentTile, int i){
-        return (Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() - i)).getPiece() != null);
+    private boolean checkUpLeftPath(Tile currentTile, int i) {
+        return Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() - i)).getPiece() != null;
+
+    }
+
+    private boolean checkDownRightPath(Tile currentTile, int i) {
+        return Board.getTile((currentTile.getX() + i), currentTile.getY() + i).getPiece() != null;
     }
 
     
-
 }
