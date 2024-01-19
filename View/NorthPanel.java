@@ -33,6 +33,9 @@ public class NorthPanel extends JPanel {
         this.player = player;
         add(this.player);
 
+
+        
+
         // Create a panel for the toolBar
         JPanel toolBarPanel = new JPanel(new BorderLayout());
         JToolBar toolBar = new JToolBar();
@@ -108,6 +111,8 @@ public class NorthPanel extends JPanel {
     public JButton getQuitButton() {
         return quitButton;
     }
+
+   
 
     /**
      * Sets the action listener for the new game button.

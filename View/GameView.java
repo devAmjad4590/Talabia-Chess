@@ -23,7 +23,7 @@ public class GameView extends JFrame {
     public GameView() {
         playBackgroundMusic();
         frame = new JFrame("Talabia Chess Game");
-        frame.setMinimumSize(new Dimension(700, 400));
+        frame.setMinimumSize(new Dimension(850, 400));
 
         player1 = new PlayerGUI("Player 1");
         player2 = new PlayerGUI("Player 2");

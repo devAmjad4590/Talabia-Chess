@@ -41,5 +41,4 @@ public class Sun extends Piece{
         return false;
     }
     
-    
 }

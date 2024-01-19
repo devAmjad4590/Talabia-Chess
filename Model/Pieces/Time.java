@@ -68,27 +68,27 @@ public class Time extends Piece {
         return true;
     }
 
-    public boolean isMoveUpRight(int xTiles, int yTiles) {
+    private boolean isMoveUpRight(int xTiles, int yTiles) {
         return xTiles - yTiles > 0;
     }
 
-    public boolean isMoveDownLeft(int xTiles, int yTiles){
+    private boolean isMoveDownLeft(int xTiles, int yTiles){
         return xTiles - yTiles < 0; 
     }
 
-    public boolean isMoveNegative(int xTiles, int yTiles){
+    private boolean isMoveNegative(int xTiles, int yTiles){
         return xTiles * yTiles > 0;
     }
 
-    public boolean checkUpRightPath(Tile currentTile, int i){
+    private boolean checkUpRightPath(Tile currentTile, int i){
         return (Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() + i)).getPiece() != null);
     }
 
-    public boolean checkDownLeftPath(Tile currentTile, int i){
+    private boolean checkDownLeftPath(Tile currentTile, int i){
         return (Board.getTile(Math.abs(currentTile.getX() + i), currentTile.getY() + 1).getPiece() != null);
     }
 
-    public boolean checkNegativePath(Tile currentTile, int i){
+    private boolean checkNegativePath(Tile currentTile, int i){
         return (Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() - i)).getPiece() != null);
     }
 

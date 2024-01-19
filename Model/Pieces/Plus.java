@@ -69,19 +69,19 @@ public class Plus extends Piece {
         return false;
     }
 
-    public boolean isMoveHorizontal(int xTiles, int yTiles) {
+    private boolean isMoveHorizontal(int xTiles, int yTiles) {
         return xTiles == 0 && yTiles != 0;
     }
 
-    public boolean isMoveVertical(int xTiles, int yTiles){
+    private boolean isMoveVertical(int xTiles, int yTiles){
         return xTiles != 0 && yTiles == 0;
     }
 
-    public boolean checkHorizontalPath(Tile currentTile, int i){
+    private boolean checkHorizontalPath(Tile currentTile, int i){
         return (Board.getTile(currentTile.getX(), Math.abs(currentTile.getY() - i)).getPiece() != null);
     }
 
-    public boolean checkVerticalPath(Tile currentTile, int i){
+    private boolean checkVerticalPath(Tile currentTile, int i){
         return (Board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY()).getPiece() != null);
     }
 

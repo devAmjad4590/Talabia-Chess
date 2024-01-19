@@ -33,9 +33,9 @@ public class Controller {
         this.view = view;
         this.model = model;
         this.saveManager = new SaveManager(model);
-        showBoard();
         initTileListeners();
         initButtonsListeners();
+        showBoard();
     }
 
     /**
@@ -163,11 +163,17 @@ public class Controller {
         }
 
         showPlayerScore();
+        showSwapRound();
         flipPlayers(); // checks the current player and then flips to that current player's pov
     }
 
     private void clearImages(){
         view.getCenterPanel().clearImages();
+    }
+
+    private void showSwapRound(){
+        String turnsLeft = Integer.toString(4 - (model.getPlayerManager().getTurn() % 4)) + " Moves";
+        view.getEastPanel().setSwapLabel(turnsLeft);
     }
 
 
