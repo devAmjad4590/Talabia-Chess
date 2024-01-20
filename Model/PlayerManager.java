@@ -10,17 +10,21 @@ package Model;
 public class PlayerManager {
     private Player yellow; // The yellow player
     private Player blue; // The blue player
-    private int turn = 0; // The current turn number
     private Player winner; // The winner
     private Player loser; // The loser
+    private Player currentPlayer;
+    private Game game;
+    private int turn = 0; // The current turn number
 
     /**
      * Initializes the `PlayerManager` by creating instances of the yellow and blue
      * players.
      */
-    public PlayerManager() {
+    public PlayerManager(Game game) {
         yellow = new Player(true);
         blue = new Player(false);
+        this.game = game;
+        
     }
 
     // Getter methods for accessing Player instances
@@ -110,5 +114,10 @@ public class PlayerManager {
 
     public Player getWinner() {
         return winner;
-    }          
+    }      
+    
+    public void resign(){
+        setLoser(getCurrentPlayer().isYellow());
+        game.setGameOver();
+    }
 }

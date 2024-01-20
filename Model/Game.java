@@ -2,21 +2,17 @@ package Model;
 
 import java.util.Map;
 
-import Model.Pieces.Piece;
-import Model.Pieces.Plus;
-import Model.Pieces.Point;
-import Model.Pieces.Sun;
-import Model.Pieces.Time;
+import Model.Pieces.*;
 
 /**
  * The `Game` class represents the main logic and state of a game.
  * It is implemented by Amgad Elrashid Gurashi Eltayeb.
  */
 public class Game {
-    private Board board; // The game board
     private PlayerManager playerManager; // The player manager
     private Player currentPlayer; // The current player
-    private boolean gameOver = false; // True if the game is over, false otherwise
+    private Move move; // The move instance
+    private boolean gameOver; // True if the game is over, false otherwise
 
     /**
      * Initializes the game by creating a player manager instance and a game board.
@@ -25,10 +21,12 @@ public class Game {
         init();
     }
 
-    private void init() {
-        board = Board.getInstance(); // object board created
-        playerManager = new PlayerManager(); // playerManager created
+    public void init() {
+        gameOver = false;
+        Board.resetBoard();
+        playerManager = new PlayerManager(this); // playerManager created
         currentPlayer = playerManager.getCurrentPlayer(); //
+        move = new Move(currentPlayer);
     }
 
     /**
@@ -42,6 +40,7 @@ public class Game {
 
     public void setCurrentPlayer() {
         currentPlayer = playerManager.getCurrentPlayer();
+        move = new Move(currentPlayer);
     }
 
     /**
@@ -50,7 +49,7 @@ public class Game {
      * @return The game board.
      */
     public Board getBoard() {
-        return board;
+        return Board.getInstance();
     }
 
     /**
@@ -65,26 +64,12 @@ public class Game {
     }
 
     /**
-     * Moves a player's piece from the current tile to the new tile.
+     * Gets the move instance.
      *
-     * @param currentTile The current tile of the player's piece.
-     * @param newTile     The new tile where the player's piece will be moved.
-     * @return True if the move is valid, false otherwise.
+     * @return The move instance.
      */
-    public boolean isMoveValid(Tile currentTile, Tile newTile) {
-        Piece playerPiece = currentTile.getPiece();
-
-        if (playerPiece == null || !playerPiece.canMove(currentTile, newTile)
-                || currentPlayer.isYellow() != playerPiece.isYellow()
-                || currentTile == newTile) {
-            return false;
-        }
-
-        if (newTile.getPiece() != null && newTile.getPiece().isYellow() == playerPiece.isYellow()) {
-            return false;
-        }
-
-        return true;
+    public Move getMove() {
+        return move;
     }
 
     /**
@@ -94,16 +79,24 @@ public class Game {
      * @param currentTile The current tile of the player's piece.
      * @param newTile     The new tile where the player's piece will be moved.
      */
-    public void setPlayerMove(Tile currentTile, Tile newTile) {
+    public void playerMove(Tile currentTile, Tile newTile) {
+        isGameOver(newTile.getPiece()); // check if the piece captured a sun
+        
+        move.setPlayerMove(currentTile, newTile); // sets the player's move
+        currentPlayer = playerManager.getNextPlayer(); // updates the current player
+        move = new Move(currentPlayer); // creates a new move instance for the next player
+        checkGameState(currentTile, newTile); // checks if the pieces can swap or point can change direction
+        Board.flipBoard(); // flips the board
 
-        occupyTile(currentTile, newTile); // moves the piece to the new tile
-        currentPlayer = playerManager.getNextPlayer();
-        switchPoint(newTile); // checks if the point piece made it to the first or last row
-        if (playerManager.isSwapTurn()) swapPieces();// checks if it is a swap piece round
-        Board.flipBoard();
     }
 
-    public void switchPoint(Tile current) {
+    private void checkGameState(Tile currentTile, Tile newTile) {
+        canSwitchPoint(newTile); // checks if the point can change direction
+        if (playerManager.isSwapTurn()) // checks if the pieces can swap
+            swapPieces();
+    }
+
+    private void canSwitchPoint(Tile current) {
         Piece piece = current.getPiece();
         if ((current.getX() == 5 || current.getX() == 0) && piece instanceof Point) {
             Point point = (Point) piece;
@@ -111,7 +104,7 @@ public class Game {
         }
     }
 
-    public void swapPieces() {
+    private void swapPieces() {
         for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
             Piece piece = entry.getKey();
             Tile tile = entry.getValue();
@@ -124,40 +117,26 @@ public class Game {
             }
 
         }
-        
+
     }
 
     /**
      * Moves a piece from the current tile to the new tile.
-     * If the new tile is occupied by an opponent's piece, the opponent's piece is captured.
+     * If the new tile is occupied by an opponent's piece, the opponent's piece is
+     * captured.
      *
      * @param currentTile The current tile of the piece.
      * @param newTile     The new tile where the piece will be moved.
      */
-    private void occupyTile(Tile currentTile, Tile newTile) {
-        Piece piece = currentTile.getPiece();
-        Piece capturedPiece = newTile.getPiece();
-        newTile.setPiece(piece);
-        currentTile.setPiece(null);
-        Board.getMap().put(piece, newTile);
-        if (capturedPiece != null) {
-            Board.getMap().remove(capturedPiece); // needs testing
-            isSunCaptured(capturedPiece);
-        }
-    }
-
-    private boolean isSunCaptured(Piece piece) {
-        if (piece instanceof Sun) {
+    private void isGameOver(Piece piece) {
+        if (move.isSunCaptured(piece)) {
             playerManager.setLoser(piece.isYellow());
             gameOver = true;
-            return true;
-        }
-        return false;
+        } else
+            return;
     }
 
-    // resigns the current player
-    public void resign() {
-        playerManager.setLoser(currentPlayer.isYellow());
+    public void setGameOver() {
         gameOver = true;
     }
 
@@ -166,18 +145,8 @@ public class Game {
      *
      * @return True if the game is over, false otherwise.
      */
-    public boolean isGameOver() {
+    public boolean getGameOver() {
         return gameOver;
-    }
-
-    /**
-     * Resets the game and the scores completely.
-     */
-    public void resetAll() {
-        gameOver = false;
-        Board.resetBoard();
-        playerManager.reset();
-        setCurrentPlayer();
     }
 
     /**

@@ -99,11 +99,12 @@ public class Board {
         }
     }
 
-    // add a piece to the board
+    // mainly for loading the board from a file
     public static void addPiece(Piece piece, int x, int y) {
         tiles[x][y].setPiece(piece);
         initMap();
     }
+
 
     public static void clearBoard() {
         for (int i = 0; i < length; i++) {
@@ -188,7 +189,7 @@ public class Board {
      *
      * @return The width of the board.
      */
-    public int getWidth() {
+    public static int getWidth() {
         return width;
     }
 
@@ -197,7 +198,7 @@ public class Board {
      *
      * @return The length of the board.
      */
-    public int getLength() {
+    public static int getLength() {
         return length;
     }
 

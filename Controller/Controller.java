@@ -67,9 +67,9 @@ public class Controller {
     }
 
     private void showMoves() {
-        for (int i = 0; i < model.getBoard().getLength(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
-                if (model.isMoveValid(selectedTile, model.getTile(i, j))) {
+        for (int i = 0; i < Board.getLength(); i++) {
+            for (int j = 0; j < Board.getWidth(); j++) {
+                if (model.getMove().isMoveValid(selectedTile, model.getTile(i, j))) {
                     view.getCenterPanel().getTileGUI(i, j).setAvailable(true);
                     // if the tile has an enemy piece
                     if(model.getTile(i, j).getPiece() != null && model.getTile(i, j).getPiece().isYellow() != selectedTile.getPiece().isYellow()){
@@ -83,8 +83,8 @@ public class Controller {
 
 
     private void removeMoves() {
-        for (int i = 0; i < model.getBoard().getLength(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
+        for (int i = 0; i < Board.getLength(); i++) {
+            for (int j = 0; j < Board.getWidth(); j++) {
                 view.getCenterPanel().getTileGUI(i, j).setAvailable(false);
                 view.getCenterPanel().getTileGUI(i, j).setEnemy(false);
             }
@@ -96,14 +96,14 @@ public class Controller {
      * view.
      */
     private void handleMove() {
-        if (model.isMoveValid(selectedTile, destinationTile)) {
-            model.setPlayerMove(selectedTile, destinationTile);
+        if (model.getMove().isMoveValid(selectedTile, destinationTile)) {
+            model.playerMove(selectedTile, destinationTile);
             view.playMoveSound();
             selectedTile = null;
             destinationTile = null;
             removeMoves();
             showBoard();
-            if (model.isGameOver()) {
+            if (model.getGameOver()) {
                 handleGameOver();
             }
 
@@ -202,7 +202,7 @@ public class Controller {
                 view.getNorthPanel().showNewGame();
                 int response =  view.getNorthPanel().getResponse();
                 if(response == 0){
-                    model.resetAll();
+                    model.init();
                     showBoard();
                 }
             }
@@ -216,7 +216,7 @@ public class Controller {
                 view.getEastPanel().showResign();
                 int response =  view.getEastPanel().getResponse();
                 if(response == 0){
-                    model.resign();
+                    model.getPlayerManager().resign();
                     handleGameOver();
                 }
             }
