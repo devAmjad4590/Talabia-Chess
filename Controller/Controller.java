@@ -18,10 +18,10 @@ import View.Components.*;
 
 public class Controller {
 
-    private GameView view;
-    private Game model;
-    private Tile selectedTile, destinationTile;
-    private SaveManager saveManager;
+    private GameView view; // the game view associated with this controller
+    private Game model; // the game model associated with this controller
+    private Tile selectedTile, destinationTile; // the selected tile and the destination tile
+    private SaveManager saveManager; // the save manager associated with this controller
 
     /**
      * Constructs a new Controller instance.
@@ -66,13 +66,17 @@ public class Controller {
         };
     }
 
+    /**
+     * Shows all valid moves for the selected piece.
+     */
     private void showMoves() {
         for (int i = 0; i < Board.getLength(); i++) {
             for (int j = 0; j < Board.getWidth(); j++) {
                 if (model.getMove().isMoveValid(selectedTile, model.getTile(i, j))) {
                     view.getCenterPanel().getTileGUI(i, j).setAvailable(true);
                     // if the tile has an enemy piece
-                    if(model.getTile(i, j).getPiece() != null && model.getTile(i, j).getPiece().isYellow() != selectedTile.getPiece().isYellow()){
+                    if (model.getTile(i, j).getPiece() != null
+                            && model.getTile(i, j).getPiece().isYellow() != selectedTile.getPiece().isYellow()) {
                         view.getCenterPanel().getTileGUI(i, j).setEnemy(true);
                     }
                 }
@@ -80,8 +84,9 @@ public class Controller {
         }
     }
 
-
-
+    /**
+     * Removes all valid moves from the game board.
+     */
     private void removeMoves() {
         for (int i = 0; i < Board.getLength(); i++) {
             for (int j = 0; j < Board.getWidth(); j++) {
@@ -114,29 +119,45 @@ public class Controller {
         }
     }
 
-    
+    /**
+     * Flips the pieces on the game board to reflect the current player's point of
+     * view. Also shows the current state of the game board.
+     */
     private void flipPieces() {
         clearImages();
-        for(Map.Entry<Piece, Tile> entry: Board.getMap().entrySet()){    
+        for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
             Piece piece = entry.getKey();
             Tile tile = entry.getValue();
-                view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).flipImage(piece.toString());
-                if(isBackward(tile.getX(), tile.getY())){
-                    view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).setImage(piece.toString());
-                }
-            
+            view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).flipImage(piece.toString());
+            if (isBackward(tile.getX(), tile.getY())) {
+                view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).setImage(piece.toString());
+            }
+
         }
     }
 
-    private boolean isBackward(int i, int j){
-        if(model.getTile(i, j).getPiece() == null) return false;
-        return model.getTile(i, j).getPiece().getPieceMovement() instanceof BackwardMovement;
+    /**
+     * Checks if the point piece on the given tile is moving backward.
+     *
+     * @param x The x-coordinate of the tile.
+     * @param y The y-coordinate of the tile.
+     * @return True if the piece on the given tile moving backward, false
+     *         otherwise.
+     */
+    private boolean isBackward(int x, int y) {
+        if (model.getTile(x, y).getPiece() == null)
+            return false;
+        return model.getTile(x, y).getPiece().getPieceMovement() instanceof BackwardMovement;
     }
 
-    private void handleGameOver() {
+    /**
+     * Handles the end of the game by displaying the winner and asking the user if
+     * they want to play again or quit the application.
+     */
+    void handleGameOver() {
         view.playWinMusic();
         view.getNorthPanel().showGameOver(model.getPlayerManager().getWinner().toString() + " wins!");
-        int response =  view.getNorthPanel().getResponse();
+        int response = view.getNorthPanel().getResponse();
         if (response == 0) {
             view.closeWinMusic();
             clearImages();
@@ -150,13 +171,13 @@ public class Controller {
     /**
      * Updates the game view to reflect the current state of the game board.
      */
-    private void showBoard() {
+    public void showBoard() {
         clearImages();
-        for(Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()){
+        for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
             Piece piece = entry.getKey();
             Tile tile = entry.getValue();
             view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).setImage(piece.toString());
-            if(isBackward(tile.getX(), tile.getY())){
+            if (isBackward(tile.getX(), tile.getY())) {
                 view.getCenterPanel().getTileGUI(tile.getX(), tile.getY()).flipImage(piece.toString());
             }
         }
@@ -166,21 +187,29 @@ public class Controller {
         flipPlayers(); // checks the current player and then flips to that current player's pov
     }
 
-    private void clearImages(){
+    
+    public SaveManager getSaveManager() {
+        return saveManager;
+    }
+
+    // removes all images from the game board
+    private void clearImages() {
         view.getCenterPanel().clearImages();
     }
 
-    private void showSwapRound(){
+    // shows the number of moves left the swap piece round
+    private void showSwapRound() {
         String turnsLeft = Integer.toString(4 - (model.getPlayerManager().getTurn() % 4)) + " Moves";
         view.getEastPanel().setSwapLabel(turnsLeft);
     }
 
-
+    // updates the score of each player
     private void showPlayerScore() {
         view.getYellowPlayer().setText(model.getPlayerManager().getYellowPlayer().getScore());
         view.getBluePlayer().setText(model.getPlayerManager().getBluePlayer().getScore());
     }
 
+    // flips the game board to reflect the current player's point of view
     private void flipPlayers() {
         if (model.getPlayerManager().getCurrentPlayer().isYellow()) {
             view.getCenterPanel().showLabels();
@@ -195,71 +224,22 @@ public class Controller {
 
     }
 
-    private ActionListener newGameListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.getNorthPanel().showNewGame();
-                int response =  view.getNorthPanel().getResponse();
-                if(response == 0){
-                    model.init();
-                    showBoard();
-                }
-            }
-        };
+    public Game getModel() {
+        return model;
     }
 
-    private ActionListener resignActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.getEastPanel().showResign();
-                int response =  view.getEastPanel().getResponse();
-                if(response == 0){
-                    model.getPlayerManager().resign();
-                    handleGameOver();
-                }
-            }
-        };
+    public GameView getView() {
+        return view;
     }
 
-    private ActionListener quitActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.getNorthPanel().showQuit();
-                int response =  view.getNorthPanel().getResponse();
-                if(response == 0){
-                    System.exit(0);
-                }
-            }
-        };
-    }
-
-    private ActionListener saveActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.getNorthPanel().showSave();
-                int response =  view.getNorthPanel().getResponse();
-                if(response == 0){
-                    saveManager.saveGame();
-                    view.getNorthPanel().showSuccessSave();
-                }               
-            }
-        };
-    }
-
-    private void loadGame(){
-        saveManager.loadGame();
-        showBoard();
-    }
-
+    /**
+     * Initializes action listeners for all buttons on the game view.
+     */
     private void initButtonsListeners() {
-        view.getNorthPanel().setNewGameActionListener(newGameListener());
-        view.getNorthPanel().setQuitActionListener(quitActionListener());
-        view.getEastPanel().setResignActionListener(resignActionListener());
-        view.getNorthPanel().setSaveActionListener(saveActionListener());
+        view.getNorthPanel().setNewGameActionListener(new ButtonActionListener(this).newGameListener());
+        view.getNorthPanel().setQuitActionListener(new ButtonActionListener(this).quitActionListener());
+        view.getEastPanel().setResignActionListener(new ButtonActionListener(this).resignActionListener());
+        view.getNorthPanel().setSaveActionListener(new ButtonActionListener(this).saveActionListener());
     }
 
 }
