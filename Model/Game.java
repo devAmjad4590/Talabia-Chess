@@ -21,9 +21,12 @@ public class Game {
         init();
     }
 
+    /**
+     * Initializes the game by creating a player manager instance, move instance and board.
+     */
     public void init() {
         gameOver = false;
-        Board.resetBoard();
+        Board.resetBoard(); // reset the board to its initial state
         playerManager = new PlayerManager(this); // playerManager created
         currentPlayer = playerManager.getCurrentPlayer(); //
         move = new Move(currentPlayer);
@@ -74,8 +77,10 @@ public class Game {
 
     /**
      * Sets the player's move from the current tile to the new tile.
-     * After the move, flips the game board and updates the current player.
-     *
+     * After the move, flips the game board and updates the current player,
+     * checks if the pieces can swap or point can change direction,
+     * creates new move instance for the next player.
+     * 
      * @param currentTile The current tile of the player's piece.
      * @param newTile     The new tile where the player's piece will be moved.
      */

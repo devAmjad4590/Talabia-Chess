@@ -12,7 +12,6 @@ public class PlayerManager {
     private Player blue; // The blue player
     private Player winner; // The winner
     private Player loser; // The loser
-    private Player currentPlayer;
     private Game game;
     private int turn = 0; // The current turn number
 

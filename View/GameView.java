@@ -18,8 +18,6 @@ public class GameView extends JFrame {
     private PlayerGUI player1, player2;
     private static Clip clip;
     
-    private int response;
-
     public GameView() {
         playBackgroundMusic();
         frame = new JFrame("Talabia Chess Game");

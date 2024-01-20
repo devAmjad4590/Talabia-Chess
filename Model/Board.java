@@ -54,9 +54,10 @@ public class Board {
      * Flips the board by swapping the pieces between the top half and bottom half
      * of the tiles array.
      * This method iterates over the top half of the tiles array and exchanges the
-     * pieces with their
-     * corresponding positions in the bottom half, achieving a symmetric flip.
-     * implemented by amgad elrashid gurashi eltayeb
+     * pieces with their corresponding positions in the bottom half, achieving a vertical symmetric flip.
+     * Also iterates over the left half of the tiles array and exchanges the pieces with their corresponding
+     * positions in the right half, achieving a horizontal symmetric flip.
+     * implemented by Amgad elrashid gurashi eltayeb
      */
     public static void flipBoard() {
 
@@ -86,6 +87,7 @@ public class Board {
         initMap();
     }
 
+    // initialize the map of pieces
     private static void initMap() {
         pieceMap.clear();
         for (int i = 0; i < length; i++) {
@@ -99,6 +101,7 @@ public class Board {
         }
     }
 
+    // adds a piece to the board
     // mainly for loading the board from a file
     public static void addPiece(Piece piece, int x, int y) {
         tiles[x][y].setPiece(piece);
@@ -106,6 +109,7 @@ public class Board {
     }
 
 
+    // clears the board from all pieces
     public static void clearBoard() {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
@@ -120,6 +124,7 @@ public class Board {
     }
 
     // method by Amgad Elrashid Gurashi Eltayeb
+    // initialize the board with the default pieces
     private static void initPieces() {
         // Initialize the yellow pieces
         for (int i = 0; i < 7; i++) {
