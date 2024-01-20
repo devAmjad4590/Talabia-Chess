@@ -48,7 +48,7 @@ public class Time extends Piece {
 
     @Override
     public boolean canPass(Tile currentTile, int xTiles, int yTiles) { // needs testing specifically
-                                                                                     // rightDown and
+                                                                       // rightDown and
         // UpLeft movements
 
         for (int i = 1; i < Math.abs(xTiles); i++) {
@@ -107,5 +107,4 @@ public class Time extends Piece {
         return Board.getTile((currentTile.getX() + i), currentTile.getY() + i).getPiece() != null;
     }
 
-    
 }
