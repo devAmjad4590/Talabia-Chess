@@ -81,7 +81,7 @@ public class Game {
      */
     public void playerMove(Tile currentTile, Tile newTile) {
         isGameOver(newTile.getPiece()); // check if the piece captured a sun
-        
+
         move.setPlayerMove(currentTile, newTile); // sets the player's move
         currentPlayer = playerManager.getNextPlayer(); // updates the current player
         move = new Move(currentPlayer); // creates a new move instance for the next player
@@ -98,6 +98,7 @@ public class Game {
 
     private void canSwitchPoint(Tile current) {
         Piece piece = current.getPiece();
+        System.out.println(piece);
         if ((current.getX() == 5 || current.getX() == 0) && piece instanceof Point) {
             Point point = (Point) piece;
             point.switchMovement();

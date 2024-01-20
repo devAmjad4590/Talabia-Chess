@@ -13,8 +13,7 @@ public class Move {
     private Player currentPlayer; // The current player making the move
 
     /**
-     * Constructs a new instance of the `Move` class with the specified current
-     * player.
+     * Constructs a new instance of the `Move` class with the specified current player.
      * 
      * @param currentPlayer The player making the move.
      */
@@ -23,8 +22,7 @@ public class Move {
     }
 
     /**
-     * Sets the player's move from the current tile to the new tile on the game
-     * board.
+     * Sets the player's move from the current tile to the new tile on the game board.
      * Updates the piece positions and maintains the board state.
      * 
      * @param currentTile The current tile of the player's piece.
@@ -38,18 +36,16 @@ public class Move {
         Board.getMap().put(piece, newTile);
     }
 
+
     /**
-     * Checks if a move from the current tile to the new tile is valid based on game
-     * rules.
-     * Validates the move in terms of piece movement, player ownership, and tile
-     * conditions.
+     * Checks if a move from the current tile to the new tile is valid based on game rules.
+     * Validates the move in terms of piece movement, player ownership, and tile conditions.
      * 
      * @param currentTile The current tile of the player's piece.
-     * @param newTile     The new tile where the player's piece is intended to be
-     *                    moved.
+     * @param newTile     The new tile where the player's piece is intended to be moved.
      * @return True if the move is valid, false otherwise.
      */
-    public boolean isMoveValid(Tile currentTile, Tile newTile) {
+    public boolean isMoveValid(Tile currentTile, Tile newTile){
         Piece playerPiece = currentTile.getPiece();
 
         if (playerPiece == null || !playerPiece.canMove(currentTile, newTile)
