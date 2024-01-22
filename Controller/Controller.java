@@ -13,13 +13,14 @@ import java.util.Map;
 import Model.*;
 import Model.Movements.BackwardMovement;
 import Model.Pieces.Piece;
-import View.GameView;
+import View.*;
 import View.Components.*;
 
 public class Controller {
 
     private GameView view; // the game view associated with this controller
     private Game model; // the game model associated with this controller
+    private StartMenu startMenu;
     private Tile selectedTile, destinationTile; // the selected tile and the destination tile
     private SaveManager saveManager; // the save manager associated with this controller
 
@@ -36,6 +37,13 @@ public class Controller {
         initTileListeners();
         initButtonsListeners();
         showBoard();
+    }
+
+    public Controller(Game model, StartMenu startMenu) {
+        this.model = model;
+        this.startMenu = startMenu;
+        this.saveManager = new SaveManager(model);
+        initMenuListeners();
     }
 
     /**
@@ -232,6 +240,10 @@ public class Controller {
         return view;
     }
 
+    public StartMenu getStartMenu() {
+        return startMenu;
+    }
+
     /**
      * Initializes action listeners for all buttons on the game view.
      */
@@ -239,7 +251,16 @@ public class Controller {
         view.getNorthPanel().setNewGameActionListener(new ButtonActionListener(this).newGameListener());
         view.getNorthPanel().setQuitActionListener(new ButtonActionListener(this).quitActionListener());
         view.getEastPanel().setResignActionListener(new ButtonActionListener(this).resignActionListener());
-        view.getNorthPanel().setSaveActionListener(new ButtonActionListener(this).saveActionListener());
+        view.getNorthPanel().setSaveActionListener(new ButtonActionListener(this).saveActionListener());        
+    }
+
+    /**
+     * Initializes action listeners for all buttons on the start menu.
+     */
+    private void initMenuListeners() {
+        startMenu.setStartActionListener(new ButtonActionListener(this).startActionListener());
+        startMenu.setLoadActionListener(new ButtonActionListener(this).loadActionListener());
+        startMenu.setQuitActionListener(new ButtonActionListener(this).quitMenuListener());
     }
 
 }

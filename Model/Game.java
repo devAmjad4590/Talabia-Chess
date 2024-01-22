@@ -103,7 +103,6 @@ public class Game {
 
     private void canSwitchPoint(Tile current) {
         Piece piece = current.getPiece();
-        System.out.println(piece);
         if ((current.getX() == 5 || current.getX() == 0) && piece instanceof Point) {
             Point point = (Point) piece;
             point.switchMovement();

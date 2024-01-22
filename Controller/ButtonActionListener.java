@@ -4,18 +4,22 @@ import java.awt.event.ActionListener;
 
 import Model.Game;
 import View.GameView;
+import View.StartMenu;
 
 /**
- * The ButtonActionListener class represents the ActionListener for various buttons in the chess game GUI.
- * It handles actions such as starting a new game, resigning from the current game, quitting the application,
+ * The ButtonActionListener class represents the ActionListener for various
+ * buttons in the chess game GUI.
+ * It handles actions such as starting a new game, resigning from the current
+ * game, quitting the application,
  * and saving the game state.
  * by Amgad Elrashid Gurashi Eltayeb.
  */
 
 public class ButtonActionListener {
-    private Game model; 
+    private Game model;
     private GameView view;
     private Controller controller;
+    private StartMenu startMenu;
 
     /**
      * Constructs a ButtonActionListener object.
@@ -25,6 +29,7 @@ public class ButtonActionListener {
     public ButtonActionListener(Controller controller) {
         this.model = controller.getModel();
         this.view = controller.getView();
+        this.startMenu = controller.getStartMenu();
         this.controller = controller;
     }
 
@@ -38,8 +43,8 @@ public class ButtonActionListener {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 view.getNorthPanel().showNewGame();
-                int response =  view.getNorthPanel().getResponse();
-                if(response == 0){
+                int response = view.getNorthPanel().getResponse();
+                if (response == 0) {
                     model.init();
                     controller.showBoard();
                 }
@@ -57,8 +62,8 @@ public class ButtonActionListener {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 view.getEastPanel().showResign();
-                int response =  view.getEastPanel().getResponse();
-                if(response == 0){
+                int response = view.getEastPanel().getResponse();
+                if (response == 0) {
                     model.getPlayerManager().resign();
                     controller.handleGameOver();
                 }
@@ -76,8 +81,8 @@ public class ButtonActionListener {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 view.getNorthPanel().showQuit();
-                int response =  view.getNorthPanel().getResponse();
-                if(response == 0){
+                int response = view.getNorthPanel().getResponse();
+                if (response == 0) {
                     System.exit(0);
                 }
             }
@@ -94,23 +99,77 @@ public class ButtonActionListener {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 view.getNorthPanel().showSave();
-                int response =  view.getNorthPanel().getResponse();
-                if(response == 0){
+                int response = view.getNorthPanel().getResponse();
+                if (response == 0) {
                     controller.getSaveManager().saveGame();
                     view.getNorthPanel().showSuccessSave();
-                }               
+                }
             }
         };
     }
 
-
     /**
-     * Loads a saved game using the SaveManager and displays the game board.
+     * This method is used to load a saved game. It calls the loadGame method of the
+     * SaveManager
+     * through the Controller.
      */
-    private void loadGame(){
+    private void loadGame() {
         controller.getSaveManager().loadGame();
-        controller.showBoard();
     }
 
-    
+    /**
+     * This method returns an ActionListener for the "Start Game" button.
+     * When the button is clicked, it hides the StartMenu, creates a new GameView,
+     * and sets up a new Controller with the GameView and the model.
+     * 
+     * @return An ActionListener for the "Start Game" button.
+     */
+    public ActionListener startActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                startMenu.setVisible(false);
+                GameView view = new GameView();
+                Controller controller = new Controller(view, model);
+            }
+        };
+    }
+
+    /**
+     * This method returns an ActionListener for the "Load Game" button.
+     * When the button is clicked, it hides the StartMenu, loads a saved game,
+     * creates a new GameView, and sets up a new Controller with the GameView and
+     * the model.
+     * 
+     * @return An ActionListener for the "Load Game" button.
+     */
+    public ActionListener loadActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                startMenu.setVisible(false);
+                loadGame();
+                GameView view = new GameView();
+                Controller controller = new Controller(view, model);
+            }
+        };
+    }
+
+    /**
+     * This method returns an ActionListener for the "Quit" button.
+     * The implementation of the actionPerformed method is not shown in the provided
+     * code.
+     * 
+     * @return An ActionListener for the "Quit" button.
+     */
+    public ActionListener quitMenuListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                startMenu.dispose();
+                System.exit(0);
+            }
+        };
+    }
+
 }
