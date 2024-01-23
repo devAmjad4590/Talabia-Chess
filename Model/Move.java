@@ -50,7 +50,7 @@ public class Move {
 
         if (playerPiece == null || !playerPiece.canMove(currentTile, newTile)
                 || currentPlayer.isYellow() != playerPiece.isYellow()
-                || currentTile == newTile) {
+                || currentTile.equals(newTile)) {
             return false;
         }
 
