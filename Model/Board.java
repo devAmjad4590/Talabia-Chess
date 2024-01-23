@@ -34,7 +34,7 @@ public class Board {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 // i =0, j = 2
-                tiles[i][j] = new Tile(i, j, null);
+                tiles[i][j] = new Tile(i, j);
 
             }
         }

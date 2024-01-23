@@ -21,10 +21,9 @@ public class Tile {
      * @param y Coordinate Y of the tile
      * @param piece Piece in the tile
      */
-    public Tile(int x, int y, Piece piece){
+    public Tile(int x, int y){
         this.x =  x;
         this.y = y;
-        this.piece = piece;
     }
 
     /**
