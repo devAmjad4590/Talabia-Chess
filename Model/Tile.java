@@ -47,6 +47,10 @@ public class Tile {
         this.piece = piece;
     }
 
+    public boolean equals(Tile tile){
+        return (this.x == tile.getX() && this.y == tile.getY());
+    }
+
     /**
      * @return The piece in the tile
      */

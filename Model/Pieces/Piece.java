@@ -1,6 +1,7 @@
 package Model.Pieces;
 
 import Model.Tile;
+import Model.Movements.HourglassMovement;
 import Model.Movements.PieceMovement;
 
 /**

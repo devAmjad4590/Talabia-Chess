@@ -85,8 +85,9 @@ public class Game {
      * @param newTile     The new tile where the player's piece will be moved.
      */
     public void playerMove(Tile currentTile, Tile newTile) {
+        if(!move.isMoveValid(currentTile, newTile))
+            return;
         isGameOver(newTile.getPiece()); // check if the piece captured a sun
-
         move.setPlayerMove(currentTile, newTile); // sets the player's move
         currentPlayer = playerManager.getNextPlayer(); // updates the current player
         move = new Move(currentPlayer); // creates a new move instance for the next player
