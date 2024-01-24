@@ -1,5 +1,6 @@
 package Model.Pieces;
 
+import java.util.*;
 import Model.Board;
 import Model.Tile;
 import Model.Movements.TimeMovement;
@@ -40,38 +41,21 @@ public class Time extends Piece {
         if (!getPieceMovement().isValid(xTiles, yTiles)) {
             return false;
         }
-        if (canPass(currentTile, xTiles, yTiles)) {
+        if (canPass(currentTile, newTile, xTiles, yTiles)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean canPass(Tile currentTile, int xTiles, int yTiles) { // needs testing specifically
-                                                                       // rightDown and
+    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) { // needs testing specifically
+                                                                                     // rightDown and
         // UpLeft movements
-
-        for (int i = 1; i < Math.abs(xTiles); i++) {
-            if (isMoveUpRight(xTiles, yTiles)) {
-                if (checkUpRightPath(currentTile, i)) {
-                    return false;
-                }
-            } else if (isMoveDownLeft(xTiles, yTiles)) {
-                if (checkDownLeftPath(currentTile, i)) {
-                    return false;
-                }
-            } else if (isMoveUpLeft(xTiles, yTiles)) {
-                if (checkUpLeftPath(currentTile, i)) {
-                    return false;
-                }
-            } else if (isMoveDownRight(xTiles, yTiles)) {
-                if (checkDownRightPath(currentTile, i)) {
-                    return false;
-                }
-            }
-
+        HashSet<Tile> availableMoves = calculateMoves(currentTile, newTile, xTiles, yTiles);
+        if (availableMoves.contains(newTile)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean isMoveUpRight(int xTiles, int yTiles) {
@@ -91,20 +75,80 @@ public class Time extends Piece {
     }
 
     private boolean checkUpRightPath(Tile currentTile, int i) {
-        return (Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() + i)).getPiece() != null);
+        return getUpRightTile(currentTile, i).getPiece() == null;
+    }
+
+    private Tile getUpRightTile(Tile currentTile, int i) {
+        return Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() + i));
     }
 
     private boolean checkDownLeftPath(Tile currentTile, int i) {
-        return (Board.getTile(Math.abs(currentTile.getX() + i), currentTile.getY() + 1).getPiece() != null);
+        return getDownLeftTile(currentTile, i).getPiece() == null;
+    }
+
+    private Tile getDownLeftTile(Tile currentTile, int i) {
+        return Board.getTile(Math.abs(currentTile.getX() + i), currentTile.getY() + 1);
     }
 
     private boolean checkUpLeftPath(Tile currentTile, int i) {
-        return Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() - i)).getPiece() != null;
+        return getUpLeftTile(currentTile, i).getPiece() == null;
 
     }
 
+    private Tile getUpLeftTile(Tile currentTile, int i) {
+        return Board.getTile(Math.abs(currentTile.getX() - i), Math.abs(currentTile.getY() - i));
+    }
+
     private boolean checkDownRightPath(Tile currentTile, int i) {
-        return Board.getTile((currentTile.getX() + i), currentTile.getY() + i).getPiece() != null;
+        return getDownRightTile(currentTile, i).getPiece() == null;
+    }
+
+    private Tile getDownRightTile(Tile currentTile, int i) {
+        return Board.getTile((currentTile.getX() + i), currentTile.getY() + i);
+    }
+
+    public HashSet<Tile> calculateMoves(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
+        HashSet<Tile> tiles = new HashSet<Tile>();
+        if (isMoveUpRight(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(xTiles); i++) {
+                tiles.add(getUpRightTile(currentTile, i));
+                if (!checkUpRightPath(currentTile, i)) {
+                    break;
+                }
+
+            }
+        }
+        if (isMoveDownLeft(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(xTiles); i++) {
+                tiles.add(getDownLeftTile(currentTile, i));
+                if (!checkDownLeftPath(currentTile, i)) {
+                    break;
+                }
+
+            }
+
+        }
+        if (isMoveUpLeft(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(xTiles); i++) {
+                tiles.add(getUpLeftTile(currentTile, i));
+                if (!checkUpLeftPath(currentTile, i)) {
+                    break;
+                }
+
+            }
+        }
+
+        if (isMoveDownRight(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(xTiles); i++) {
+                tiles.add(getDownRightTile(currentTile, i));
+                if (!checkDownRightPath(currentTile, i)) {
+                    break;
+                }
+
+            }
+        }
+
+        return tiles;
     }
 
 }

@@ -26,7 +26,7 @@ public class StartMenu extends JFrame {
 
     public StartMenu() {
         super("Talabia Chess");
-        playBackgroundMusic();
+        //playBackgroundMusic();
         setSize(850, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
