@@ -42,6 +42,7 @@ public class GameView extends JFrame {
         frame.pack(); 
         
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 

@@ -57,6 +57,7 @@ public class StartMenu extends JFrame {
 
         add(panel);
 
+        setResizable(false);
         setVisible(true);
     }
 
