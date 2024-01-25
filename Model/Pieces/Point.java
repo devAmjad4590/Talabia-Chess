@@ -38,7 +38,7 @@ public class Point extends Piece {
             return false;
         }
 
-        if (canPass(currentTile, xTiles, yTiles)) {
+        if (canPass(currentTile, newTile, xTiles, yTiles)) {
             return true;
         }
         return false;
@@ -62,7 +62,7 @@ public class Point extends Piece {
     }
 
     @Override
-    public boolean canPass(Tile currentTile, int xTiles, int yTiles) {
+    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
             for (int i = 1; i < Math.abs(xTiles); i++) {
                 if (Board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY()).getPiece() != null) {
                     return false;
