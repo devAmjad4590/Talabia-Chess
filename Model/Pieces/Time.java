@@ -52,7 +52,7 @@ public class Time extends Piece {
                                                                                      // rightDown and
         // UpLeft movements
         HashSet<Tile> availableMoves = calculateMoves(currentTile, newTile, xTiles, yTiles);
-        if (availableMoves.contains(newTile)) {
+        if (availableMoves.contains(newTile) && !currentTile.equals(newTile)) {
             return true;
         }
         return false;
@@ -87,12 +87,11 @@ public class Time extends Piece {
     }
 
     private Tile getDownLeftTile(Tile currentTile, int i) {
-        return Board.getTile(Math.abs(currentTile.getX() + i), currentTile.getY() + 1);
+        return Board.getTile(currentTile.getX() + i, currentTile.getY() - i);
     }
 
     private boolean checkUpLeftPath(Tile currentTile, int i) {
         return getUpLeftTile(currentTile, i).getPiece() == null;
-
     }
 
     private Tile getUpLeftTile(Tile currentTile, int i) {
