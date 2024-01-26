@@ -19,7 +19,6 @@ public class ButtonActionListener {
     private Game model;
     private GameView view;
     private Controller controller;
-    private StartMenu startMenu;
 
     /**
      * Constructs a ButtonActionListener object.
@@ -29,7 +28,6 @@ public class ButtonActionListener {
     public ButtonActionListener(Controller controller) {
         this.model = controller.getModel();
         this.view = controller.getView();
-        this.startMenu = controller.getStartMenu();
         this.controller = controller;
     }
 
@@ -128,7 +126,7 @@ public class ButtonActionListener {
         return new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                startMenu.setVisible(false);
+                controller.getStartMenu().setVisible(false);
                 GameView view = new GameView();
                 Controller controller = new Controller(view, model);
             }
@@ -147,7 +145,7 @@ public class ButtonActionListener {
         return new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                startMenu.setVisible(false);
+                controller.getStartMenu().setVisible(false);
                 loadGame();
                 GameView view = new GameView();
                 Controller controller = new Controller(view, model);
@@ -166,7 +164,7 @@ public class ButtonActionListener {
         return new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                startMenu.dispose();
+                controller.getStartMenu().dispose();
                 System.exit(0);
             }
         };

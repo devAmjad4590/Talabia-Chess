@@ -39,6 +39,12 @@ public class Controller {
         showBoard();
     }
 
+    /**
+     * Constructs a new Controller instance.
+     *
+     * @param startMenu  The game start menu associated with this controller.
+     * @param model The game model associated with this controller.
+     */
     public Controller(Game model, StartMenu startMenu) {
         this.model = model;
         this.startMenu = startMenu;

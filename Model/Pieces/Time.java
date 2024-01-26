@@ -120,6 +120,7 @@ public class Time extends Piece {
         }
         if (isMoveDownLeft(xTiles, yTiles)) {
             for (int i = 1; i <= Math.abs(xTiles); i++) {
+                System.out.println("down left");
                 tiles.add(getDownLeftTile(currentTile, i));
                 if (!checkDownLeftPath(currentTile, i)) {
                     break;
