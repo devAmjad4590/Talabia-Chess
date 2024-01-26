@@ -1,4 +1,7 @@
 package Model.Pieces;
+
+import java.util.HashSet;
+
 import Model.Board;
 import Model.Tile;
 import Model.Movements.PlusMovement;
@@ -32,58 +35,120 @@ public class Plus extends Piece {
      */
     @Override
     public boolean canMove(Tile currentTile, Tile newTile) {
-        int yTiles = Math.abs(currentTile.getY() - newTile.getY());
-        int xTiles = Math.abs(currentTile.getX() - newTile.getX());
+        int yTiles = currentTile.getY() - newTile.getY();
+        int xTiles = currentTile.getX() - newTile.getX();
 
         if (!getPieceMovement().isValid(xTiles, yTiles)) {
             return false;
         }
 
-        if(canPass(currentTile, newTile, xTiles, yTiles))
-        {
+        if (canPass(currentTile, newTile, xTiles, yTiles)) {
             return true;
         }
 
         return false;
-    
-        
+
     }
 
     @Override
-    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) { //Last right and down tile wont work
-        if (isMoveHorizontal(xTiles, yTiles)) {
-            for (int i = 1; i < Math.abs(yTiles); i++) {
-                if (checkHorizontalPath(currentTile, i)) {
-                    return false;
-                }
-            }
-            return true;
-        } else if (isMoveVertical(xTiles, yTiles)) {
-            for (int i = 1; i < Math.abs(xTiles); i++) {
-                if (checkVerticalPath(currentTile, i)) {
-                    return false;
-                }
-            }
+    public boolean canPass(Tile currentTile, Tile newTile, int xTiles, int yTiles) { // Last right and down tile wont
+                                                                                     // work
+        HashSet<Tile> availableMoves = calculateMoves(currentTile, newTile, xTiles, yTiles);
+
+        if (availableMoves.contains(newTile)) {
             return true;
         }
         return false;
     }
 
-    private boolean isMoveHorizontal(int xTiles, int yTiles) {
-        return xTiles == 0 && yTiles != 0;
+    private boolean isMoveLeft(int xTiles, int yTiles) {
+        return xTiles == 0 && yTiles > 0;
     }
 
-    private boolean isMoveVertical(int xTiles, int yTiles){
-        return xTiles != 0 && yTiles == 0;
+    private boolean isMoveRight(int xTiles, int yTiles) { //
+
+        return xTiles == 0 && yTiles < 0;
     }
 
-    private boolean checkHorizontalPath(Tile currentTile, int i){
-        return (Board.getTile(currentTile.getX(), Math.abs(currentTile.getY() - i)).getPiece() != null);
+    private boolean isMoveUp(int xTiles, int yTiles) {
+        return xTiles > 0 && yTiles == 0;
     }
 
-    private boolean checkVerticalPath(Tile currentTile, int i){
-        return (Board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY()).getPiece() != null);
+    private boolean isMoveDown(int xTiles, int yTiles) { //
+        return xTiles < 0 && yTiles == 0;
     }
 
+    private boolean checkLeftPath(Tile currentTile, int i) {
+        return getLeftTile(currentTile, i).getPiece() == null;
+    }
 
+    private boolean checkRightPath(Tile currentTile, int i) {
+        return getRightTile(currentTile, i).getPiece() == null;
+    }
+
+    private boolean checkUpPath(Tile currentTile, int i) {
+        return getUpTile(currentTile, i).getPiece() == null;
+    }
+
+    private boolean checkDownPath(Tile currentTile, int i) {
+        return getDownTile(currentTile, i).getPiece() == null;
+    }
+
+    private Tile getUpTile(Tile currentTile, int i) {
+        return Board.getTile(Math.abs(currentTile.getX() - i), currentTile.getY());
+    }
+
+    private Tile getDownTile(Tile currentTile, int i) {
+        return Board.getTile(currentTile.getX() + i, currentTile.getY()); /// returns false why?
+    }
+
+    private Tile getLeftTile(Tile currentTile, int i) {
+        return Board.getTile(currentTile.getX(), Math.abs(currentTile.getY() - i));
+    }
+
+    private Tile getRightTile(Tile currentTile, int i) {
+        return Board.getTile(currentTile.getX(), currentTile.getY() + i);
+    }
+
+    public HashSet<Tile> calculateMoves(Tile currentTile, Tile newTile, int xTiles, int yTiles) {
+        HashSet<Tile> tiles = new HashSet<Tile>();
+        if (isMoveRight(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(yTiles); i++) {
+                tiles.add(getRightTile(currentTile, i));
+                if (!checkRightPath(currentTile, i)) {
+                    break;
+                }
+            }
+        }
+
+        if (isMoveLeft(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(yTiles); i++) {
+                tiles.add(getLeftTile(currentTile, i));
+                if (!checkLeftPath(currentTile, i)) {
+                    break;
+                }
+            }
+        }
+
+        if (isMoveUp(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(xTiles); i++) {
+                tiles.add(getUpTile(currentTile, i));
+                if (!checkUpPath(currentTile, i)) {
+                    break;
+                }
+            }
+        }
+
+        if (isMoveDown(xTiles, yTiles)) {
+            for (int i = 1; i <= Math.abs(xTiles); i++) {
+                tiles.add(getDownTile(currentTile, i));
+                if (!checkDownPath(currentTile, i)) {
+                    break;
+                }
+            }
+
+        }
+        return tiles;
+
+    }
 }
