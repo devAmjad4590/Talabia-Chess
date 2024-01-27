@@ -35,7 +35,8 @@ public class SaveManager {
      * Saves the current state of the game, including piece positions, types,
      * movements, player scores,
      * and the number of turns taken, to a text file.
-     */
+     *This Method was implemented byMamoon T. M. Almazloom .
+ */
     public void saveGame() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./Model/game.txt"));
