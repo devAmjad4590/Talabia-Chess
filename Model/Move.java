@@ -61,10 +61,6 @@ public class Move {
         return true;
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
     /**
      * Moves a piece from the current tile to the new tile.
      * If the new tile is occupied by an opponent's piece, the opponent's piece is

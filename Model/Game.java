@@ -46,14 +46,7 @@ public class Game {
         move = new Move(currentPlayer);
     }
 
-    /**
-     * Gets the game board.
-     *
-     * @return The game board.
-     */
-    public Board getBoard() {
-        return Board.getInstance();
-    }
+    
 
     /**
      * Gets the tile at the specified coordinates on the board.
