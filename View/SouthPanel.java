@@ -28,6 +28,11 @@ public class SouthPanel extends JPanel {
         add(this.player, BorderLayout.NORTH);
     }
 
+    /**
+     * Sets the PlayerGUI instance representing player.
+     *
+     * @param player The PlayerGUI instance representing player.
+     */
     public void setPlayerGUI(PlayerGUI player){
         remove(this.player);
         this.player = player;

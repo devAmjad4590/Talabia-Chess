@@ -14,6 +14,11 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 
+/**
+ * The StartMenu class represents the main menu of the Talabia Chess game.
+ * It provides options to start a new game, load a saved game, or exit the game.
+ * by Asim Adel Ahmed Maroof
+ */
 public class StartMenu extends JFrame {
     private JButton startButton, loadButton, exitButton;
     private JPanel panel;
@@ -24,6 +29,10 @@ public class StartMenu extends JFrame {
     private static Clip clip;
 
 
+    /**
+     * Constructor for StartMenu class.
+     * Initializes the main menu UI components and plays background music.
+     */
     public StartMenu() {
         super("Talabia Chess");
         playBackgroundMusic();
@@ -61,30 +70,57 @@ public class StartMenu extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Getter for the startButton.
+     * @return The startButton JButton object.
+     */
     public JButton getStartButton() {
         return startButton;
     }
 
+    /**
+     * Getter for the loadButton.
+     * @return The loadButton JButton object.
+     */
     public JButton getLoadButton() {
         return loadButton;
     }
 
+    /**
+     * Getter for the exitButton.
+     * @return The exitButton JButton object.
+     */
     public JButton getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Setter for the startButton ActionListener.
+     * @param actionListener The ActionListener to be set.
+     */
     public void setStartActionListener(ActionListener actionListener) {
         startButton.addActionListener(actionListener);
     }
 
+    /**
+     * Setter for the loadButton ActionListener.
+     * @param actionListener The ActionListener to be set.
+     */
     public void setLoadActionListener(ActionListener actionListener) {
         loadButton.addActionListener(actionListener);
     }
 
+    /**
+     * Setter for the exitButton ActionListener.
+     * @param actionListener The ActionListener to be set.
+     */
     public void setQuitActionListener(ActionListener actionListener) {
         exitButton.addActionListener(actionListener);
     }
 
+    /**
+     * Plays the background music for the main menu and for the rest of the game.
+     */
     private static void playBackgroundMusic(){
         try{
             File file = new File("./View/sounds/BackgroundMusic.wav");

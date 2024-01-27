@@ -56,30 +56,50 @@ public class NorthPanel extends JPanel {
         add(toolBarPanel, BorderLayout.PAGE_START);
     }
 
+   /**
+     * Displays a dialog indicating the end of the game and the winner.
+     * @param winner The winner of the game.
+     */
     public void showGameOver(String winner) {
         JOptionPane.showMessageDialog(frame, winner, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
         response = JOptionPane.showConfirmDialog(frame, "Do you want to play again?", "Play Again",
                 JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Displays a dialog asking the user if they want to save the game.
+     */
     public void showSave() {
         response = JOptionPane.showConfirmDialog(frame, "Do you want to save this game?", "Save",
                 JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Displays a dialog indicating that the game was saved successfully.
+     */
     public void showSuccessSave() {
         JOptionPane.showMessageDialog(frame, "Game saved successfully!", "Save", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Gets the user's response from the dialog.
+     * @return The user's response (YES_OPTION or NO_OPTION).
+     */
     public int getResponse() {
         return response;
     }
 
+    /**
+     * Displays a dialog asking the user if they want to start a new game.
+     */
     public void showNewGame() {
         response = JOptionPane.showConfirmDialog(frame, "Do you want to start a new game?", "New Game",
                 JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Displays a dialog asking the user if they want to quit the game.
+     */
     public void showQuit() {
         response = JOptionPane.showConfirmDialog(frame, "Do you want to quit the game?", "Quit",
                 JOptionPane.YES_NO_OPTION);

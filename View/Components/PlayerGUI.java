@@ -32,6 +32,9 @@ public class PlayerGUI extends JPanel {
         add(this.player);
     }
 
+    /**
+     * Sets the image of the tile.
+     */
     public void setImage() {
             try {
                 ImageIcon imageIcon = new ImageIcon(imagePath);
@@ -49,10 +52,19 @@ public class PlayerGUI extends JPanel {
     }
     
 
+    /**
+     * Sets the number of wins for the player.
+     *
+     * @param wins The number of wins for the player.
+     */
     public JLabel getLabel(){
         return player;
     }
 
+    /**
+     * Sets the text of the player label.
+     * @param text The text to be displayed along with the player's name.
+     */
     public void setText(String text){
         player.setText(playerName + " " + text);
     }
