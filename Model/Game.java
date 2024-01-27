@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import Model.Pieces.*;
@@ -40,7 +41,7 @@ public class Game {
     public PlayerManager getPlayerManager() {
         return playerManager;
     }
-
+    
     public void setCurrentPlayer() {
         currentPlayer = playerManager.getCurrentPlayer();
         move = new Move(currentPlayer);
@@ -95,6 +96,7 @@ public class Game {
             swapPieces();
     }
 
+    //Method implemented by Maher M. N. Balchi
     private void canSwitchPoint(Tile current) {
         Piece piece = current.getPiece();
         if ((current.getX() == 5 || current.getX() == 0) && piece instanceof Point) {
@@ -102,7 +104,7 @@ public class Game {
             point.switchMovement();
         }
     }
-
+    //Method implemented by Maher M. N. Balchi
     private void swapPieces() {
         for (Map.Entry<Piece, Tile> entry : Board.getMap().entrySet()) {
             Piece piece = entry.getKey();

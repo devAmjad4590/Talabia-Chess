@@ -11,7 +11,7 @@ import Model.Movements.PlusMovement;
  * It extends the Piece class and implements specific rules for movement.
  * Plus pieces have a color (yellow or not yellow).
  * This class is part of the template method design pattern.
- * Class implemented by Amgad ELrashid Gurashi Eltayeb and Maher M. N. Balchi
+ * Class implemented by Maher M. N. Balchi
  */
 public class Plus extends Piece {
 
