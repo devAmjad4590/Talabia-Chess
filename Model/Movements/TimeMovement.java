@@ -3,7 +3,7 @@ package Model.Movements;
 /**
  * The `TimeMovement` class represents a concrete implementation of the `PieceMovement` interface.
  * It defines the specific time-shaped movement behavior for a game piece, following the strategy pattern.
- * class implemented by Amgad Elrashid Gurashi Eltayeb
+ * class implemented by Mamoon T. M. Almazloom
  */
 public class TimeMovement implements PieceMovement {
 

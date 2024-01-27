@@ -5,7 +5,7 @@ package Model;
  * game.
  * It is responsible for tracking the current turn and providing access to the
  * current and next players.
- * class implemented by mamoon
+ * class implemented by Mamoon T. M. Almazloom
  */
 public class PlayerManager {
     private Player yellow; // The yellow player
