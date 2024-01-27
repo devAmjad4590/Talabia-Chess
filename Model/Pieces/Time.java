@@ -10,7 +10,7 @@ import Model.Movements.TimeMovement;
  * It extends the Piece class and implements specific rules for movement.
  * Time pieces have a color (yellow or not yellow).
  * This class is part of the template method design pattern.
- * Class implemented by Amgad ELrashid Gurashi Eltayeb and Maher M. N. Balchi
+ * Class implemented by Maher M. N. Balchi
  */
 public class Time extends Piece {
 
@@ -151,7 +151,6 @@ public class Time extends Piece {
         // Check and add tiles for moving diagonally down-left
         if (isMoveDownLeft(xTiles, yTiles)) {
             for (int i = 1; i <= Math.abs(xTiles); i++) {
-                System.out.println("down left");
                 tiles.add(getDownLeftTile(currentTile, i));
                 // Break the loop if there is an obstacle in the path
                 if (!checkDownLeftPath(currentTile, i)) {
