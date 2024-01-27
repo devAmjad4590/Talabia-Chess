@@ -3,7 +3,7 @@ package Model.Movements;
 /**
  * The `ForwardMovement` class represents a concrete implementation of the `PieceMovement` interface.
  * It defines the specific forward movement behavior for a game piece, following the strategy pattern.
- * class implemented by mamoon
+ * class implemented by Mamoon T. M. Almazloom
  */
 public class ForwardMovement implements PieceMovement {
 

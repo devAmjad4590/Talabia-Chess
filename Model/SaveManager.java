@@ -17,7 +17,7 @@ import Model.Pieces.Piece;
  * taken.
  * It also offers functionality to load a saved game and restore the state of
  * the game accordingly.
- * This class was implemented by Amgad Elrashid Gurashi Eltayeb.
+ * This class was implemented by Amgad Elrashid Gurashi Eltayeb .
  */
 public class SaveManager {
     private Game game;

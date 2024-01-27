@@ -3,7 +3,7 @@ package Model.Movements;
 /**
  * The `SunMovement` class represents a concrete implementation of the `PieceMovement` interface.
  * It defines the specific sun-shaped movement behavior for a game piece, following the strategy pattern.
- * class implemented by mamoon
+ * class implemented by Mamoon T. M. Almazloom
  */
 public class SunMovement implements PieceMovement {
 

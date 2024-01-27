@@ -3,7 +3,7 @@ package Model;
 import Model.Pieces.Piece;
 
 /* 
- * This class was implemented by Amgad Elrashid Gurashi Eltayeb.
+ * This class was implemented by Mamoon T. M. Almazloom.
  * The tile class represents the Tiles that are used to make the Board. 
  * Each tile consist of its coordinates (X and Y) and the pieces in that tile accordingly.
  */
