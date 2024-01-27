@@ -45,11 +45,11 @@ public class Point extends Piece {
 
     }
 
-    public void setMovementForward() {
+    private void setMovementForward() {
         setPieceMovement(new ForwardMovement());
     }
 
-    public void setMovementBackward() {
+    private void setMovementBackward() {
         setPieceMovement(new BackwardMovement());
     }
 
