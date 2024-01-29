@@ -91,13 +91,13 @@ public class Game {
     }
 
     private void checkGameState(Tile currentTile, Tile newTile) {
-        canSwitchPoint(newTile); // checks if the point can change direction
+        switchPoint(newTile); // checks if the point can change direction
         if (playerManager.isSwapTurn()) // checks if the pieces can swap
             swapPieces();
     }
 
     //Method implemented by Maher M. N. Balchi
-    private void canSwitchPoint(Tile current) {
+    private void switchPoint(Tile current) {
         Piece piece = current.getPiece();
         if ((current.getX() == 5 || current.getX() == 0) && piece instanceof Point) {
             Point point = (Point) piece;
