@@ -4,12 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+// Class implemented by Asim Adel Ahmed Maroof
+
 public class EastPanel extends JPanel {
     private JButton resignButton;
     private JFrame frame;
     private int response;
     private JLabel swapLabel;
 
+    /**
+     * Constructor for EastPanel class.
+     * Initializes the components and sets up the layout.
+     */
     public EastPanel() {
         frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         setLayout(new GridBagLayout());
@@ -43,19 +49,35 @@ public class EastPanel extends JPanel {
         return resignButton;
     }
 
+    /**
+     * Sets the text of the swapLabel.
+     * @param text The text to be displayed on the swapLabel.
+     */
+
     public void setSwapLabel(String text) {
         swapLabel.setText("Swap round in: " + text);
     }
 
+    /**
+     * Sets an ActionListener for the resignButton.
+     * @param listener The ActionListener to be set.
+     */
     public void setResignActionListener(ActionListener listener) {
         resignButton.addActionListener(listener);
     }
 
+    /**
+     * Displays a confirmation dialog for resigning.
+     */
     public void showResign() {
         response = JOptionPane.showConfirmDialog(frame, "Are you sure you want to resign?", "Resign",
                 JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Gets the user's response from the confirmation dialog.
+     * @return The user's response (YES_OPTION or NO_OPTION).
+     */
     public int getResponse() {
         return response;
     }

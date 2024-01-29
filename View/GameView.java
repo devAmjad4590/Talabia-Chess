@@ -7,6 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+/**
+ * The GameView class represents the main game interface of the Talabia Chess game.
+ * It contains various panels for displaying the game components and handles sounds.
+ * class by Asim Adel Ahmed Maroof
+ */
 
 public class GameView extends JFrame {
 
@@ -18,6 +23,10 @@ public class GameView extends JFrame {
     private PlayerGUI player1, player2;
     private static Clip clip;
     
+    /**
+     * Constructor for GameView class.
+     * Initializes the game interface components and sets up the frame.
+     */
     public GameView() {
         frame = new JFrame("Talabia Chess Game");
         frame.setMinimumSize(new Dimension(850, 400));
@@ -46,32 +55,58 @@ public class GameView extends JFrame {
         frame.setVisible(true);
     }
 
-    
+    /**
+     * Retrieves the center panel of the game interface.
+     * @return The center panel.
+     */
     public CenterPanel getCenterPanel() {
         return centerPanel;
     }
 
+    /**
+     * Retrieves the north panel of the game interface.
+     * @return The north panel.
+     */
     public NorthPanel getNorthPanel() {
         return northPanel;
     }
 
+    /**
+     * Retrieves the south panel of the game interface.
+     * @return The south panel.
+     */
     public SouthPanel getSouthPanel() {
         return southPanel;
     }
 
+    /**
+     * Retrieves the east panel of the game interface.
+     * @return The east panel.
+     */
     public EastPanel getEastPanel() {
         return eastPanel;
     }
 
+    /**
+     * Retrieves the player 1 (yellow player) interface.
+     * @return The player 1 interface.
+     */
     public PlayerGUI getYellowPlayer(){
         return player1;
     }
 
+    /**
+     * Retrieves the player 2 (blue player) interface.
+     * @return The player 2 interface.
+     */
     public PlayerGUI getBluePlayer(){
         return player2;
     }
 
 
+    /**
+     * Plays the win music when a player wins the game.
+     */
     public void playWinMusic(){
         try{
             File file = new File("./View/sounds/WinMusic.wav"); // ill change it later
@@ -89,6 +124,9 @@ public class GameView extends JFrame {
         }
     }
 
+    /**
+     * Stops and closes the win music clip.
+     */
     public void closeWinMusic(){
         if (clip != null && clip.isRunning()) {
             clip.stop();
@@ -96,6 +134,9 @@ public class GameView extends JFrame {
         }
     }
 
+/**
+     * Plays the move sound when a player makes a move.
+     */
     public void playMoveSound(){
         try{
             File file = new File("./View/sounds/Move.wav");

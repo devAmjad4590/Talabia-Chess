@@ -57,6 +57,10 @@ public class TileGUI extends JButton {
         return y;
     }
 
+    /**
+     * Sets the image of the tile based on the specified piece.
+     * @param piece The piece to be displayed on the tile (e.g., "bluePoint", "yellowHourglass", etc.).
+     */
     public void setImage(String piece) {
         if (piece != null) {
             ImageIcon imageIcon = new ImageIcon(imagePath + piece + ".png");
@@ -71,6 +75,10 @@ public class TileGUI extends JButton {
         }
     }
 
+    /**
+     * Flips the image of the tile based on the specified piece.
+     * @param imagePiece The piece to be displayed on the tile (e.g., "bluePoint", "yellowHourglass", etc.).
+     */
     public void flipImage(String imagePiece) {
         if (imagePiece != null) {
             ImageIcon imageIcon = new ImageIcon(imagePath + imagePiece + ".png");
@@ -95,15 +103,30 @@ public class TileGUI extends JButton {
         }
     }
 
+    /**
+     * Gets the JLabel displaying the image of the tile.
+     *
+     * @return The JLabel displaying the image of the tile.
+     */
     public JLabel getImageLabel() {
         return imageLabel;
     }
 
+    /**
+     * Sets the tile to be an enemy tile.
+     *
+     * @param isEnemy Whether the tile is an enemy tile.
+     */
     public void setEnemy(boolean isEnemy) {
         this.isEnemy = isEnemy;
         repaint();
     }
 
+    /**
+     * Sets the tile to be an available tile.
+     *
+     * @param isClicked Whether the tile is an available tile.
+     */
     public void setAvailable(boolean isClicked) {
         this.isAvailable = isClicked;
         repaint();
