@@ -4,7 +4,7 @@ import Model.Pieces.*;
 import java.util.HashMap;
 
 /**
- * This was class was implemented by Maher M.N. Balchi.
+ * This was class was implemented by Maher M.N. Balchi and Amgad elrashid gurashi eltayeb.
  * The Board class represents the game board for a specific game.
  * It follows the Singleton pattern to ensure only one instance of the board
  * exists.
