@@ -1,4 +1,4 @@
-## 5.1- Main menu:
+## Main menu:
 
 The main menu for our Talabia game consist of three buttons:
 
@@ -13,7 +13,7 @@ The ‘Exit Game’ will quit the game and end the program.\
 ![](https://lh7-us.googleusercontent.com/f2WFwEW62kJ3RXC4bsMvw4CR7jAOB8NqtrBHe-Aw0oHeFPfFfiparf3QL-FLL4lHOz9fo2lBCRzbcMp9sJNcR85jTlyXWCR5zChq3iFHtgGkeakPJBXRoT_4Viap5DSqbJibUWBOYZ453pylUHqvaro)
 
 
-## 5.2- Talabia mainframe:
+## Talabia mainframe:
 
 Once ‘Start Game’ is selected, the user is navigated to the main game interface to commence gameplay. This interface have three important component:\
 **Talabia board:**\
@@ -26,7 +26,7 @@ The interface features four buttons in total. Three of these are located in the 
 This section displays the names, photos, and current points of both Player 1 and Player 2.
 
 
-### 5.2.1- Talabia board
+### Talabia board
 
 #### Pieces movement:
 
@@ -44,7 +44,7 @@ The game commences with Player 1, represented by the yellow pieces, making the f
 ![](https://lh7-us.googleusercontent.com/7LZNCRi_CccIn25yk0Pgiq0hN6LLu-KA-A3EL-cExnE5bGDExPsHIlfeWRy4RGLnR8He0zjxPkr6FHT7i_MQ_wjHA1Wg0gnfdfNj7-nvv2uXJWTG1AIpxiaE8CvkQafIPa12GKEksW2i_UZea7ICsp8)
 
 
-### 5.2.2- Talabia Buttons
+### Talabia Buttons
 
 #### New Button:
 
@@ -80,7 +80,7 @@ When a player selects the ‘Resign’ button, a confirmation prompt will appear
 ![](https://lh7-us.googleusercontent.com/sK2c8s77tR2MVkFkhdxtvU2XvCCzEoy9Mvx0rSPx-czzXBHIQR5keKWGTxTQgduKeTBjV94wwWvyNloAYLqc2On-SuCC83Xb0ZelXeqbosFX_OROGOL82a1Vr-k_q0dn0CA6dbPymRgOCARldNPkNpk)
 
 
-### 5.2.3- Talabia Players Section
+### Talabia Players Section
 
 The Player Section, comprises three elements:
 
