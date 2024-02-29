@@ -104,13 +104,24 @@ In the event of the sun getting captured, the victorious player’s score will i
 
 ![](https://lh7-us.googleusercontent.com/rD12o4YXDvmdzYnnHfAIZZQvAt6nNhjEfoqZnGDDWQMJ3Rd6r43idhRrvluNdCBlNQZ2TZdc5Pvu6kKnOjPBWUfOSkmIBRNk2ErUqiP8ntfM2nTj4x3YNZA5gESt0J06x9YENLVJXU6F2_9ta_W9Sk4)
 
-## ****For Windows, Mac and Linux:****
+## **For Windows, Mac and Linux:**
 
 ### **Navigate to the correct directory:** Ensure that you are in the correct directory where your Java files are located. You can use the `cd` command to change directories.
 
-## **1. **Compile the Java files:** Open the Command Prompt (CMD) and compile all the Java files in the directory by typing the following command and pressing `Enter: `\`**javac   \*.java\`**
-2. This command compiles all Java files (`*.java`) in the current directory. If the compilation is successful, it will create bytecode files with the `.class` extension for each Java file.
-3. Run the program: After successful compilation, you can run your program. The main class is Talabia.java, so you can run the program with the following command: \`java Talabia.java\` This command starts the Java Virtual Machine (JVM) and runs the `Talabia` class.**
+1. **Compile the Java files:** Open the Command Prompt (CMD) and compile all the Java files in the directory by typing the following command and pressing `Enter`:
 
-##
+    ```
+    javac *.java
+    ```
+
+    - This command compiles all Java files (`*.java`) in the current directory. If the compilation is successful, it will create bytecode files with the `.class` extension for each Java file.
+   
+2. **Run the program:** After successful compilation, you can run your program. The main class is `Talabia.java`, so you can run the program with the following command:
+
+    ```
+    java Talabia.java
+    ```
+
+    - This command starts the Java Virtual Machine (JVM) and runs the `Talabia` class.
+
 
