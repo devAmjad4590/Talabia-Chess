@@ -6,6 +6,12 @@
 
 ---
 
+
+## Talabia Game Preview
+
+   ![Talabia Chess Game](chess.gif)
+
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Installation and Setup](#installation-and-setup)
@@ -111,12 +117,6 @@ Once the game starts, the interface consists of the following components:
   Clicking "Quit" immediately exits the game without saving.
   - **Resign Button**:  
   Clicking "Resign" prompts the player to confirm the decision to resign. If confirmed, the opposing player is declared the winner.
-
-## Talabia Game Interface
-
-   ![Talabia Chess Game](chess.gif)
-
-This is a screenshot of the Talabia Chess Game showing the main interface, including the game board and player information.
 
 ## License
 
