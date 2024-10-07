@@ -55,9 +55,9 @@ Talabia is a strategic board game developed as part of the TCP2201 module. It fe
 
 You can view the UML class diagrams using the following links:
 
-- [Model Diagram](#)
-- [View Diagram](#)
-- [Controller Diagram](#)
+- [Model Diagram](https://app.diagrams.net/?page-id=ME9IjcjfFuZkWGZd5N8R)
+- [View Diagram](https://app.diagrams.net/?page-id=OLVy24eoel8JksQwI-H4)
+- [Controller Diagram](https://app.diagrams.net/?page-id=BOF1RafWjJp0yVhQ4V5G)
 
 ## Use Case Diagrams
 
