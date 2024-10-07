@@ -112,6 +112,12 @@ Once the game starts, the interface consists of the following components:
   - **Resign Button**:  
   Clicking "Resign" prompts the player to confirm the decision to resign. If confirmed, the opposing player is declared the winner.
 
+## Talabia Game Interface
+
+   ![Talabia Chess Game](image.png)
+
+This is a screenshot of the Talabia Chess Game showing the main interface, including the game board and player information.
+
 ## License
 
 This project is part of academic coursework and is not intended for commercial use.
