@@ -114,7 +114,7 @@ Once the game starts, the interface consists of the following components:
 
 ## Talabia Game Interface
 
-   ![Talabia Chess Game](image.png)
+   ![Talabia Chess Game](chess.gif)
 
 This is a screenshot of the Talabia Chess Game showing the main interface, including the game board and player information.
 
